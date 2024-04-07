@@ -11,6 +11,7 @@ contract DPGModule is EIP712, Ownable {
 
     event OwnerPopulated(address indexed safe, address indexed newOwner);
     event OwnerAdded(address indexed safe, address indexed newOwner);
+    event PointsIncremented(address indexed recipient, uint256 points);
 
     mapping(address => mapping(address => bool))
         private _isPopulatedAddOwnerWithThreshold;
@@ -18,6 +19,8 @@ contract DPGModule is EIP712, Ownable {
     mapping(address => bool) public hasFirstOwnerYet;
 
     address private _resolver;
+    uint256[] private _tierTreshold = [0];
+
 
     struct AddOwnerRequest {
         address dpgAccount;
@@ -31,7 +34,9 @@ contract DPGModule is EIP712, Ownable {
         address[] eoas;
     }
 
-    constructor(address resolver) EIP712("DPGAccountModule", "1") Ownable(msg.sender) {
+    constructor(
+        address resolver
+    ) EIP712("DPGAccountModule", "1") Ownable(msg.sender) {
         _resolver = resolver;
     }
 
@@ -103,11 +108,32 @@ contract DPGModule is EIP712, Ownable {
         emit OwnerPopulated(_safe, _newOwner);
     }
 
+    function incrementSuperChainPoints(
+        uint256 _points,
+        address recipent
+    ) public {
+        Account storage _account = dpgAccount[recipent];
+        require(
+            msg.sender == _resolver,
+            "Only the resolver can increment the points"
+        );
+        require(_account.smartAccount != address(0), "Account not found");
+        _account.points += _points;
+        if (_account.points >= _tierTreshold[_account.level]) {
+            _account.level++;
+        }
+        emit PointsIncremented(recipent, _points);
+    }
+
+    function _changeResolver(address resolver) public onlyOwner {
+        _resolver = resolver;
+    }
+
     function _verifySignature(
         address _safe,
         address _newOwner,
         bytes calldata signature
-    ) private view returns (bool) {
+    ) internal view returns (bool) {
         AddOwnerRequest memory request = AddOwnerRequest({
             superChainAccount: _safe,
             newOwner: _newOwner
@@ -132,10 +158,6 @@ contract DPGModule is EIP712, Ownable {
         } else {
             return false;
         }
-    }
-
-    function _changeResolver(address resolver) public onlyOwner {
-        _resolver = resolver;
     }
 
     modifier firstOwnerSet(address _safe) {
