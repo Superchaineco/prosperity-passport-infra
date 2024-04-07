@@ -21,7 +21,6 @@ contract DPGModule is EIP712, Ownable {
     address private _resolver;
     uint256[] private _tierTreshold = [0];
 
-
     struct AddOwnerRequest {
         address dpgAccount;
         address newOwner;
@@ -108,6 +107,16 @@ contract DPGModule is EIP712, Ownable {
         emit OwnerPopulated(_safe, _newOwner);
     }
 
+    function getDPGAccount(
+        address _owner
+    ) public view returns (Account memory) {
+        require(
+            dpgAccount[_owner].smartAccount != address(0),
+            "Account not found"
+        );
+        return dpgAccount[_owner];
+    }
+
     function incrementSuperChainPoints(
         uint256 _points,
         address recipent
@@ -127,6 +136,13 @@ contract DPGModule is EIP712, Ownable {
 
     function _changeResolver(address resolver) public onlyOwner {
         _resolver = resolver;
+    }
+    function _addTierTreshold(uint256 _treshold) public onlyOwner {
+        require(
+            _tierTreshold[_tierTreshold.length - 1] < _treshold,
+            "The treshold must be higher than the last one"
+        );
+        _tierTreshold.push(_treshold);
     }
 
     function _verifySignature(
