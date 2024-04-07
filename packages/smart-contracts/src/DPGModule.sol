@@ -13,15 +13,15 @@ contract DPGModule is EIP712 {
 
     mapping(address => mapping(address => bool))
         private _isPopulatedAddOwnerWithThreshold;
-    mapping(address => address) public superChainSmartAccount;
+    mapping(address => address) public dpgAccount;
     mapping(address => bool) public hasFirstOwnerYet;
 
     struct AddOwnerRequest {
-        address superChainAccount;
+        address dpgAccount;
         address newOwner;
     }
 
-    constructor() EIP712("SuperChainSmartAccountModule", "1") {}
+    constructor() EIP712("DPGAccountModule", "1") {}
 
     function addOwnerWithThreshold(
         address _safe,
@@ -33,8 +33,8 @@ contract DPGModule is EIP712 {
             "Signature verification failed"
         );
         require(
-            superChainSmartAccount[_newOwner] == address(0),
-            "Owner already has a SuperChainSmartAccount"
+            dpgAccount[_newOwner] == address(0),
+            "Owner already has a DPGAccount"
         );
         require(
             _isPopulatedAddOwnerWithThreshold[_newOwner][_safe],
@@ -53,21 +53,21 @@ contract DPGModule is EIP712 {
         );
 
         require(success, "Failed to add owner");
-        superChainSmartAccount[_newOwner] = _safe;
+        dpgAccount[_newOwner] = _safe;
         emit OwnerAdded(_safe, _newOwner);
     }
 
     function setInitialOwner(address _safe, address _owner) public {
         require(
-            superChainSmartAccount[_owner] == address(0),
+            dpgAccount[_owner] == address(0),
             "Owner already has a SuperChainSmartAccount"
         );
         require(ISafe(_safe).isOwner(_owner), "The address is not an owner");
-        require(msg.sender == _safe, "Caller is not the Safe");
-        require(!hasFirstOwnerYet[_safe], "Safe already has owners");
+        require(msg.sender == _safe, "Caller is not the DPGAccount");
+        require(!hasFirstOwnerYet[_safe], "DPGAccount already has owners");
         require(
             ISafe(_safe).getOwners().length == 1,
-            "Safe already has owners"
+            "DPGAccount already has owners"
         );
         superChainSmartAccount[_owner] = _safe;
         hasFirstOwnerYet[_safe] = true;
@@ -77,14 +77,14 @@ contract DPGModule is EIP712 {
         address _safe,
         address _newOwner
     ) public firstOwnerSet(_safe) {
-        require(msg.sender == _safe, "Caller is not the Safe");
+        require(msg.sender == _safe, "Caller is not the DPGAccount");
         require(!ISafe(_safe).isOwner(_newOwner), "Owner already exists");
         require(
             !_isPopulatedAddOwnerWithThreshold[_newOwner][_safe],
             "Owner already populated"
         );
         require(
-            superChainSmartAccount[_newOwner] == address(0),
+            dpgAccount[_newOwner] == address(0),
             "Owner already has a SuperChainSmartAccount"
         );
         _isPopulatedAddOwnerWithThreshold[_newOwner][_safe] = true;
