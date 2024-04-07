@@ -23,6 +23,7 @@ contract DPGModule is EIP712, Ownable {
 
     mapping(address => mapping(address => bool))
         private _isPopulatedAddOwnerWithThreshold;
+    mapping(address => address[]) public populatedAddOwnersWithTreshold;
     mapping(address => Account) public dpgAccount;
     mapping(address => bool) public hasFirstOwnerYet;
 
@@ -65,6 +66,21 @@ contract DPGModule is EIP712, Ownable {
             _isPopulatedAddOwnerWithThreshold[_newOwner][_safe],
             "Owner not populated"
         );
+        for (
+            uint i = 0;
+            i < populatedAddOwnersWithTreshold[_safe].length;
+            i++
+        ) {
+            if (populatedAddOwnersWithTreshold[_safe][i] == _newOwner) {
+                populatedAddOwnersWithTreshold[_safe][
+                    i
+                ] = populatedAddOwnersWithTreshold[_safe][
+                    populatedAddOwnersWithTreshold[_safe].length - 1
+                ];
+                populatedAddOwnersWithTreshold[_safe].pop();
+                break;
+            }
+        }
         bytes memory data = abi.encodeWithSignature(
             "addOwnerWithThreshold(address,uint256)",
             _newOwner,
@@ -80,6 +96,29 @@ contract DPGModule is EIP712, Ownable {
         require(success, "Failed to add owner");
         dpgAccount[_newOwner].smartAccount = _safe;
         emit OwnerAdded(_safe, _newOwner, dpgAccount[_newOwner].dpgID);
+    }
+
+    function removePopulateRequest(address _safe) {
+        require(
+            _isPopulatedAddOwnerWithThreshold[msg.sender][_safe],
+            "Owner not populated"
+        );
+        for (
+            uint i = 0;
+            i < populatedAddOwnersWithTreshold[msg.sender].length;
+            i++
+        ) {
+            if (populatedAddOwnersWithTreshold[msg.sender][i] == msg.sender) {
+                populatedAddOwnersWithTreshold[msg.sender][
+                    i
+                ] = populatedAddOwnersWithTreshold[msg.sender][
+                    populatedAddOwnersWithTreshold[msg.sender].length - 1
+                ];
+                populatedAddOwnersWithTreshold[msg.sender].pop();
+                _isPopulatedAddOwnerWithThreshold[msg.sender][_safe] = false;
+                break;
+            }
+        }
     }
 
     function setInitialOwner(
@@ -122,6 +161,8 @@ contract DPGModule is EIP712, Ownable {
             dpgAccount[_newOwner].smartAccount == address(0),
             "Owner already has a DPGAccount"
         );
+        require(populateAddOwner(_safe).length <= 2, "Max owners populated");
+        populatedAddOwnersWithTreshold[_safe].push(_newOwner);
         _isPopulatedAddOwnerWithThreshold[_newOwner][_safe] = true;
         emit OwnerPopulated(_safe, _newOwner, dpgAccount[_newOwner].dpgID);
     }
