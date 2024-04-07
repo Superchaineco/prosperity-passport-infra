@@ -28,6 +28,7 @@ contract DPGModule is EIP712, Ownable {
 
     struct Account {
         address smartAccount;
+        string dpgID;
         uint256 points;
         uint16 level;
         address[] eoas;
@@ -73,7 +74,11 @@ contract DPGModule is EIP712, Ownable {
         emit OwnerAdded(_safe, _newOwner);
     }
 
-    function setInitialOwner(address _safe, address _owner) public {
+    function setInitialOwner(
+        address _safe,
+        address _owner,
+        string calldata dpgId
+    ) public {
         require(
             dpgAccount[_owner].smartAccount == address(0),
             "Owner already has a SuperChainSmartAccount"
@@ -85,7 +90,12 @@ contract DPGModule is EIP712, Ownable {
             ISafe(_safe).getOwners().length == 1,
             "DPGAccount already has owners"
         );
+        require(
+            !_isInvalidDPGId(dpgId),
+            "The last 4 characters cannot be '.dpg'"
+        );
         dpgAccount[_owner].smartAccount = _safe;
+        dpgAccount[_owner].dpgID = string.concat(dpgId, ".dpg");
         hasFirstOwnerYet[_safe] = true;
     }
 
@@ -117,10 +127,7 @@ contract DPGModule is EIP712, Ownable {
         return dpgAccount[_owner];
     }
 
-    function incrementDPGPoints(
-        uint256 _points,
-        address recipent
-    ) public {
+    function incrementDPGPoints(uint256 _points, address recipent) public {
         Account storage _account = dpgAccount[recipent];
         require(
             msg.sender == _resolver,
@@ -143,6 +150,26 @@ contract DPGModule is EIP712, Ownable {
             "The treshold must be higher than the last one"
         );
         _tierTreshold.push(_treshold);
+    }
+
+    function _isInvalidDPGId(string memory str) internal pure returns (bool) {
+        bytes memory strBytes = bytes(str);
+        bytes memory suffixBytes = bytes(".dpg");
+
+        if (strBytes.length < suffixBytes.length) {
+            return false;
+        }
+
+        for (uint i = 0; i < suffixBytes.length; i++) {
+            if (
+                strBytes[strBytes.length - suffixBytes.length + i] !=
+                suffixBytes[i]
+            ) {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     function _verifySignature(
