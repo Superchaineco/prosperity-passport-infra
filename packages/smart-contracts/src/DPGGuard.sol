@@ -4,8 +4,15 @@ import {IGuard} from "../interfaces/IGuard.sol";
 import {Enum} from "../libraries/Enum.sol";
 
 contract DPGGuard is IGuard {
-    bytes4 private ADD_OWNER_WITH_THRESHOLD_SELECTOR = 0x0d582f13;
+    bytes4 private immutable ADD_OWNER_WITH_THRESHOLD_SELECTOR = 0x0d582f13;
+    bytes4 private immutable REMOVE_OWNER_SELECTOR = 0xf8dc5dd9;
+    bytes4 private immutable SWAP_OWNER_SELECTOR = 0xe318b52b;
+    bytes4 private immutable CHANGE_THRESHOLD_SELECTOR = 0x694e80c3;
+
     error UnableToAddOwnersToDPGAccount();
+    error UnableToRemoveOwnersFromDPGAccount();
+    error UnableToSwapOwnersInDPGAccount();
+    error UnableToChangeThresholdInDPGAccount();
 
     function supportsInterface(
         bytes4 interfaceId
@@ -32,6 +39,15 @@ contract DPGGuard is IGuard {
                 selector := mload(add(data, 0x20))
             }
             if (selector == ADD_OWNER_WITH_THRESHOLD_SELECTOR) {
+                revert UnableToAddOwnersToDPGAccount();
+            }
+            if (selector == REMOVE_OWNER_SELECTOR) {
+                revert UnableToAddOwnersToDPGAccount();
+            }
+            if (selector == SWAP_OWNER_SELECTOR) {
+                revert UnableToAddOwnersToDPGAccount();
+            }
+            if (selector == CHANGE_THRESHOLD_SELECTOR) {
                 revert UnableToAddOwnersToDPGAccount();
             }
         }
