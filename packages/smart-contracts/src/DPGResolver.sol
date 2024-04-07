@@ -28,8 +28,7 @@ contract DPGResolver is SchemaResolver {
             return false;
         }
         uint256 points = abi.decode(attestation.data, (uint256));
-        dpgModule
-            .incrementDPGPoints(
+        dpgModule.incrementDPGPoints(
                 points,
                 attestation.recipient
             );

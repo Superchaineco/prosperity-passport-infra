@@ -117,7 +117,7 @@ contract DPGModule is EIP712, Ownable {
         return dpgAccount[_owner];
     }
 
-    function incrementSuperChainPoints(
+    function incrementDPGPoints(
         uint256 _points,
         address recipent
     ) public {
@@ -151,16 +151,16 @@ contract DPGModule is EIP712, Ownable {
         bytes calldata signature
     ) internal view returns (bool) {
         AddOwnerRequest memory request = AddOwnerRequest({
-            superChainAccount: _safe,
+            dpgAccount: _safe,
             newOwner: _newOwner
         });
 
         bytes32 structHash = keccak256(
             abi.encode(
                 keccak256(
-                    "AddOwnerRequest(address superChainAccount,address newOwner)"
+                    "AddOwnerRequest(address dpgAccount,address newOwner)"
                 ),
-                request.superChainAccount,
+                request.dpgAccount,
                 request.newOwner
             )
         );
