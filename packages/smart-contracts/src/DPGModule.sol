@@ -9,8 +9,16 @@ import {Ownable} from "@openzeppelin/contracts/access/Ownable.sol";
 contract DPGModule is EIP712, Ownable {
     using ECDSA for bytes32;
 
-    event OwnerPopulated(address indexed safe, address indexed newOwner);
-    event OwnerAdded(address indexed safe, address indexed newOwner);
+    event OwnerPopulated(
+        address indexed safe,
+        address indexed newOwner,
+        string indexed dpgId
+    );
+    event OwnerAdded(
+        address indexed safe,
+        address indexed newOwner,
+        string indexed dpgId
+    );
     event PointsIncremented(address indexed recipient, uint256 points);
 
     mapping(address => mapping(address => bool))
@@ -71,7 +79,7 @@ contract DPGModule is EIP712, Ownable {
 
         require(success, "Failed to add owner");
         dpgAccount[_newOwner].smartAccount = _safe;
-        emit OwnerAdded(_safe, _newOwner);
+        emit OwnerAdded(_safe, _newOwner, dpgAccount[_newOwner].dpgID);
     }
 
     function setInitialOwner(
@@ -97,6 +105,7 @@ contract DPGModule is EIP712, Ownable {
         dpgAccount[_owner].smartAccount = _safe;
         dpgAccount[_owner].dpgID = string.concat(dpgId, ".dpg");
         hasFirstOwnerYet[_safe] = true;
+        emit OwnerAdded(_safe, _owner, dpgAccount[_owner].dpgID);
     }
 
     function populateAddOwner(
@@ -114,7 +123,7 @@ contract DPGModule is EIP712, Ownable {
             "Owner already has a DPGAccount"
         );
         _isPopulatedAddOwnerWithThreshold[_newOwner][_safe] = true;
-        emit OwnerPopulated(_safe, _newOwner);
+        emit OwnerPopulated(_safe, _newOwner, dpgAccount[_newOwner].dpgID);
     }
 
     function getDPGAccount(
