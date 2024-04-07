@@ -4,8 +4,9 @@ import {ISafe} from "../interfaces/ISafe.sol";
 import {Enum} from "../libraries/Enum.sol";
 import {ECDSA} from "@openzeppelin/contracts/utils/cryptography/ECDSA.sol";
 import {EIP712} from "@openzeppelin/contracts/utils/cryptography/EIP712.sol";
+import {Ownable} from "@openzeppelin/contracts/access/Ownable.sol";
 
-contract DPGModule is EIP712 {
+contract DPGModule is EIP712, Ownable {
     using ECDSA for bytes32;
 
     event OwnerPopulated(address indexed safe, address indexed newOwner);
@@ -15,6 +16,8 @@ contract DPGModule is EIP712 {
         private _isPopulatedAddOwnerWithThreshold;
     mapping(address => Account) public dpgAccount;
     mapping(address => bool) public hasFirstOwnerYet;
+
+    address private _resolver;
 
     struct AddOwnerRequest {
         address dpgAccount;
@@ -28,7 +31,9 @@ contract DPGModule is EIP712 {
         address[] eoas;
     }
 
-    constructor() EIP712("DPGAccountModule", "1") {}
+    constructor(address resolver) EIP712("DPGAccountModule", "1") Ownable(msg.sender) {
+        _resolver = resolver;
+    }
 
     function addOwnerWithThreshold(
         address _safe,
@@ -127,6 +132,10 @@ contract DPGModule is EIP712 {
         } else {
             return false;
         }
+    }
+
+    function _changeResolver(address resolver) public onlyOwner {
+        _resolver = resolver;
     }
 
     modifier firstOwnerSet(address _safe) {
