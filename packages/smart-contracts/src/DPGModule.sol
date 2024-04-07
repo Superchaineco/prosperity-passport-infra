@@ -13,12 +13,19 @@ contract DPGModule is EIP712 {
 
     mapping(address => mapping(address => bool))
         private _isPopulatedAddOwnerWithThreshold;
-    mapping(address => address) public dpgAccount;
+    mapping(address => Account) public dpgAccount;
     mapping(address => bool) public hasFirstOwnerYet;
 
     struct AddOwnerRequest {
         address dpgAccount;
         address newOwner;
+    }
+
+    struct Account {
+        address smartAccount;
+        uint256 points;
+        uint16 level;
+        address[] eoas;
     }
 
     constructor() EIP712("DPGAccountModule", "1") {}
@@ -33,7 +40,7 @@ contract DPGModule is EIP712 {
             "Signature verification failed"
         );
         require(
-            dpgAccount[_newOwner] == address(0),
+            dpgAccount[_newOwner].smartAccount == address(0),
             "Owner already has a DPGAccount"
         );
         require(
@@ -53,13 +60,13 @@ contract DPGModule is EIP712 {
         );
 
         require(success, "Failed to add owner");
-        dpgAccount[_newOwner] = _safe;
+        dpgAccount[_newOwner].smartAccount = _safe;
         emit OwnerAdded(_safe, _newOwner);
     }
 
     function setInitialOwner(address _safe, address _owner) public {
         require(
-            dpgAccount[_owner] == address(0),
+            dpgAccount[_owner].smartAccount == address(0),
             "Owner already has a SuperChainSmartAccount"
         );
         require(ISafe(_safe).isOwner(_owner), "The address is not an owner");
@@ -69,7 +76,7 @@ contract DPGModule is EIP712 {
             ISafe(_safe).getOwners().length == 1,
             "DPGAccount already has owners"
         );
-        superChainSmartAccount[_owner] = _safe;
+        dpgAccount[_owner].smartAccount = _safe;
         hasFirstOwnerYet[_safe] = true;
     }
 
@@ -84,8 +91,8 @@ contract DPGModule is EIP712 {
             "Owner already populated"
         );
         require(
-            dpgAccount[_newOwner] == address(0),
-            "Owner already has a SuperChainSmartAccount"
+            dpgAccount[_newOwner].smartAccount == address(0),
+            "Owner already has a DPGAccount"
         );
         _isPopulatedAddOwnerWithThreshold[_newOwner][_safe] = true;
         emit OwnerPopulated(_safe, _newOwner);

@@ -5,7 +5,7 @@ import {Enum} from "../libraries/Enum.sol";
 
 contract DPGGuard is IGuard {
     bytes4 private ADD_OWNER_WITH_THRESHOLD_SELECTOR = 0x0d582f13;
-    error UnavailableToAddOwnerWithoutSuperChainSmartAccountModule();
+    error UnableToAddOwnersToDPGAccount();
 
     function supportsInterface(
         bytes4 interfaceId
@@ -32,7 +32,7 @@ contract DPGGuard is IGuard {
                 selector := mload(add(data, 0x20))
             }
             if (selector == ADD_OWNER_WITH_THRESHOLD_SELECTOR) {
-                revert UnavailableToAddOwnerWithoutSuperChainSmartAccountModule();
+                revert UnableToAddOwnersToDPGAccount();
             }
         }
     }
