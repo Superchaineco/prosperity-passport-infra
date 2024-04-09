@@ -4,7 +4,7 @@ import { ethers } from 'ethers';
 
 const easContractAddress = process.env.EAS_CONTRACT_ADDRESS!;
 const schemaString = 'uint256 DPGPoints';
-const provider = new ethers.JsonRpcProvider(process.env.JSON_RPC!);
+const provider = new ethers.JsonRpcProvider(process.env.RPC_URL!);
 const wallet = new ethers.Wallet(
   process.env.ATTESTATOR_SIGNER_PRIVATE_KEY!,
   provider
