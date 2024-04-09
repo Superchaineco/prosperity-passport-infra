@@ -1,11 +1,18 @@
 CREATE TABLE Account (address VARCHAR(42) PRIMARY KEY);
-CREATE TABLE Badge(
+CREATE TABLE Badges (
     id SERIAL PRIMARY KEY,
+    name TEXT NOT NULL,
+    dataOrigin VARCHAR(8) CHECK (dataOrigin IN ('onChain', 'offChain'))
+);
+CREATE TABLE AccountBadges(
+    id SERIAL PRIMARY KEY,
+    badgeId INT,
     account VARCHAR(42),
-    title  TEXT not null,
+    title TEXT not null,
     points INT not null,
     lastClaim timestamp,
     lastClaimBlock INT,
     softDelete BOOLEAN DEFAULT FALSE,
-    FOREIGN KEY (account) REFERENCES Account(address)
+    FOREIGN KEY (account) REFERENCES Account(address),
+    FOREIGN KEY (badgeId) REFERENCES Badges(id)
 )
