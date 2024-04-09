@@ -1,9 +1,10 @@
 import { Alchemy, AssetTransfersCategory, Network } from 'alchemy-sdk';
 import { createClient } from './Supabase.service';
 
-type Badge = {
+export type Badge = {
   points: number;
   name: string;
+  id: string;
 };
 
 class BadgesServices {
@@ -102,7 +103,7 @@ class BadgesServices {
         eoas,
         params.blockNumber
       );
-      this.badges.push({ name: badge.name, points: newPoints });
+      this.badges.push({ name: badge.name, points: newPoints, id: badge.id });
     }
   }
 
