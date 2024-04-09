@@ -1,4 +1,4 @@
-import { badgesService } from '@/services/BadgesService';
+import { badgesService } from '@/services/Badges.service';
 import { NextRequest, NextResponse } from 'next/server';
 
 export async function GET(req: NextRequest) {
