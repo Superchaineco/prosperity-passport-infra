@@ -1,5 +1,4 @@
-import { badgesService } from '@/services/Badges.service';
-import { createClient } from '@/services/Supabase.service';
+import { badgesService } from '@/services/badges.service';
 import { NextRequest, NextResponse } from 'next/server';
 
 export async function GET(req: NextRequest) {

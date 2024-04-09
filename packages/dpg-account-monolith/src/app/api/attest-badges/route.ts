@@ -1,5 +1,5 @@
-import { attestationsService } from '@/services/Attestations.service';
-import { badgesService } from '@/services/Badges.service';
+import { attestationsService } from '@/services/attestations.service';
+import { badgesService } from '@/services/badges.service';
 import { NextRequest, NextResponse } from 'next/server';
 
 export async function POST(req: NextRequest) {
