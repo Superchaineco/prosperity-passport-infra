@@ -1,6 +1,7 @@
 import { SupabaseClient } from '@supabase/supabase-js';
 import { Alchemy, AssetTransfersCategory, Network } from 'alchemy-sdk';
 import { ethers } from 'ethers';
+import { badgesService } from './badges.service';
 
 export class BadgesHelper {
   supabase: SupabaseClient;

@@ -46,8 +46,14 @@ class BadgesServices {
       if (accountBadge) {
         params =
           badge.dataOrigin === 'onChain'
-            ? { blockNumber: accountBadge.lastClaimBlock }
-            : { timestamp: accountBadge.lastClaim };
+            ? {
+                blockNumber: accountBadge.lastClaimBlock,
+                points: accountBadge.points,
+              }
+            : {
+                timestamp: accountBadge.lastClaim,
+                points: accountBadge.points,
+              };
       }
 
       await this.updateBadgeDataForAccount(account, eoas, badge, params);
@@ -68,26 +74,58 @@ class BadgesServices {
     );
     switch (badge.name) {
       case 'Optimism Transactions':
-        const newPoints = await this.helper.getOptimisimTransactions(
+        const optimismTransactions = await this.helper.getOptimisimTransactions(
           eoas,
           params.blockNumber
         );
-        this.badges.push({ name: badge.name, points: newPoints, id: badge.id });
-        break;
-      case 'Base Transactions':
-        const newBasePoints = await this.helper.getBaseTransactions(
-          eoas,
-          params.blockNumber
-        );
+        let optimismPoints = 0;
+        if (optimismTransactions > 250) {
+          optimismPoints = 50;
+        } else if (optimismTransactions > 100) {
+          optimismPoints = 40;
+        } else if (optimismTransactions > 50) {
+          optimismPoints = 30;
+        } else if (optimismTransactions > 20) {
+          optimismPoints = 20;
+        } else if (optimismTransactions > 10) {
+          optimismPoints = 10;
+        }
+        optimismPoints -= params.points;
         this.badges.push({
           name: badge.name,
-          points: newBasePoints,
+          points: optimismPoints,
+          id: badge.id,
+        });
+        break;
+      case 'Base Transactions':
+        const baseTransactions = await this.helper.getBaseTransactions(
+          eoas,
+          params.blockNumber
+        );
+
+        let basePoints = 0;
+        if (baseTransactions > 250) {
+          basePoints = 50;
+        } else if (baseTransactions > 100) {
+          basePoints = 40;
+        } else if (baseTransactions > 50) {
+          basePoints = 30;
+        } else if (baseTransactions > 20) {
+          basePoints = 20;
+        } else if (baseTransactions > 10) {
+          basePoints = 10;
+        }
+        basePoints -= params.points;
+        this.badges.push({
+          name: badge.name,
+          points: basePoints,
           id: badge.id,
         });
         break;
 
       case 'Citizen':
-        const isCitizen = await this.helper.isCitizen(eoas);
+        let isCitizen = await this.helper.isCitizen(eoas);
+        isCitizen = isCitizen && !params.points;
         this.badges.push({
           name: badge.name,
           points: isCitizen ? 100 : 0,
@@ -97,9 +135,17 @@ class BadgesServices {
 
       case 'Nouns':
         const countNouns = await this.helper.hasNouns(eoas);
+        let nounsPoints = 0;
+        if (countNouns > 5) {
+          nounsPoints = 30;
+        } else if (countNouns > 3) {
+          nounsPoints = 20;
+        } else if (countNouns > 1) {
+          nounsPoints = 10;
+        }
         this.badges.push({
           name: badge.name,
-          points: countNouns,
+          points: nounsPoints,
           id: badge.id,
         });
         break;
