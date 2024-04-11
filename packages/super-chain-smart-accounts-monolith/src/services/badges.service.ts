@@ -43,6 +43,34 @@ class BadgesServices {
     return transactions;
   }
 
+  private async getBaseTransactions(eoas: string[], block: string) {
+    const settings = {
+      apiKey: process.env.ALCHEMY_PRIVATE_KEY!,
+      network: Network.BASE_MAINNET,
+    };
+    const alchemy = new Alchemy(settings);
+    const transactions = await eoas.reduce(async (accPromise, eoa) => {
+      const acc = await accPromise;
+      const res = await alchemy.core.getAssetTransfers({
+        fromBlock: block,
+        toBlock: 'latest',
+        toAddress: eoa,
+        excludeZeroValue: true,
+        category: [
+          AssetTransfersCategory.ERC20,
+          AssetTransfersCategory.ERC1155,
+          AssetTransfersCategory.EXTERNAL,
+          AssetTransfersCategory.INTERNAL,
+          AssetTransfersCategory.ERC721,
+        ],
+      });
+
+      return acc + res.transfers.length;
+    }, Promise.resolve(0));
+
+    return transactions;
+  }
+
   public async getBadges(eoas: string[], account: string): Promise<Badge[]> {
     const { data: _account, error: accountError } = await this.supabase
       .from('Account')
@@ -80,10 +108,6 @@ class BadgesServices {
       await this.updateBadgeDataForAccount(account, eoas, badge, params);
     }
 
-    const optimismTransactionsPoints = await this.getOptimisimTransactions(
-      eoas,
-      '10'
-    );
     return this.badges;
   }
 
@@ -97,13 +121,25 @@ class BadgesServices {
       `Actualizando datos para la badge ${badge.name} del usuario ${account} con parámetros:`,
       params
     );
-
-    if (badge.name === 'Optimism Transactions') {
-      const newPoints = await this.getOptimisimTransactions(
-        eoas,
-        params.blockNumber
-      );
-      this.badges.push({ name: badge.name, points: newPoints, id: badge.id });
+    switch (badge.name) {
+      case 'Optimism Transactions':
+        const newPoints = await this.getOptimisimTransactions(
+          eoas,
+          params.blockNumber
+        );
+        this.badges.push({ name: badge.name, points: newPoints, id: badge.id });
+        break;
+      case 'Base Transactions':
+        const newBasePoints = await this.getBaseTransactions(
+          eoas,
+          params.blockNumber
+        );
+        this.badges.push({
+          name: badge.name,
+          points: newBasePoints,
+          id: badge.id,
+        });
+        break;
     }
   }
 
