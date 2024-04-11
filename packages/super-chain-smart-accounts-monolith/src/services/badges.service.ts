@@ -1,5 +1,5 @@
-import { Alchemy, AssetTransfersCategory, Network } from 'alchemy-sdk';
 import { createClient } from './supabase.service';
+import { BadgesHelper, IBadgesHelper } from './badges.helper';
 
 export type Badge = {
   points: number;
@@ -10,81 +10,10 @@ export type Badge = {
 class BadgesServices {
   private supabase = createClient();
   private badges: Badge[] = [];
+  private helper: IBadgesHelper;
 
-  private async getOptimisimTransactions(
-    eoas: string[],
-    block: string
-  ): Promise<number> {
-    const settings = {
-      apiKey: process.env.ALCHEMY_PRIVATE_KEY!,
-      network: Network.OPT_MAINNET,
-    };
-
-    const alchemy = new Alchemy(settings);
-    const transactions = await eoas.reduce(async (accPromise, eoa) => {
-      const acc = await accPromise;
-      const res = await alchemy.core.getAssetTransfers({
-        fromBlock: block,
-        toBlock: 'latest',
-        toAddress: eoa,
-        excludeZeroValue: true,
-        category: [
-          AssetTransfersCategory.ERC20,
-          AssetTransfersCategory.ERC1155,
-          AssetTransfersCategory.EXTERNAL,
-          AssetTransfersCategory.INTERNAL,
-          AssetTransfersCategory.ERC721,
-        ],
-      });
-
-      return acc + res.transfers.length;
-    }, Promise.resolve(0));
-
-    return transactions;
-  }
-
-  private async getBaseTransactions(eoas: string[], block: string) {
-    const settings = {
-      apiKey: process.env.ALCHEMY_PRIVATE_KEY!,
-      network: Network.BASE_MAINNET,
-    };
-    const alchemy = new Alchemy(settings);
-    const transactions = await eoas.reduce(async (accPromise, eoa) => {
-      const acc = await accPromise;
-      const res = await alchemy.core.getAssetTransfers({
-        fromBlock: block,
-        toBlock: 'latest',
-        toAddress: eoa,
-        excludeZeroValue: true,
-        category: [
-          AssetTransfersCategory.ERC20,
-          AssetTransfersCategory.ERC1155,
-          AssetTransfersCategory.EXTERNAL,
-          AssetTransfersCategory.INTERNAL,
-          AssetTransfersCategory.ERC721,
-        ],
-      });
-
-      return acc + res.transfers.length;
-    }, Promise.resolve(0));
-
-    return transactions;
-  }
-
-  private async isCitizen(eoas: string[]) {
-    for (const eoa of eoas) {
-      const { data, error } = await this.supabase
-        .from('Citizen')
-        .select('*')
-        .eq('address', eoa)
-        .single();
-
-      if (data.length > 0) {
-        if (!data[0].claimed) return false;
-        return true;
-      }
-    }
-    return false;
+  constructor() {
+    this.helper = new BadgesHelper(this.supabase);
   }
 
   public async getBadges(eoas: string[], account: string): Promise<Badge[]> {
@@ -139,14 +68,14 @@ class BadgesServices {
     );
     switch (badge.name) {
       case 'Optimism Transactions':
-        const newPoints = await this.getOptimisimTransactions(
+        const newPoints = await this.helper.getOptimisimTransactions(
           eoas,
           params.blockNumber
         );
         this.badges.push({ name: badge.name, points: newPoints, id: badge.id });
         break;
       case 'Base Transactions':
-        const newBasePoints = await this.getBaseTransactions(
+        const newBasePoints = await this.helper.getBaseTransactions(
           eoas,
           params.blockNumber
         );
@@ -158,10 +87,19 @@ class BadgesServices {
         break;
 
       case 'Citizen':
-        const isCitizen = await this.isCitizen(eoas);
+        const isCitizen = await this.helper.isCitizen(eoas);
         this.badges.push({
           name: badge.name,
           points: isCitizen ? 100 : 0,
+          id: badge.id,
+        });
+        break;
+
+      case 'Nouns':
+        const countNouns = await this.helper.hasNouns(eoas);
+        this.badges.push({
+          name: badge.name,
+          points: countNouns,
           id: badge.id,
         });
         break;
