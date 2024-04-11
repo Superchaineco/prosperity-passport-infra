@@ -71,6 +71,20 @@ class BadgesServices {
     return transactions;
   }
 
+  private async isCitizen(eoas: string[]) {
+    for (const eoa of eoas) {
+      const { data, error } = await this.supabase
+        .from('Citizen')
+        .select('*')
+        .eq('address', eoa)
+        .single();
+      if (data.length > 0) {
+        return true;
+      }
+    }
+    return false;
+  }
+
   public async getBadges(eoas: string[], account: string): Promise<Badge[]> {
     const { data: _account, error: accountError } = await this.supabase
       .from('Account')
@@ -137,6 +151,15 @@ class BadgesServices {
         this.badges.push({
           name: badge.name,
           points: newBasePoints,
+          id: badge.id,
+        });
+        break;
+
+      case 'Citizen':
+        const isCitizen = await this.isCitizen(eoas);
+        this.badges.push({
+          name: badge.name,
+          points: isCitizen ? 100 : 0,
           id: badge.id,
         });
         break;
