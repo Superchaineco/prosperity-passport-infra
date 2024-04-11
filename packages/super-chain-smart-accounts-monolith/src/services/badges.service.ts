@@ -78,7 +78,9 @@ class BadgesServices {
         .select('*')
         .eq('address', eoa)
         .single();
+
       if (data.length > 0) {
+        if (!data[0].claimed) return false;
         return true;
       }
     }

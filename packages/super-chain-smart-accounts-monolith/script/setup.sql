@@ -3,7 +3,7 @@ CREATE TABLE Badges (
     id SERIAL PRIMARY KEY,
     name TEXT NOT NULL,
     isActive BOOLEAN DEFAULT TRUE,
-    dataOrigin VARCHAR(8) CHECK (dataOrigin IN ('onChain', 'offChain', 'static'))
+    dataOrigin VARCHAR(8) CHECK (dataOrigin IN ('onChain', 'offChain'))
 );
 CREATE TABLE AccountBadges(
     id SERIAL PRIMARY KEY,
@@ -18,6 +18,7 @@ CREATE TABLE AccountBadges(
     FOREIGN KEY (badgeId) REFERENCES Badges(id)
 ) CREATE TABLE CITIZENS(
     id SERIAL PRIMARY KEY,
+    claimed BOOLEAN DEFAULT FALSE,
     address VARCHAR(42) NOT NULL,
     ens VARCHAR(255)
 )
