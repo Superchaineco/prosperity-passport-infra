@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@covalenthq/client-sdk": "^1.0.0",
     "alchemy-sdk": "^3.2.1",
     "next": "14.1.4",
     "react": "^18",

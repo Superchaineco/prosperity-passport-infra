@@ -1,11 +1,12 @@
 import { SupabaseClient } from '@supabase/supabase-js';
 import { Alchemy, AssetTransfersCategory, Network } from 'alchemy-sdk';
 import { ethers } from 'ethers';
-import { badgesService } from './badges.service';
+import { CovalentClient } from '@covalenthq/client-sdk';
 
 export class BadgesHelper {
   supabase: SupabaseClient;
-  constructor(private _supabase: SupabaseClient) {
+  covalent = new CovalentClient(process.env.COVALENT_API_KEY!);
+  constructor(_supabase: SupabaseClient) {
     this.supabase = _supabase;
   }
   async getOptimisimTransactions(
@@ -68,6 +69,18 @@ export class BadgesHelper {
     return transactions;
   }
 
+  async getModeTransactions(eoas: string[], block: string) {
+   const transactions = eoas.reduce(async (accPromise, eoa) => {
+      const resp =
+        await this.covalent.TransactionService.getAllTransactionsForAddressByPage(
+          'mode-testnet',
+          eoa
+        );
+      return (await accPromise) + resp.data.items.length;
+    }, Promise.resolve(0));
+    return transactions;
+  }
+
   async isCitizen(eoas: string[]) {
     for (const eoa of eoas) {
       const { data, error } = await this.supabase
@@ -103,6 +116,7 @@ export class BadgesHelper {
 export interface IBadgesHelper {
   getOptimisimTransactions(eoas: string[], block: string): Promise<number>;
   getBaseTransactions(eoas: string[], block: string): Promise<number>;
+  getModeTransactions(eoas: string[], block: string): Promise<number>;
   isCitizen(eoas: string[]): Promise<boolean>;
   hasNouns(eoas: string[]): Promise<number>;
 }

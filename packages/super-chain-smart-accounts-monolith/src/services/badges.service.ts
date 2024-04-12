@@ -123,6 +123,32 @@ class BadgesServices {
         });
         break;
 
+      case 'Mode transactions':
+        const modeTransactions = await this.helper.getModeTransactions(
+          eoas,
+          params.blockNumber
+        );
+
+        let modePoints = 0;
+        if (modeTransactions > 250) {
+          modePoints = 50;
+        } else if (modeTransactions > 100) {
+          modePoints = 40;
+        } else if (modeTransactions > 50) {
+          modePoints = 30;
+        } else if (modeTransactions > 20) {
+          modePoints = 20;
+        } else if (modeTransactions > 10) {
+          modePoints = 10;
+        }
+        modePoints -= params.points;
+        this.badges.push({
+          name: badge.name,
+          points: modePoints,
+          id: badge.id,
+        });
+        break;
+
       case 'Citizen':
         let isCitizen = await this.helper.isCitizen(eoas);
         isCitizen = isCitizen && !params.points;
