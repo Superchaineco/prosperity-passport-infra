@@ -15,14 +15,16 @@ function WelcomeLogIn() {
     <Paper className={css.loginCard} data-testid='welcome-login'>
       <Box className={css.loginContent}>
         <Typography variant='h6' mt={6} fontWeight={700}>
-          Get started
+          Welcome
         </Typography>
 
         <Typography mb={2} textAlign='center'>
-          Open your existing Safe Accounts or create a new one
+          Log In or Sign Up to create a new Superchain Account or open an
+          existing one
         </Typography>
-
-        {/* <WalletLogin onLogin={onLogin} /> */}
+        <Button variant='contained' disableElevation size='medium'>
+          Get started
+        </Button>
 
         <Divider sx={{ mt: 2, mb: 2, width: '100%' }}>
           <Typography
@@ -33,8 +35,8 @@ function WelcomeLogIn() {
             or
           </Typography>
         </Divider>
-        <Button disableElevation size='small'>
-          Watch any account
+        <Button variant='outlined' disableElevation size='medium'>
+          Accept invite
         </Button>
       </Box>
     </Paper>
