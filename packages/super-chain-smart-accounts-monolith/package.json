@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@covalenthq/client-sdk": "^1.0.0",
+    "@mui/icons-material": "^5.15.15",
     "alchemy-sdk": "^3.2.1",
     "classnames": "^2.5.1",
     "next": "14.1.4",

@@ -4,6 +4,7 @@ import classnames from 'classnames';
 
 // import Header from '@/components/common/Header';
 import css from './styles.module.css';
+import Footer from '../Footer';
 // import SafeLoadingError from '../SafeLoadingError';
 // import Footer from '../Footer';
 // import SideDrawer from './SideDrawer';
@@ -48,7 +49,7 @@ const PageLayout = ({
 
         {/* <BatchSidebar isOpen={isBatchOpen} onToggle={setBatchOpen} /> */}
 
-        {/* <Footer /> */}
+        <Footer />
       </div>
     </>
   );
