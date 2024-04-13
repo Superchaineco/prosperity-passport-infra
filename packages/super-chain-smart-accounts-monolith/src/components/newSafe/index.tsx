@@ -1,0 +1,51 @@
+import React from 'react';
+import { Grid, SvgIcon, Typography } from '@mui/material';
+import css from './styles.module.css';
+import CheckFilled from '@/assets/images/common/check-filled.svg';
+import { WelcomeLogIn } from '../welcome/WelcomeLogin';
+
+const BulletListItem = ({ text }: { text: string }) => (
+  <li>
+    <Typography color='static.main' fontWeight={700}>
+      {text}
+    </Typography>
+  </li>
+);
+
+const NewSafe = () => {
+  return (
+    <>
+      <Grid container spacing={3} p={3} pb={0} flex={1} direction='row-reverse'>
+        <Grid item xs={12} lg={6}>
+          <WelcomeLogIn />
+        </Grid>
+        <Grid item xs={12} lg={6} flex={1}>
+          <div className={css.content}>
+            <Typography
+              variant='h1'
+              fontSize={[44, null, 52]}
+              lineHeight={1}
+              letterSpacing={-1.5}
+              color='static.main'
+            >
+              Unlock a new way of ownership
+            </Typography>
+
+            <Typography mb={1} color='static.main'>
+              The most trusted decentralized custody protocol and collective
+              asset management platform.
+            </Typography>
+
+            <ul className={css.bulletList}>
+              <BulletListItem text='Stealth security with multiple signers' />
+              <BulletListItem text='Make it yours with modules and guards' />
+              <BulletListItem text='Access 130+ ecosystem apps' />
+            </ul>
+          </div>
+        </Grid>
+      </Grid>
+    </>
+  );
+};
+
+export default NewSafe;

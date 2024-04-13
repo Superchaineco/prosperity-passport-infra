@@ -1,7 +1,8 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
-import './globals.css';
+import '@/styles/globals.css';
 import { AppProviders } from './provider';
+import PageLayout from '@/components/common/layout';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -18,7 +19,10 @@ export default function RootLayout({
   return (
     <html lang='en'>
       <body className={inter.className}>
-        <AppProviders>{children}</AppProviders>
+        <AppProviders>
+          {/* @ts-expect-error */}
+          <PageLayout>{children}</PageLayout>
+        </AppProviders>
       </body>
     </html>
   );
