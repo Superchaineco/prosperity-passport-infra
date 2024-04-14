@@ -59,6 +59,11 @@
   flex-shrink: 0;
 }
 
+.button {
+  padding-left: var(--space-2);
+  padding-right: var(--space-2);
+}
+
 @media (max-width: 899.95px) {
   .logo {
     display: none;
@@ -77,9 +82,4 @@
   .hideSidebarMobile {
     visibility: hidden;
   }
-}
-
-.container {
-  padding-left: var(--space-4);
-  padding-right: var(--space-4);
 }
