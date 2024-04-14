@@ -8,9 +8,10 @@ import {
 } from '@mui/material';
 import React from 'react';
 import css from './styles.module.css';
-import Link from 'next/link';
+import { usePrivy } from '@privy-io/react-auth';
 
 function WelcomeLogIn() {
+  const { login } = usePrivy();
   return (
     <Paper className={css.loginCard} data-testid='welcome-login'>
       <Box className={css.loginContent}>
@@ -22,7 +23,12 @@ function WelcomeLogIn() {
           Log In or Sign Up to create a new Superchain Account or open an
           existing one
         </Typography>
-        <Button variant='contained' disableElevation size='medium'>
+        <Button
+          onClick={login}
+          variant='contained'
+          disableElevation
+          size='medium'
+        >
           Get started
         </Button>
 
