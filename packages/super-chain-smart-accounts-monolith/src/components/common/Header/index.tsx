@@ -8,7 +8,7 @@ import css from './styles.module.css';
 import Link from 'next/link';
 import WalletConnect from '@/assets/images/common/walletconnect.svg';
 import BellIcon from '@/assets/images/common/notifications.svg';
-
+import SuperChainEco from '@/assets/images/common/superchain-eco.svg';
 type HeaderProps = {
   onMenuToggle?: Dispatch<SetStateAction<boolean>>;
   onBatchToggle?: Dispatch<SetStateAction<boolean>>;
@@ -48,7 +48,11 @@ const Header = ({ onMenuToggle }: HeaderProps): ReactElement => {
 
       <div className={classnames(css.element, css.hideMobile, css.logo)}>
         <Link href={logoHref} passHref>
-          hola
+          <SvgIcon
+            component={SuperChainEco}
+            inheritViewBox
+            style={{ width: '200px', height: '100px' }}
+          />
         </Link>
       </div>
 
@@ -64,7 +68,7 @@ const Header = ({ onMenuToggle }: HeaderProps): ReactElement => {
         />
       </div>
 
-      <Button variant='outlined' size='medium'>
+      <Button variant='contained' size='small'>
         Log In or Sign Up
       </Button>
     </Paper>
