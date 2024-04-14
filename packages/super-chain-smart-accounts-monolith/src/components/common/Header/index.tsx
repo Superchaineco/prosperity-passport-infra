@@ -9,6 +9,8 @@ import Link from 'next/link';
 import WalletConnect from '@/assets/images/common/walletconnect.svg';
 import BellIcon from '@/assets/images/common/notifications.svg';
 import SuperChainEco from '@/assets/images/common/superchain-eco.svg';
+import { truncate } from 'fs';
+import Image from 'next/image';
 
 type HeaderProps = {
   onMenuToggle?: Dispatch<SetStateAction<boolean>>;
@@ -68,9 +70,27 @@ const Header = ({ onMenuToggle }: HeaderProps): ReactElement => {
           className={css.icon}
         />
       </div>
+      <div className={classnames(css.element, css.networkSelector)}>
+        <span
+          data-testid='chain-logo'
+          className={classnames(css.element, css.inline)}
+        >
+          <Image
+            src='https://safe-transaction-assets.safe.global/chains/10/chain_logo.png'
+            alt='Optimism Logo'
+            width={24}
+            height={24}
+            loading='lazy'
+          />
+
+          <span className={css.name}>Optimism</span>
+        </span>
+      </div>
       <div className={classnames(css.element, css.button)}>
-        <Button variant='contained' size='small'>
-          Log In or Sign Up
+        <Button className={css.login} variant='contained' size='small'>
+          <span>Log In</span>
+          or
+          <span> Sign Up</span>
         </Button>
       </div>
     </Paper>
