@@ -7,7 +7,7 @@ import Badge from '@/assets/images/common/badges.svg';
 import LevelUp from '@/assets/images/common/level-up.svg';
 import Leaderboard from '@/assets/images/common/leaderboard.svg';
 import Transactions from '@/assets/images/common/transactions.svg';
-
+import CardFooter from '@/assets/images/common/footer-card.svg';
 const BulletListItem = ({ text, icon }: { text: string; icon: any }) => (
   <li>
     <SvgIcon className={css.checkIcon} component={icon} inheritViewBox />
@@ -26,6 +26,17 @@ const NewSafe = () => {
         </Grid>
         <Grid item xs={12} lg={6} flex={1}>
           <div className={css.content}>
+            <SvgIcon
+              component={CardFooter}
+              inheritViewBox
+              style={{
+                width: '100%',
+                height: 'auto',
+                position: 'absolute',
+                bottom: 0,
+                right: 0,
+              }}
+            />
             <Typography
               variant='h1'
               fontSize={[44, null, 52]}
