@@ -20,8 +20,8 @@ export const AppProviders = ({
       config={{
         appearance: {
           theme: 'light',
-          accentColor: '#676FFF',
-          logo: 'https://your-logo-url',
+          accentColor: '#FF0420',
+          logo: 'https://pbs.twimg.com/profile_images/1696769956245807105/xGnB-Cdl_400x400.png',
         },
         embeddedWallets: {
           createOnLogin: 'users-without-wallets',

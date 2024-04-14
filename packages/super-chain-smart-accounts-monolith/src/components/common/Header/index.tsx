@@ -9,7 +9,6 @@ import Link from 'next/link';
 import WalletConnect from '@/assets/images/common/walletconnect.svg';
 import BellIcon from '@/assets/images/common/notifications.svg';
 import SuperChainEco from '@/assets/images/common/superchain-eco.svg';
-import ButtonBase from '@mui/material/ButtonBase';
 
 type HeaderProps = {
   onMenuToggle?: Dispatch<SetStateAction<boolean>>;
