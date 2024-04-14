@@ -11,7 +11,7 @@ import Transactions from '@/assets/images/common/transactions.svg';
 const BulletListItem = ({ text, icon }: { text: string; icon: any }) => (
   <li>
     <SvgIcon className={css.checkIcon} component={icon} inheritViewBox />
-    <Typography color='secondary.background' fontWeight={700}>
+    <Typography color='static.secondary' fontWeight={700}>
       {text}
     </Typography>
   </li>
@@ -31,12 +31,12 @@ const NewSafe = () => {
               fontSize={[44, null, 52]}
               lineHeight={1}
               letterSpacing={-1.5}
-              color='secondary.background'
+              color='static.secondary'
             >
               Feel the power of the Superchain
             </Typography>
 
-            <Typography mb={1} color='secondary.background'>
+            <Typography mb={1} color='static.secondary'>
               Connect to the Superchain ecosystem with your Smart Account.
             </Typography>
 

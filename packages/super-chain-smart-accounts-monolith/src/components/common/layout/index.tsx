@@ -5,6 +5,7 @@ import classnames from 'classnames';
 // import Header from '@/components/common/Header';
 import css from './styles.module.css';
 import Footer from '../Footer';
+import Header from '../Header';
 // import SafeLoadingError from '../SafeLoadingError';
 // import Footer from '../Footer';
 // import SideDrawer from './SideDrawer';
@@ -31,6 +32,9 @@ const PageLayout = ({
 
   return (
     <>
+      <header className={css.header}>
+        <Header onMenuToggle={undefined} onBatchToggle={setBatchOpen} />
+      </header>
       {/* {isSidebarRoute && (
         <SideDrawer isOpen={isSidebarOpen} onToggle={setSidebarOpen} />
       )} */}
