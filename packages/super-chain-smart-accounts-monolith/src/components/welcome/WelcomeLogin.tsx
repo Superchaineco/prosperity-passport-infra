@@ -9,9 +9,14 @@ import {
 import React from 'react';
 import css from './styles.module.css';
 import { usePrivy } from '@privy-io/react-auth';
+import { useRouter } from 'next/navigation';
 
 function WelcomeLogIn() {
-  const { login } = usePrivy();
+  const { push } = useRouter();
+  const { login, authenticated } = usePrivy();
+  const handleGetStarted = () => {
+    authenticated ? push('new-account') : login();
+  };
   return (
     <Paper className={css.loginCard} data-testid='welcome-login'>
       <Box className={css.loginContent}>
@@ -24,6 +29,7 @@ function WelcomeLogIn() {
           existing one
         </Typography>
         <Button
+          onClick={handleGetStarted}
           variant='contained'
           disableElevation
           size='medium'
