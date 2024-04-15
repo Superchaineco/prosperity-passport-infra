@@ -24,7 +24,6 @@ function WelcomeLogIn() {
           existing one
         </Typography>
         <Button
-          onClick={login}
           variant='contained'
           disableElevation
           size='medium'

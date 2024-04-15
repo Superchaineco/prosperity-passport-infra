@@ -37,17 +37,6 @@
   font-size: 14px;
 }
 
-.login {
-  display: flex;
-  flex-direction: row;
-  gap: 4px  ;
-  font-weight:lighter ;
-}
-
-.login > span {
-  font-weight: bold;
-}
-
 [data-theme='dark'] .element :global(.MuiBadge-standard) {
   background-color: var(--color-primary-main);
 }

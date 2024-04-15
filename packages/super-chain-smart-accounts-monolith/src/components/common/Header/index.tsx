@@ -6,12 +6,13 @@ import MenuIcon from '@mui/icons-material/Menu';
 import classnames from 'classnames';
 import css from './styles.module.css';
 import Link from 'next/link';
-import WalletConnect from '@/assets/images/common/walletconnect.svg';
-import BellIcon from '@/assets/images/common/notifications.svg';
-import SuperChainEco from '@/assets/images/common/superchain-eco.svg';
+import WalletConnect from '@/public/images/common/walletconnect.svg';
+import BellIcon from '@/public/images/common/notifications.svg';
+import SuperChainEco from '@/public/images/common/superchain-eco.svg';
 import { truncate } from 'fs';
 import Image from 'next/image';
 import { usePrivy } from '@privy-io/react-auth';
+import ConnectWallet from '../ConnectWallet';
 
 type HeaderProps = {
   onMenuToggle?: Dispatch<SetStateAction<boolean>>;
@@ -21,7 +22,7 @@ type HeaderProps = {
 const Header = ({ onMenuToggle }: HeaderProps): ReactElement => {
   const router = useRouter();
   const logoHref = '/#';
-  const { login } = usePrivy();
+  const { login, authenticated } = usePrivy();
 
   const handleMenuToggle = () => {
     if (onMenuToggle) {
@@ -88,16 +89,7 @@ const Header = ({ onMenuToggle }: HeaderProps): ReactElement => {
         </span>
       </div>
       <div className={classnames(css.element, css.button)}>
-        <Button
-          onClick={login}
-          className={css.login}
-          variant='contained'
-          size='small'
-        >
-          <span>Log In</span>
-          or
-          <span> Sign Up</span>
-        </Button>
+        <ConnectWallet />
       </div>
     </Paper>
   );

@@ -3,11 +3,11 @@ import React from 'react';
 import { Grid, SvgIcon, Typography } from '@mui/material';
 import css from './styles.module.css';
 import { WelcomeLogIn } from '../welcome/WelcomeLogin';
-import Badge from '@/assets/images/common/badges.svg';
-import LevelUp from '@/assets/images/common/level-up.svg';
-import Leaderboard from '@/assets/images/common/leaderboard.svg';
-import Transactions from '@/assets/images/common/transactions.svg';
-import CardFooter from '@/assets/images/common/footer-card.svg';
+import Badge from '@/public/images/common/badges.svg';
+import LevelUp from '@/public/images/common/level-up.svg';
+import Leaderboard from '@/public/images/common/leaderboard.svg';
+import Transactions from '@/public/images/common/transactions.svg';
+import CardFooter from '@/public/images/common/footer-card.svg';
 const BulletListItem = ({ text, icon }: { text: string; icon: any }) => (
   <li>
     <SvgIcon className={css.checkIcon} component={icon} inheritViewBox />
