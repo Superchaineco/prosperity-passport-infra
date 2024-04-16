@@ -34,8 +34,10 @@ const SET_NAME_STEP_FORM_ID = 'create-safe-set-name-step-form';
 
 function SuperChainID({
   setSuperChainId,
+  setWalletName,
 }: {
   setSuperChainId: (id: string) => void;
+  setWalletName: (name: string) => void;
 }) {
   const { wallet } = useWallet();
   const isWrongChain = useMemo(() => {
@@ -56,7 +58,9 @@ function SuperChainID({
     data: Pick<NewSafeFormData, 'name'> & { id: string }
   ) => {
     const name = data.name;
-    setSuperChainId(data.id);
+    const id = data.id;
+    setWalletName(name);
+    setSuperChainId(id);
   };
 
   return (
@@ -74,6 +78,14 @@ function SuperChainID({
                 required
                 InputLabelProps={{ shrink: true }}
                 InputProps={{
+                  onChange: (e) => {
+                    e.target.value = e.target.value.toLocaleLowerCase();
+                    if (!e.target.value.length) {
+                      setSuperChainId('');
+                      return;
+                    }
+                    setSuperChainId(e.target.value + suffix);
+                  },
                   endAdornment: (
                     <>
                       <InputAdornment position='end'>
@@ -105,6 +117,9 @@ function SuperChainID({
                 placeholder={'Name'}
                 InputLabelProps={{ shrink: true }}
                 InputProps={{
+                  onChange: (e) => {
+                    setWalletName(e.target.value);
+                  },
                   endAdornment: (
                     <Tooltip
                       title='This name is stored locally and will never be shared with us or any third parties.'

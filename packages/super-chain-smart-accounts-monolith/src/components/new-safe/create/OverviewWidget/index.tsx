@@ -10,9 +10,11 @@ import ChainIndicator from '../../../common/ChainIndicator';
 const LOGO_DIMENSIONS = '22px';
 
 const OverviewWidget = ({
-  safeName,
+  superChainId,
+  walletName,
 }: {
-  safeName: string;
+  superChainId: string;
+  walletName: string;
 }): ReactElement | null => {
   const { wallet } = useWallet();
   const rows = [
@@ -27,8 +29,21 @@ const OverviewWidget = ({
           },
         ]
       : []),
-    ...(safeName !== ''
-      ? [{ title: 'Name', component: <Typography>{safeName}</Typography> }]
+    ...(superChainId !== ''
+      ? [
+          {
+            title: 'Account ID',
+            component: <Typography>{superChainId}</Typography>,
+          },
+        ]
+      : []),
+    ...(walletName !== ''
+      ? [
+          {
+            title: 'Wallet Name',
+            component: <Typography>{walletName}</Typography>,
+          },
+        ]
       : []),
   ];
 

@@ -23,14 +23,16 @@ export type NewSafeFormData = {
 const CreateSafe = () => {
   const router = useRouter();
   const [activeStep, setActiveStep] = useState(0);
-  const [safeName, setSafeName] = useState('');
+  const [walletName, setWalletName] = useState('');
+  const [superChainId, setSuperChainId] = useState('')
+
 
   const CreateSafeSteps: TxStepperProps<NewSafeFormData>['steps'] = [
     {
       title: 'Select a name and ID for your Superchain Account',
       subtitle: '',
       render: (data, onSubmit, onBack, setStep) => (
-        <SuperChainID setSuperChainId={setSafeName} />
+        <SuperChainID setSuperChainId={setSuperChainId} setWalletName={setWalletName} />
       ),
     },
     {
@@ -91,7 +93,7 @@ const CreateSafe = () => {
 
         <Grid item xs={12} md={4} mb={[3, null, 0]} order={[0, null, 1]}>
           <Grid container spacing={3}>
-            {activeStep < 2 && <OverviewWidget safeName={safeName} />}
+            {activeStep < 2 && <OverviewWidget superChainId={superChainId} walletName={walletName} />}
             {/* {wallet?.address && (
               <CreateSafeInfos
                 staticHint={staticHint}
