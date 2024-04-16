@@ -3,10 +3,10 @@ pragma solidity ^0.8.19;
 
 import {SchemaResolver} from "eas-contracts/resolver/SchemaResolver.sol";
 import {IEAS, Attestation} from "eas-contracts/IEAS.sol";
-import {DPGModule} from "./DPGModule.sol";
+import {SuperChainModule} from "./SuperChainModule.sol";
 
-contract DPGResolver is SchemaResolver {
-    DPGModule public dpgModule;
+contract SuperChainResolver is SchemaResolver {
+    SuperChainModule public superChainModule;
     address private immutable _attestator;
 
     constructor(IEAS eas, address attestator) SchemaResolver(eas) {
@@ -15,9 +15,9 @@ contract DPGResolver is SchemaResolver {
 
     // This might be onlyOwner
     function updateSuperChainAccountsManager(
-        DPGModule _DPGModule
+        SuperChainModule _SuperChainModule
     ) public {
-        dpgModule = _DPGModule;
+        superChainModule = _SuperChainModule;
     }
 
     function onAttest(
@@ -28,10 +28,10 @@ contract DPGResolver is SchemaResolver {
             return false;
         }
         uint256 points = abi.decode(attestation.data, (uint256));
-        dpgModule.incrementDPGPoints(
-                points,
-                attestation.recipient
-            );
+        superChainModule.incrementSuperChainPoints(
+            points,
+            attestation.recipient
+        );
         return true;
     }
 

@@ -6,7 +6,7 @@ import {ECDSA} from "@openzeppelin/contracts/utils/cryptography/ECDSA.sol";
 import {EIP712} from "@openzeppelin/contracts/utils/cryptography/EIP712.sol";
 import {Ownable} from "@openzeppelin/contracts/access/Ownable.sol";
 
-contract DPGModule is EIP712, Ownable {
+contract SuperChainModule is EIP712, Ownable {
     using ECDSA for bytes32;
 
     event OwnerPopulated(
@@ -24,28 +24,38 @@ contract DPGModule is EIP712, Ownable {
     mapping(address => mapping(address => bool))
         private _isPopulatedAddOwnerWithThreshold;
     mapping(address => address[]) public populatedAddOwnersWithTreshold;
-    mapping(address => Account) public dpgAccount;
+    mapping(address => Account) public superChainAccount;
     mapping(address => bool) public hasFirstOwnerYet;
 
     address private _resolver;
     uint256[] private _tierTreshold = [0];
 
     struct AddOwnerRequest {
-        address dpgAccount;
+        address superChainAccount;
         address newOwner;
     }
 
     struct Account {
         address smartAccount;
-        string dpgID;
+        string superChainID;
         uint256 points;
         uint16 level;
         address[] eoas;
+        NounsMetadata noun;
+    }
+
+    struct NounMetadata {
+        uint256 id;
+        uint48 background;
+        uint48 body;
+        uint48 accessory;
+        uint48 head;
+        uint48 glasses;
     }
 
     constructor(
         address resolver
-    ) EIP712("DPGAccountModule", "1") Ownable(msg.sender) {
+    ) EIP712("SuperChainAccountModule", "1") Ownable(msg.sender) {
         _resolver = resolver;
     }
 
@@ -60,7 +70,7 @@ contract DPGModule is EIP712, Ownable {
         );
         require(
             dpgAccount[_newOwner].smartAccount == address(0),
-            "Owner already has a DPGAccount"
+            "Owner already has a SuperChainAccount"
         );
         require(
             _isPopulatedAddOwnerWithThreshold[_newOwner][_safe],
@@ -95,7 +105,11 @@ contract DPGModule is EIP712, Ownable {
 
         require(success, "Failed to add owner");
         dpgAccount[_newOwner].smartAccount = _safe;
-        emit OwnerAdded(_safe, _newOwner, dpgAccount[_newOwner].dpgID);
+        emit OwnerAdded(
+            _safe,
+            _newOwner,
+            superChainAccount[_newOwner].superChainID
+        );
     }
 
     function removePopulateRequest(address _safe) {
@@ -124,61 +138,82 @@ contract DPGModule is EIP712, Ownable {
     function setInitialOwner(
         address _safe,
         address _owner,
-        string calldata dpgId
+        NounMetadata calldata _noun,
+        string calldata superChainID
     ) public {
         require(
-            dpgAccount[_owner].smartAccount == address(0),
+            superChainAccount[_owner].smartAccount == address(0),
             "Owner already has a SuperChainSmartAccount"
         );
         require(ISafe(_safe).isOwner(_owner), "The address is not an owner");
-        require(msg.sender == _safe, "Caller is not the DPGAccount");
-        require(!hasFirstOwnerYet[_safe], "DPGAccount already has owners");
+        require(
+            msg.sender == _safe,
+            "Caller is not the SuperChainSmartAccount"
+        );
+        require(
+            !hasFirstOwnerYet[_safe],
+            "SuperChainSmartAccount already has owners"
+        );
         require(
             ISafe(_safe).getOwners().length == 1,
-            "DPGAccount already has owners"
+            "SuperChainSmartAccount already has owners"
         );
         require(
-            !_isInvalidDPGId(dpgId),
-            "The last 4 characters cannot be '.dpg'"
+            !_isInvalidSuperChainId(superChainID),
+            "The last 11 characters cannot be '.superchain'"
         );
-        dpgAccount[_owner].smartAccount = _safe;
-        dpgAccount[_owner].dpgID = string.concat(dpgId, ".dpg");
+        superChainAccount[_owner].smartAccount = _safe;
+        superChainAccount[_owner].superChainID = string.concat(
+            superChainID,
+            ".superchain"
+        );
         hasFirstOwnerYet[_safe] = true;
-        emit OwnerAdded(_safe, _owner, dpgAccount[_owner].dpgID);
+        superChainAccount[_owner].noun = _noun;
+        emit OwnerAdded(_safe, _owner, superChainAccount[_owner].superChainID);
     }
 
     function populateAddOwner(
         address _safe,
         address _newOwner
     ) public firstOwnerSet(_safe) {
-        require(msg.sender == _safe, "Caller is not the DPGAccount");
+        require(
+            msg.sender == _safe,
+            "Caller is not the SuperChainSmartAccount"
+        );
         require(!ISafe(_safe).isOwner(_newOwner), "Owner already exists");
         require(
             !_isPopulatedAddOwnerWithThreshold[_newOwner][_safe],
             "Owner already populated"
         );
         require(
-            dpgAccount[_newOwner].smartAccount == address(0),
-            "Owner already has a DPGAccount"
+            superChainAccount[_newOwner].smartAccount == address(0),
+            "Owner already has a SuperChainSmartAccount"
         );
         require(populateAddOwner(_safe).length <= 2, "Max owners populated");
         populatedAddOwnersWithTreshold[_safe].push(_newOwner);
         _isPopulatedAddOwnerWithThreshold[_newOwner][_safe] = true;
-        emit OwnerPopulated(_safe, _newOwner, dpgAccount[_newOwner].dpgID);
+        emit OwnerPopulated(
+            _safe,
+            _newOwner,
+            superChainAccount[_newOwner].superChainID
+        );
     }
 
-    function getDPGAccount(
+    function getSuperChainAccount(
         address _owner
     ) public view returns (Account memory) {
         require(
-            dpgAccount[_owner].smartAccount != address(0),
+            superChainAccount[_owner].smartAccount != address(0),
             "Account not found"
         );
-        return dpgAccount[_owner];
+        return superChainAccount[_owner];
     }
 
-    function incrementDPGPoints(uint256 _points, address recipent) public {
-        Account storage _account = dpgAccount[recipent];
+    function incrementSuperChainPoints(
+        uint256 _points,
+        address recipent
+    ) public {
+        Account storage _account = superChainAccount[recipent];
         require(
             msg.sender == _resolver,
             "Only the resolver can increment the points"
@@ -202,9 +237,11 @@ contract DPGModule is EIP712, Ownable {
         _tierTreshold.push(_treshold);
     }
 
-    function _isInvalidDPGId(string memory str) internal pure returns (bool) {
+    function _isInvalidSuperChainId(
+        string memory str
+    ) internal pure returns (bool) {
         bytes memory strBytes = bytes(str);
-        bytes memory suffixBytes = bytes(".dpg");
+        bytes memory suffixBytes = bytes(".superchain");
 
         if (strBytes.length < suffixBytes.length) {
             return false;
@@ -228,16 +265,16 @@ contract DPGModule is EIP712, Ownable {
         bytes calldata signature
     ) internal view returns (bool) {
         AddOwnerRequest memory request = AddOwnerRequest({
-            dpgAccount: _safe,
+            superChainAccount: _safe,
             newOwner: _newOwner
         });
 
         bytes32 structHash = keccak256(
             abi.encode(
                 keccak256(
-                    "AddOwnerRequest(address dpgAccount,address newOwner)"
+                    "AddOwnerRequest(address superChainAccount,address newOwner)"
                 ),
-                request.dpgAccount,
+                request.superChainAccount,
                 request.newOwner
             )
         );
