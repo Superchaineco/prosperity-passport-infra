@@ -2,6 +2,7 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import { NewSafeFormData } from '../..';
+import css from './styles.module.css';
 import {
   Box,
   Button,
@@ -59,8 +60,6 @@ function SuperChainID({
   ) => {
     const name = data.name;
     const id = data.id;
-    setWalletName(name);
-    setSuperChainId(id);
   };
 
   return (
@@ -161,6 +160,8 @@ function SuperChainID({
               Cancel
             </Button>
             <Button
+              className={css.submit}
+              color='secondary'
               data-testid='next-btn'
               type='submit'
               variant='contained'
