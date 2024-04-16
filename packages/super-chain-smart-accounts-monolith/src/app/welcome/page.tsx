@@ -1,4 +1,4 @@
-import NewSafe from '@/components/newSafe';
+import NewSafe from '@/components/welcome';
 import React from 'react';
 
 function page() {

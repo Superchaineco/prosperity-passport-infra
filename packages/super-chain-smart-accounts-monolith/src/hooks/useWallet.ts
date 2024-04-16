@@ -13,10 +13,11 @@ export type ConnectedWallet = {
 function useWallet() {
   const [wallet, setWallet] = useState<ConnectedWallet | null>(null);
   const [isReady, setIsReady] = useState(false);
-  const { wallets } = useWallets();
+  const { wallets, ready } = useWallets();
   const currentWallet = wallets[0];
   useEffect(() => {
     (async () => {
+      if (!ready) return;
       setWallet({
         label: 'Privy',
         chainId: currentWallet.chainId,
@@ -27,7 +28,7 @@ function useWallet() {
       });
       setIsReady(true);
     })();
-  }, [currentWallet]);
+  }, [currentWallet, ready]);
 
   return { wallet, isReady };
 }

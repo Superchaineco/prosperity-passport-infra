@@ -2,7 +2,7 @@
 import React from 'react';
 import { Grid, SvgIcon, Typography } from '@mui/material';
 import css from './styles.module.css';
-import { WelcomeLogIn } from '../welcome/WelcomeLogin';
+import { WelcomeLogIn } from './login/WelcomeLogin';
 import Badge from '@/public/images/common/badges.svg';
 import LevelUp from '@/public/images/common/level-up.svg';
 import Leaderboard from '@/public/images/common/leaderboard.svg';

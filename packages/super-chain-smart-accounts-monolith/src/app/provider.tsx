@@ -1,6 +1,6 @@
 'use client';
 import { ReactNode } from 'react';
-import SafeThemeProvider from '../theme/SafeThemeProvider';
+import SafeThemeProvider from '../components/theme/SafeThemeProvider';
 import { Theme, ThemeProvider } from '@mui/material';
 import { useDarkMode } from '@/hooks/useDarkMode';
 import { privyAppId } from '@/config';

@@ -11,7 +11,7 @@ const lightPalette = {
   },
   secondary: {
     dark: '#0FDA6D',
-    main: '#12FF80',
+    main: '#FF0420',
     light: '#B0FFC9',
     background: '#EFFFF4',
   },
@@ -59,8 +59,8 @@ const lightPalette = {
   },
   static: {
     main: '#121312',
-    secondary: '#eeeff0;'
+    secondary: '#eeeff0;',
   },
-}
+};
 
-export default lightPalette
+export default lightPalette;
