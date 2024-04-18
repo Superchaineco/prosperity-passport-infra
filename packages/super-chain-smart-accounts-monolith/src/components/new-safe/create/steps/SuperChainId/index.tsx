@@ -36,9 +36,11 @@ const SET_NAME_STEP_FORM_ID = 'create-safe-set-name-step-form';
 function SuperChainID({
   setSuperChainId,
   setWalletName,
+  setStep,
 }: {
   setSuperChainId: (id: string) => void;
   setWalletName: (name: string) => void;
+  setStep: (step: number) => void;
 }) {
   const { wallet } = useWallet();
   const isWrongChain = useMemo(() => {
@@ -58,8 +60,7 @@ function SuperChainID({
   const onFormSubmit = (
     data: Pick<NewSafeFormData, 'name'> & { id: string }
   ) => {
-    const name = data.name;
-    const id = data.id;
+    setStep(1);
   };
 
   return (

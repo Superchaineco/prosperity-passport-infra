@@ -1,5 +1,4 @@
 import type { ReactNode, ReactElement, SyntheticEvent } from 'react';
-import { isAddress } from 'ethers';
 import { useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import useMediaQuery from '@mui/material/useMediaQuery';
@@ -8,6 +7,7 @@ import CopyAddressButton from '../../CopyAddressButton';
 import { shortenAddress } from '@/utils/formatters';
 import ImageFallback from '../../ImageFallback';
 import css from './styles.module.css';
+import { ethers } from 'ethers';
 
 export type EthHashInfoProps = {
   address: string;
@@ -27,7 +27,6 @@ export type EthHashInfoProps = {
   trusted?: boolean;
 };
 
-
 const SrcEthHashInfo = ({
   address,
   customAvatar,
@@ -44,7 +43,7 @@ const SrcEthHashInfo = ({
   children,
   trusted = true,
 }: EthHashInfoProps): ReactElement => {
-  const shouldPrefix = isAddress(address);
+  const shouldPrefix = ethers.utils.isAddress(address);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
   const identicon = <Identicon address={address} size={avatarSize} />;

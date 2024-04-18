@@ -1,6 +1,5 @@
 import { Container, Typography, Grid } from '@mui/material';
 import { useRouter } from 'next/navigation';
-
 import type { AlertColor } from '@mui/material';
 import { type ReactElement, useMemo, useState } from 'react';
 import ExternalLink from '@/components/common/ExternalLink';
@@ -9,6 +8,7 @@ import { NamedAddress } from './types';
 import { CreateSafeInfoItem } from './CreateSafeInfos';
 import { TxStepperProps } from '../CardStepper/useCardStepper';
 import { CardStepper } from '../CardStepper';
+import Avatar, { NounProps } from './steps/Avatar';
 import SuperChainID from './steps/SuperChainId';
 import OverviewWidget from './OverviewWidget';
 
@@ -24,22 +24,33 @@ const CreateSafe = () => {
   const router = useRouter();
   const [activeStep, setActiveStep] = useState(0);
   const [walletName, setWalletName] = useState('');
-  const [superChainId, setSuperChainId] = useState('')
-
+  const [superChainId, setSuperChainId] = useState('');
+  const [seed, setSeed] = useState<NounProps>({
+    background: 0,
+    body: 0,
+    head: 0,
+    accessory: 0,
+    glasses: 0,
+  });
 
   const CreateSafeSteps: TxStepperProps<NewSafeFormData>['steps'] = [
     {
       title: 'Select a name and ID for your Superchain Account',
       subtitle: '',
       render: (data, onSubmit, onBack, setStep) => (
-        <SuperChainID setSuperChainId={setSuperChainId} setWalletName={setWalletName} />
+        <SuperChainID
+          setSuperChainId={setSuperChainId}
+          setWalletName={setWalletName}
+          setStep={setStep}
+        />
       ),
     },
     {
-      title: 'Signers and confirmations',
-      subtitle:
-        'Set the signer wallets of your Safe Account and how many need to confirm to execute a valid transaction.',
-      render: (data, onSubmit, onBack, setStep) => <h1>Hello</h1>,
+      title: 'Customize your Superchain Account Avatar',
+      subtitle: 'This avatar will be the face of your Superchain Account',
+      render: (data, onSubmit, onBack, setStep) => (
+        <Avatar setStep={setStep} seed={seed} setSeed={setSeed} />
+      ),
     },
     {
       title: 'Review',
@@ -93,7 +104,12 @@ const CreateSafe = () => {
 
         <Grid item xs={12} md={4} mb={[3, null, 0]} order={[0, null, 1]}>
           <Grid container spacing={3}>
-            {activeStep < 2 && <OverviewWidget superChainId={superChainId} walletName={walletName} />}
+            {activeStep < 2 && (
+              <OverviewWidget
+                superChainId={superChainId}
+                walletName={walletName}
+              />
+            )}
             {/* {wallet?.address && (
               <CreateSafeInfos
                 staticHint={staticHint}

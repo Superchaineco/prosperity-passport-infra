@@ -8,7 +8,7 @@ const nextConfig = {
       },
     ],
   },
-  webpack(config) {
+  webpack(config, { isServer }) {
     config.module.rules.push({
       test: /\.svg$/i,
       issuer: { and: [/\.(js|ts|md)x?$/] },
@@ -33,6 +33,12 @@ const nextConfig = {
         },
       ],
     });
+    if (!isServer) {
+      config.resolve.fallback = {
+        fs: false,
+      };
+    }
+
     return config;
   },
 };
