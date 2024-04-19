@@ -14,16 +14,20 @@
     "@nouns/assets": "^0.5.0",
     "@nouns/sdk": "^0.4.0",
     "@privy-io/react-auth": "^1.60.4",
+    "@reduxjs/toolkit": "^1.9.5",
     "@types/lodash": "^4.17.0",
+    "@web3-onboard/core": "^2.21.6",
     "alchemy-sdk": "^3.2.1",
     "blo": "^1.2.0",
     "classnames": "^2.5.1",
+    "ethers": "^6.11.1",
     "lodash": "^4.17.21",
     "next": "14.1.4",
     "react": "^18",
     "react-dom": "^18",
     "react-hook-form": "^7.51.3",
-    "react-imask": "^7.6.0"
+    "react-imask": "^7.6.0",
+    "react-redux": "^8.0.5"
   },
   "devDependencies": {
     "@svgr/webpack": "^8.1.0",

@@ -43,7 +43,7 @@ const SrcEthHashInfo = ({
   children,
   trusted = true,
 }: EthHashInfoProps): ReactElement => {
-  const shouldPrefix = ethers.utils.isAddress(address);
+  const shouldPrefix = ethers.isAddress(address);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
   const identicon = <Identicon address={address} size={avatarSize} />;

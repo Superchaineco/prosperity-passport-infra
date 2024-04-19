@@ -8,16 +8,19 @@ import { NamedAddress } from './types';
 import { CreateSafeInfoItem } from './CreateSafeInfos';
 import { TxStepperProps } from '../CardStepper/useCardStepper';
 import { CardStepper } from '../CardStepper';
-import Avatar, { NounProps } from './steps/Avatar';
-import SuperChainID from './steps/SuperChainId';
+import Avatar, { NounProps } from './steps/AvatarStep';
+import SuperChainID from './steps/SuperChainIdStep';
 import OverviewWidget from './OverviewWidget';
+import ReviewStep from './steps/ReviewStep';
 
 export type NewSafeFormData = {
   name: string;
+  id: string;
+  seed: NounProps;
+  owners: NamedAddress[];
   threshold: number;
-  saltNonce: number;
   safeAddress?: string;
-  willRelay?: boolean;
+  saltNonce: number;
 };
 
 const CreateSafe = () => {
@@ -39,6 +42,9 @@ const CreateSafe = () => {
       subtitle: '',
       render: (data, onSubmit, onBack, setStep) => (
         <SuperChainID
+          onBack={onBack}
+          data={data}
+          onSubmit={onSubmit}
           setSuperChainId={setSuperChainId}
           setWalletName={setWalletName}
           setStep={setStep}
@@ -49,14 +55,28 @@ const CreateSafe = () => {
       title: 'Customize your Superchain Account Avatar',
       subtitle: 'This avatar will be the face of your Superchain Account',
       render: (data, onSubmit, onBack, setStep) => (
-        <Avatar setStep={setStep} seed={seed} setSeed={setSeed} />
+        <Avatar
+          setStep={setStep}
+          seed={seed}
+          setSeed={setSeed}
+          onSubmit={onSubmit}
+          data={data}
+          onBack={onBack}
+        />
       ),
     },
     {
       title: 'Review',
       subtitle:
-        "You're about to create a new Safe Account and will have to confirm the transaction with your connected wallet.",
-      render: (data, onSubmit, onBack, setStep) => <h1>Hello</h1>,
+        "You're about to create a new Superchain Account and will have to confirm the transaction with your connected wallet.",
+      render: (data, onSubmit, onBack, setStep) => (
+        <ReviewStep
+          data={data}
+          onSubmit={onSubmit}
+          onBack={onBack}
+          setStep={setStep}
+        />
+      ),
     },
     {
       title: '',
@@ -71,6 +91,9 @@ const CreateSafe = () => {
 
   const initialData: NewSafeFormData = {
     name: '',
+    owners: [],
+    id: '',
+    seed,
     threshold: 1,
     saltNonce: Date.now(),
   };
@@ -87,7 +110,7 @@ const CreateSafe = () => {
         justifyContent='center'
         mt={[2, null, 7]}
       >
-        <Grid item xs={12}>
+        <Grid item xs={activeStep < 2 ? 12 : 8}>
           <Typography variant='h2' pb={2}>
             Create new Safe Account
           </Typography>
@@ -101,23 +124,16 @@ const CreateSafe = () => {
             setWidgetStep={setActiveStep}
           />
         </Grid>
-
-        <Grid item xs={12} md={4} mb={[3, null, 0]} order={[0, null, 1]}>
-          <Grid container spacing={3}>
-            {activeStep < 2 && (
+        {activeStep < 2 && (
+          <Grid item xs={12} md={4} mb={[3, null, 0]} order={[0, null, 1]}>
+            <Grid container spacing={3}>
               <OverviewWidget
                 superChainId={superChainId}
                 walletName={walletName}
               />
-            )}
-            {/* {wallet?.address && (
-              <CreateSafeInfos
-                staticHint={staticHint}
-                dynamicHint={dynamicHint}
-              />
-            )} */}
+            </Grid>
           </Grid>
-        </Grid>
+        )}
       </Grid>
     </Container>
   );
