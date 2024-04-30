@@ -25,11 +25,11 @@ const rootReducer = combineReducers({
   // [slices.sessionSlice.name]: slices.sessionSlice.reducer,
   // [slices.txHistorySlice.name]: slices.txHistorySlice.reducer,
   // [slices.txQueueSlice.name]: slices.txQueueSlice.reducer,
-  // [slices.addressBookSlice.name]: slices.addressBookSlice.reducer,
+  [slices.addressBookSlice.name]: slices.addressBookSlice.reducer,
   [slices.notificationsSlice.name]: slices.notificationsSlice.reducer,
   // [slices.pendingTxsSlice.name]: slices.pendingTxsSlice.reducer,
-  // [slices.addedSafesSlice.name]: slices.addedSafesSlice.reducer,
-  // [slices.settingsSlice.name]: slices.settingsSlice.reducer,
+  [slices.addedSafesSlice.name]: slices.addedSafesSlice.reducer,
+  [slices.settingsSlice.name]: slices.settingsSlice.reducer,
   // [slices.cookiesSlice.name]: slices.cookiesSlice.reducer,
   // [slices.popupSlice.name]: slices.popupSlice.reducer,
   // [slices.spendingLimitSlice.name]: slices.spendingLimitSlice.reducer,
@@ -42,10 +42,10 @@ const rootReducer = combineReducers({
 
 const persistedSlices: (keyof PreloadedState<RootState>)[] = [
   // slices.sessionSlice.name,
-  // slices.addressBookSlice.name,
+  slices.addressBookSlice.name,
   // slices.pendingTxsSlice.name,
-  // slices.addedSafesSlice.name,
-  // slices.settingsSlice.name,
+  slices.addedSafesSlice.name,
+  slices.settingsSlice.name,
   // slices.cookiesSlice.name,
   // slices.safeAppsSlice.name,
   // slices.pendingSafeMessagesSlice.name,
@@ -64,7 +64,7 @@ const middleware = [
   broadcastState(persistedSlices),
   listenerMiddlewareInstance.middleware,
 ];
-// const listeners = [safeMessagesListener, txHistoryListener, txQueueListener];
+// const listeners = [ ];
 
 export const _hydrationReducer: typeof rootReducer = (state, action) => {
   if (action.type === hydrate.HYDRATE_ACTION) {
@@ -86,10 +86,10 @@ export const makeStore = (initialState?: Record<string, any>) => {
   const store = configureStore({
     reducer: _hydrationReducer,
     // middleware: (getDefaultMiddleware) => {
-    // listeners.forEach((listener) => listener(listenerMiddlewareInstance));
-    // return getDefaultMiddleware({ serializableCheck: false }).concat(
-    //   middleware
-    // );
+    //   listeners.forEach((listener) => listener(listenerMiddlewareInstance));
+    //   return getDefaultMiddleware({ serializableCheck: false }).concat(
+    //     middleware
+    //   );
     // },
     devTools: !IS_PRODUCTION,
     preloadedState: initialState,

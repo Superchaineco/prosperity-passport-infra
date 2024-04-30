@@ -11,32 +11,32 @@ import {
   getReadOnlyGnosisSafeContract,
   getReadOnlyProxyFactoryContract,
 } from '@/services/contracts/safeContracts';
-// import type { ConnectedWallet } from '@/hooks/wallets/useOnboard';
-// import { SafeCreationStatus } from '@/components/new-safe/create/steps/StatusStep/useSafeCreation';
-// import { didRevert, type EthersError } from '@/utils/ethers-utils';
+import { SafeCreationStatus } from '@/components/new-safe/create/steps/StatusStep/useSafeCreation';
+import { didRevert, type EthersError } from '@/utils/ethers-utils';
 import { Errors, trackError } from '@/services/exceptions';
-// import { isWalletRejection } from '@/utils/wallets';
+import { isWalletRejection } from '@/utils/wallets';
 import type { PendingSafeTx } from '@/components/new-safe/create/types';
 import type { NewSafeFormData } from '@/components/new-safe/create';
 import type { UrlObject } from 'url';
-// import { AppRoutes } from '@/config/routes';
+import { AppRoutes } from '@/config/routes';
 import type { AppDispatch, AppThunk } from '@/store';
-// import { showNotification } from '@/store/notificationsSlice';
+import { showNotification } from '@/store/notificationsSlice';
 import { SafeFactory } from '@safe-global/protocol-kit';
 import type Safe from '@safe-global/protocol-kit';
 import type { DeploySafeProps } from '@safe-global/protocol-kit';
-// import {
-//   createEthersAdapter,
-//   isValidSafeVersion,
-// } from '@/hooks/coreSDK/safeCoreSDK';
+import {
+  createEthersAdapter,
+  isValidSafeVersion,
+} from '@/hooks/coreSDK/safeCoreSDK';
 
-// import { backOff } from 'exponential-backoff';
+import { backOff } from 'exponential-backoff';
 import { LATEST_SAFE_VERSION } from '@/config/constants';
 import {
   EMPTY_DATA,
   ZERO_ADDRESS,
 } from '@safe-global/protocol-kit/dist/src/utils/constants';
 import { formatError } from '@/utils/formatters';
+import { ConnectedWallet } from '@/hooks/useWallet';
 
 export type SafeCreationProps = {
   owners: string[];
@@ -47,67 +47,67 @@ export type SafeCreationProps = {
 /**
  * Prepare data for creating a Safe for the Core SDK
  */
-// export const getSafeDeployProps = async (
-//   safeParams: SafeCreationProps,
-//   callback: (txHash: string) => void,
-//   chainId: string
-// ): Promise<DeploySafeProps & { callback: DeploySafeProps['callback'] }> => {
-//   const readOnlyFallbackHandlerContract =
-//     await getReadOnlyFallbackHandlerContract(chainId, LATEST_SAFE_VERSION);
+export const getSafeDeployProps = async (
+  safeParams: SafeCreationProps,
+  callback: (txHash: string) => void,
+  chainId: string
+): Promise<DeploySafeProps & { callback: DeploySafeProps['callback'] }> => {
+  const readOnlyFallbackHandlerContract =
+    await getReadOnlyFallbackHandlerContract(chainId, LATEST_SAFE_VERSION);
 
-//   return {
-//     safeAccountConfig: {
-//       threshold: safeParams.threshold,
-//       owners: safeParams.owners,
-//       fallbackHandler: await readOnlyFallbackHandlerContract.getAddress(),
-//     },
-//     saltNonce: safeParams.saltNonce.toString(),
-//     callback,
-//   };
-// };
+  return {
+    safeAccountConfig: {
+      threshold: safeParams.threshold,
+      owners: safeParams.owners,
+      fallbackHandler: await readOnlyFallbackHandlerContract.getAddress(),
+    },
+    saltNonce: safeParams.saltNonce.toString(),
+    callback,
+  };
+};
 
-// const getSafeFactory = async (
-//   ethersProvider: BrowserProvider,
-//   safeVersion = LATEST_SAFE_VERSION
-// ): Promise<SafeFactory> => {
-//   if (!isValidSafeVersion(safeVersion)) {
-//     throw new Error('Invalid Safe version');
-//   }
-//   const ethAdapter = await createEthersAdapter(ethersProvider);
-//   const safeFactory = await SafeFactory.create({ ethAdapter, safeVersion });
-//   return safeFactory;
-// };
+const getSafeFactory = async (
+  ethersProvider: BrowserProvider,
+  safeVersion = LATEST_SAFE_VERSION
+): Promise<SafeFactory> => {
+  if (!isValidSafeVersion(safeVersion)) {
+    throw new Error('Invalid Safe version');
+  }
+  const ethAdapter = await createEthersAdapter(ethersProvider);
+  const safeFactory = await SafeFactory.create({ ethAdapter, safeVersion });
+  return safeFactory;
+};
 
-// /**
-//  * Create a Safe creation transaction via Core SDK and submits it to the wallet
-//  */
-// export const createNewSafe = async (
-//   ethersProvider: BrowserProvider,
-//   props: DeploySafeProps,
-//   safeVersion?: SafeVersion
-// ): Promise<Safe> => {
-//   const safeFactory = await getSafeFactory(ethersProvider, safeVersion);
-//   return safeFactory.deploySafe(props);
-// };
+/**
+ * Create a Safe creation transaction via Core SDK and submits it to the wallet
+ */
+export const createNewSafe = async (
+  ethersProvider: BrowserProvider,
+  props: DeploySafeProps,
+  safeVersion?: SafeVersion
+): Promise<Safe> => {
+  const safeFactory = await getSafeFactory(ethersProvider, safeVersion);
+  return safeFactory.deploySafe(props);
+};
 
-// /**
-//  * Compute the new counterfactual Safe address before it is actually created
-//  */
-// export const computeNewSafeAddress = async (
-//   ethersProvider: BrowserProvider,
-//   props: DeploySafeProps
-// ): Promise<string> => {
-//   const safeFactory = await getSafeFactory(ethersProvider);
-//   return safeFactory.predictSafeAddress(
-//     props.safeAccountConfig,
-//     props.saltNonce
-//   );
-// };
+/**
+ * Compute the new counterfactual Safe address before it is actually created
+ */
+export const computeNewSafeAddress = async (
+  ethersProvider: BrowserProvider,
+  props: DeploySafeProps
+): Promise<string> => {
+  const safeFactory = await getSafeFactory(ethersProvider);
+  return safeFactory.predictSafeAddress(
+    props.safeAccountConfig,
+    props.saltNonce
+  );
+};
 
-// /**
-//  * Encode a Safe creation transaction NOT using the Core SDK because it doesn't support that
-//  * This is used for gas estimation.
-//  */
+/**
+ * Encode a Safe creation transaction NOT using the Core SDK because it doesn't support that
+ * This is used for gas estimation.
+ */
 export const encodeSafeCreationTx = async ({
   owners,
   threshold,
@@ -149,35 +149,35 @@ export const encodeSafeCreationTx = async ({
 // /**
 //  * Encode a Safe creation tx in a way that we can store locally and monitor using _waitForTransaction
 //  */
-// export const getSafeCreationTxInfo = async (
-//   provider: Provider,
-//   owners: NewSafeFormData['owners'],
-//   threshold: NewSafeFormData['threshold'],
-//   saltNonce: NewSafeFormData['saltNonce'],
-//   chain: ChainInfo,
-//   wallet: ConnectedWallet
-// ): Promise<PendingSafeTx> => {
-//   const readOnlyProxyContract = await getReadOnlyProxyFactoryContract(
-//     chain.chainId,
-//     LATEST_SAFE_VERSION
-//   );
+export const getSafeCreationTxInfo = async (
+  provider: Provider,
+  owners: NewSafeFormData['owners'],
+  threshold: NewSafeFormData['threshold'],
+  saltNonce: NewSafeFormData['saltNonce'],
+  chain: ChainInfo,
+  wallet: ConnectedWallet
+): Promise<PendingSafeTx> => {
+  const readOnlyProxyContract = await getReadOnlyProxyFactoryContract(
+    chain.chainId,
+    LATEST_SAFE_VERSION
+  );
 
-//   const data = await encodeSafeCreationTx({
-//     owners: owners.map((owner) => owner.address),
-//     threshold,
-//     saltNonce,
-//     chain,
-//   });
+  const data = await encodeSafeCreationTx({
+    owners: owners.map((owner) => owner.address),
+    threshold,
+    saltNonce,
+    chain,
+  });
 
-//   return {
-//     data,
-//     from: wallet.address,
-//     nonce: await provider.getTransactionCount(wallet.address),
-//     to: await readOnlyProxyContract.getAddress(),
-//     value: BigInt(0),
-//     startBlock: await provider.getBlockNumber(),
-//   };
-// };
+  return {
+    data,
+    from: wallet.address,
+    nonce: await provider.getTransactionCount(wallet.address),
+    to: await readOnlyProxyContract.getAddress(),
+    value: BigInt(0),
+    startBlock: await provider.getBlockNumber(),
+  };
+};
 
 export const estimateSafeCreationGas = async (
   chain: ChainInfo,
@@ -203,139 +203,136 @@ export const estimateSafeCreationGas = async (
   return gas;
 };
 
-// export const pollSafeInfo = async (
-//   chainId: string,
-//   safeAddress: string
-// ): Promise<SafeInfo> => {
-//   // exponential delay between attempts for around 4 min
-//   return backOff(() => getSafeInfo(chainId, safeAddress), {
-//     startingDelay: 750,
-//     maxDelay: 20000,
-//     numOfAttempts: 19,
-//     retry: (e) => {
-//       console.info('waiting for client-gateway to provide safe information', e);
-//       return true;
-//     },
-//   });
-// };
+export const pollSafeInfo = async (
+  chainId: string,
+  safeAddress: string
+): Promise<SafeInfo> => {
+  // exponential delay between attempts for around 4 min
+  return backOff(() => getSafeInfo(chainId, safeAddress), {
+    startingDelay: 750,
+    maxDelay: 20000,
+    numOfAttempts: 19,
+    retry: (e) => {
+      console.info('waiting for client-gateway to provide safe information', e);
+      return true;
+    },
+  });
+};
 
-// export const handleSafeCreationError = (error: EthersError) => {
-//   trackError(Errors._800, error.message);
+export const handleSafeCreationError = (error: EthersError) => {
+  trackError(Errors._800, error.message);
 
-//   if (isWalletRejection(error)) {
-//     return SafeCreationStatus.WALLET_REJECTED;
-//   }
+  if (isWalletRejection(error)) {
+    return SafeCreationStatus.WALLET_REJECTED;
+  }
 
-//   if (error.code === 'TRANSACTION_REPLACED') {
-//     if (error.reason === 'cancelled') {
-//       return SafeCreationStatus.ERROR;
-//     } else {
-//       return SafeCreationStatus.SUCCESS;
-//     }
-//   }
+  if (error.code === 'TRANSACTION_REPLACED') {
+    if (error.reason === 'cancelled') {
+      return SafeCreationStatus.ERROR;
+    } else {
+      return SafeCreationStatus.SUCCESS;
+    }
+  }
 
-//   if (error.receipt && didRevert(error.receipt)) {
-//     return SafeCreationStatus.REVERTED;
-//   }
+  if (error.receipt && didRevert(error.receipt)) {
+    return SafeCreationStatus.REVERTED;
+  }
 
-//   if (error.code === 'TIMEOUT') {
-//     return SafeCreationStatus.TIMEOUT;
-//   }
+  if (error.code === 'TIMEOUT') {
+    return SafeCreationStatus.TIMEOUT;
+  }
 
-//   return SafeCreationStatus.ERROR;
-// };
+  return SafeCreationStatus.ERROR;
+};
 
-// export const SAFE_CREATION_ERROR_KEY = 'create-safe-error';
-// export const showSafeCreationError = (error: EthersError | Error): AppThunk => {
-//   return (dispatch) => {
-//     dispatch(
-//       showNotification({
-//         message: `Your transaction was unsuccessful. Reason: ${formatError(
-//           error
-//         )}`,
-//         detailedMessage: error.message,
-//         groupKey: SAFE_CREATION_ERROR_KEY,
-//         variant: 'error',
-//       })
-//     );
-//   };
-// };
+export const SAFE_CREATION_ERROR_KEY = 'create-safe-error';
+export const showSafeCreationError = (error: EthersError | Error): AppThunk => {
+  return (dispatch) => {
+    dispatch(
+      showNotification({
+        message: `Your transaction was unsuccessful. Reason: ${formatError(
+          error
+        )}`,
+        detailedMessage: error.message,
+        groupKey: SAFE_CREATION_ERROR_KEY,
+        variant: 'error',
+      })
+    );
+  };
+};
 
-// export const checkSafeCreationTx = async (
-//   provider: Provider,
-//   pendingTx: PendingSafeTx,
-//   txHash: string,
-//   dispatch: AppDispatch
-// ): Promise<SafeCreationStatus> => {
-//   const TIMEOUT_TIME = 60 * 1000; // 1 minute
+export const checkSafeCreationTx = async (
+  provider: Provider,
+  pendingTx: PendingSafeTx,
+  txHash: string,
+  dispatch: AppDispatch
+): Promise<SafeCreationStatus> => {
+  const TIMEOUT_TIME = 60 * 1000; // 1 minute
 
-//   try {
-//     // TODO: Use the fix from checkSafeActivation to detect cancellation and speed-up txs again
-//     const receipt = await provider.waitForTransaction(txHash, 1, TIMEOUT_TIME);
+  try {
+    // TODO: Use the fix from checkSafeActivation to detect cancellation and speed-up txs again
+    const receipt = await provider.waitForTransaction(txHash, 1, TIMEOUT_TIME);
 
-//     /** The receipt should always be non-null as we require 1 confirmation */
-//     if (receipt === null) {
-//       throw new Error(
-//         'Transaction should have a receipt, but got null instead.'
-//       );
-//     }
+    /** The receipt should always be non-null as we require 1 confirmation */
+    if (receipt === null) {
+      throw new Error(
+        'Transaction should have a receipt, but got null instead.'
+      );
+    }
 
-//     if (didRevert(receipt)) {
-//       return SafeCreationStatus.REVERTED;
-//     }
+    if (didRevert(receipt)) {
+      return SafeCreationStatus.REVERTED;
+    }
 
-//     return SafeCreationStatus.SUCCESS;
-//   } catch (err) {
-//     const _err = err as EthersError;
+    return SafeCreationStatus.SUCCESS;
+  } catch (err) {
+    const _err = err as EthersError;
 
-//     const status = handleSafeCreationError(_err);
+    const status = handleSafeCreationError(_err);
 
-//     if (status !== SafeCreationStatus.SUCCESS) {
-//       dispatch(showSafeCreationError(_err));
-//     }
+    if (status !== SafeCreationStatus.SUCCESS) {
+      dispatch(showSafeCreationError(_err));
+    }
 
-//     return status;
-//   }
-// };
+    return status;
+  }
+};
 
-// export const CREATION_MODAL_QUERY_PARM = 'showCreationModal';
+export const CREATION_MODAL_QUERY_PARM = 'showCreationModal';
 
-// export const getRedirect = (
-//   chainPrefix: string,
-//   safeAddress: string,
-//   redirectQuery?: string | string[]
-// ): UrlObject | string => {
-//   const redirectUrl = Array.isArray(redirectQuery)
-//     ? redirectQuery[0]
-//     : redirectQuery;
-//   const address = `${chainPrefix}:${safeAddress}`;
+export const getRedirect = (
+  chainPrefix: string,
+  safeAddress: string,
+  redirectQuery?: string | string[]
+): UrlObject | string => {
+  const redirectUrl = Array.isArray(redirectQuery)
+    ? redirectQuery[0]
+    : redirectQuery;
+  const address = `${chainPrefix}:${safeAddress}`;
 
-//   // Should never happen in practice
-//   if (!chainPrefix) return AppRoutes.index;
+  // Should never happen in practice
+  if (!chainPrefix) return AppRoutes.index;
 
-//   // Go to the dashboard if no specific redirect is provided
-//   if (!redirectUrl) {
-//     return {
-//       pathname: AppRoutes.home,
-//       query: { safe: address, [CREATION_MODAL_QUERY_PARM]: true },
-//     };
-//   }
+  // Go to the dashboard if no specific redirect is provided
+  if (!redirectUrl) {
+    return {
+      pathname: AppRoutes.home,
+      query: { safe: address, [CREATION_MODAL_QUERY_PARM]: true },
+    };
+  }
 
-//   // Otherwise, redirect to the provided URL (e.g. from a Safe App)
+  // Otherwise, redirect to the provided URL (e.g. from a Safe App)
 
-//   // Track the redirect to Safe App
-//   // TODO: Narrow this down to /apps only
-//   if (redirectUrl.includes('apps')) {
-//     trackEvent(SAFE_APPS_EVENTS.SHARED_APP_OPEN_AFTER_SAFE_CREATION);
-//   }
+  // Track the redirect to Safe App
+  // TODO: Narrow this down to /apps only
 
-//   // We're prepending the safe address directly here because the `router.push` doesn't parse
-//   // The URL for already existing query params
-//   // TODO: Check if we can accomplish this with URLSearchParams or URL instead
-//   const hasQueryParams = redirectUrl.includes('?');
-//   const appendChar = hasQueryParams ? '&' : '?';
-//   return redirectUrl + `${appendChar}safe=${address}`;
-// };
+  // We're prepending the safe address directly here because the `router.push` doesn't parse
+  // The URL for already existing query params
+  // TODO: Check if we can accomplish this with URLSearchParams or URL instead
+  const hasQueryParams = redirectUrl.includes('?');
+  const appendChar = hasQueryParams ? '&' : '?';
+  return redirectUrl + `${appendChar}safe=${address}`;
+};
 
 // export const relaySafeCreation = async (
 //   chain: ChainInfo,

@@ -4,13 +4,14 @@ import EthHashInfo from '@/components/common/EthHashInfo';
 import { getTotalFeeFormatted } from '@/hooks/useGasPrice';
 import type { StepRenderProps } from '@/components/new-safe/CardStepper/useCardStepper';
 import type { NewSafeFormData } from '@/components/new-safe/create';
-// import { computeNewSafeAddress } from '@/components/new-safe/create/logic';
 import NetworkWarning from '@/components/new-safe/create/NetworkWarning';
 import css from '@/components/new-safe/create/steps/ReviewStep/styles.module.css';
 import layoutCss from '@/components/new-safe/create/styles.module.css';
 import { useEstimateSafeCreationGas } from '@/components/new-safe/create/useEstimateSafeCreationGas';
 import useSyncSafeCreationStep from '@/components/new-safe/create/useSyncSafeCreationStep';
 import ReviewRow from '@/components/new-safe/ReviewRow';
+import { computeNewSafeAddress } from '@/components/new-safe/create/logic';
+import { getAvailableSaltNonce } from '@/components/new-safe/create/logic/utils';
 // import ErrorMessage from '@/components/tx/ErrorMessage';
 // import {
 //   ExecutionMethod,
@@ -56,13 +57,13 @@ import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { Suspense, useMemo, useState } from 'react';
 import ErrorMessage from '@/components/tx/ErrorMessage';
-import { useWallet } from '@/hooks/useWallet';
 import useWalletCanPay from '@/hooks/wallets/useWalletCanPay';
 import NounsAvatar from '@/components/common/NounsAvatar';
 import { NounProps } from '../AvatarStep';
 import Identicon from '@/components/common/Identicon';
 import WalletIcon from '@/components/common/WalletIcon';
 import PayNowPayLater from '@/features/counterfactual/PayNowPayLater';
+import { usePendingSafe } from '../StatusStep/usePendingSafe';
 // import { usePendingSafe } from '../StatusStep/usePendingSafe';
 
 export const NetworkFee = ({
@@ -145,6 +146,7 @@ const ReviewStep = ({
   data,
   onBack,
   setStep,
+  onSubmit,
 }: StepRenderProps<NewSafeFormData>) => {
   const { wallet } = useWallet();
   const isWrongChain = useMemo(() => {
@@ -154,6 +156,7 @@ const ReviewStep = ({
   const chain = useCurrentChain();
   const provider = useWeb3();
   const [gasPrice] = useGasPrice();
+  const [_, setPendingSafe] = usePendingSafe();
   const [isCreating, setIsCreating] = useState<boolean>(false);
   const [submitError, setSubmitError] = useState<string>();
 
@@ -195,60 +198,47 @@ const ReviewStep = ({
 
     setIsCreating(true);
 
-    // try {
-    //   const readOnlyFallbackHandlerContract =
-    //     await getReadOnlyFallbackHandlerContract(
-    //       chain.chainId,
-    //       LATEST_SAFE_VERSION
-    //     );
+    try {
+      const readOnlyFallbackHandlerContract =
+        await getReadOnlyFallbackHandlerContract(
+          chain.chainId,
+          LATEST_SAFE_VERSION
+        );
 
-    //   const props: DeploySafeProps = {
-    //     safeAccountConfig: {
-    //       threshold: data.threshold,
-    //       owners: data.owners.map((owner) => owner.address),
-    //       fallbackHandler: await readOnlyFallbackHandlerContract.getAddress(),
-    //     },
-    //   };
+      const props: DeploySafeProps = {
+        safeAccountConfig: {
+          threshold: data.threshold,
+          owners: data.owners.map((owner) => owner.address),
+          fallbackHandler: await readOnlyFallbackHandlerContract.getAddress(),
+        },
+      };
 
-    //   const saltNonce = await getAvailableSaltNonce(provider, {
-    //     ...props,
-    //     saltNonce: '0',
-    //   });
-    //   const safeAddress = await computeNewSafeAddress(provider, {
-    //     ...props,
-    //     saltNonce,
-    //   });
+      const saltNonce = await getAvailableSaltNonce(provider, {
+        ...props,
+        saltNonce: '0',
+      });
+      const safeAddress = await computeNewSafeAddress(provider, {
+        ...props,
+        saltNonce,
+      });
 
-    //   if (isCounterfactual && payMethod === PayMethod.PayLater) {
-    //     gtmSetSafeAddress(safeAddress);
+      const pendingSafe = {
+        ...data,
+        saltNonce: Number(saltNonce),
+        safeAddress,
+        willRelay: false,
+      };
 
-    //     await createCounterfactualSafe(
-    //       chain,
-    //       safeAddress,
-    //       saltNonce,
-    //       data,
-    //       dispatch,
-    //       props,
-    //       router
-    //     );
+      console.debug(pendingSafe);
 
-    //     return;
-    //   }
-
-    //   const pendingSafe = {
-    //     ...data,
-    //     saltNonce: Number(saltNonce),
-    //     safeAddress,
-    //     willRelay,
-    //   };
-
-    //   setPendingSafe(pendingSafe);
-    //   onSubmit(pendingSafe);
-    // } catch (_err) {
-    //   setSubmitError(
-    //     'Error creating the Safe Account. Please try again later.'
-    //   );
-    // }
+      setPendingSafe(pendingSafe);
+      onSubmit(pendingSafe);
+    } catch (_err) {
+      console.error(_err);
+      setSubmitError(
+        'Error creating the Safe Account. Please try again later.'
+      );
+    }
 
     setIsCreating(false);
   };

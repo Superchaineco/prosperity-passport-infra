@@ -12,6 +12,7 @@ import Avatar, { NounProps } from './steps/AvatarStep';
 import SuperChainID from './steps/SuperChainIdStep';
 import OverviewWidget from './OverviewWidget';
 import ReviewStep from './steps/ReviewStep';
+import { CreateSafeStatus } from './steps/StatusStep';
 
 export type NewSafeFormData = {
   name: string;
@@ -82,7 +83,13 @@ const CreateSafe = () => {
       title: '',
       subtitle: '',
       render: (data, onSubmit, onBack, setStep, setProgressColor) => (
-        <h1>Hello</h1>
+        <CreateSafeStatus
+          data={data}
+          onSubmit={onSubmit}
+          onBack={onBack}
+          setStep={setStep}
+          setProgressColor={setProgressColor}
+        />
       ),
     },
   ];

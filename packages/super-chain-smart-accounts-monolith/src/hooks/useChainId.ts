@@ -6,9 +6,8 @@ import { parsePrefixedAddress } from '@/utils/addresses';
 import useChains from './useChains';
 import { useWallet } from './useWallet';
 
-const defaultChainId = IS_PRODUCTION ? chains.eth : chains.sep;
+const defaultChainId = IS_PRODUCTION ? chains.opt : chains.sep;
 
-// Use the location object directly because Next.js's router.query is available only on mount
 const getLocationQuery = (): ParsedUrlQuery => {
   if (typeof location === 'undefined') return {};
   const query = parse(location.search.slice(1));
@@ -19,7 +18,6 @@ export const useUrlChainId = (): string | undefined => {
   const queryParams = useParams();
   const { configs } = useChains();
 
-  // Dynamic query params
   const query =
     queryParams && (queryParams.safe || queryParams.chain)
       ? queryParams
@@ -39,13 +37,9 @@ export const useUrlChainId = (): string | undefined => {
 };
 
 const useWalletChainId = (): string | undefined => {
-  const { configs } = useChains();
   const { wallet } = useWallet();
   const walletChainId =
-    wallet?.chainId &&
-    configs.some(({ chainId }) => chainId === wallet.chainId.split(':')[0])
-      ? wallet.chainId
-      : undefined;
+    wallet?.chainId && wallet.chainId.split(':')[1]
   return walletChainId;
 };
 

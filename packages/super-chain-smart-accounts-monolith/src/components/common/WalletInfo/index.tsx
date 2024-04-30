@@ -25,7 +25,6 @@ export const WalletInfo = ({
 
   const handleDisconnect = () => {
     logout();
-
     handleClose();
   };
 
@@ -73,7 +72,7 @@ export const WalletInfo = ({
       </Box>
 
       <Box display='flex' flexDirection='column' gap={2} width={1}>
-        <ChainSwitcher fullWidth />
+        {/* <ChainSwitcher fullWidth /> */}
 
         <Button
           onClick={handleDisconnect}
