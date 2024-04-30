@@ -3,7 +3,7 @@ pragma solidity ^0.8.13;
 import {IGuard} from "../interfaces/IGuard.sol";
 import {Enum} from "../libraries/Enum.sol";
 
-contract SuperChain is IGuard {
+contract SuperChainGuard is IGuard {
     bytes4 private immutable ADD_OWNER_WITH_THRESHOLD_SELECTOR = 0x0d582f13;
     bytes4 private immutable REMOVE_OWNER_SELECTOR = 0xf8dc5dd9;
     bytes4 private immutable SWAP_OWNER_SELECTOR = 0xe318b52b;

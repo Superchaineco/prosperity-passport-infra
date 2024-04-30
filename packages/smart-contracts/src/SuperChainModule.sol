@@ -12,12 +12,12 @@ contract SuperChainModule is EIP712, Ownable {
     event OwnerPopulated(
         address indexed safe,
         address indexed newOwner,
-        string indexed dpgId
+        string indexed superChainId
     );
     event OwnerAdded(
         address indexed safe,
         address indexed newOwner,
-        string indexed dpgId
+        string indexed superChainId
     );
     event PointsIncremented(address indexed recipient, uint256 points);
 
@@ -34,16 +34,6 @@ contract SuperChainModule is EIP712, Ownable {
         address superChainAccount;
         address newOwner;
     }
-
-    struct Account {
-        address smartAccount;
-        string superChainID;
-        uint256 points;
-        uint16 level;
-        address[] eoas;
-        NounsMetadata noun;
-    }
-
     struct NounMetadata {
         uint256 id;
         uint48 background;
@@ -51,6 +41,15 @@ contract SuperChainModule is EIP712, Ownable {
         uint48 accessory;
         uint48 head;
         uint48 glasses;
+    }
+
+    struct Account {
+        address smartAccount;
+        string superChainID;
+        uint256 points;
+        uint16 level;
+        address[] eoas;
+        NounMetadata noun;
     }
 
     constructor(
@@ -69,7 +68,7 @@ contract SuperChainModule is EIP712, Ownable {
             "Signature verification failed"
         );
         require(
-            dpgAccount[_newOwner].smartAccount == address(0),
+            superChainAccount[_newOwner].smartAccount == address(0),
             "Owner already has a SuperChainAccount"
         );
         require(
@@ -104,7 +103,7 @@ contract SuperChainModule is EIP712, Ownable {
         );
 
         require(success, "Failed to add owner");
-        dpgAccount[_newOwner].smartAccount = _safe;
+        superChainAccount[_newOwner].smartAccount = _safe;
         emit OwnerAdded(
             _safe,
             _newOwner,
@@ -112,7 +111,7 @@ contract SuperChainModule is EIP712, Ownable {
         );
     }
 
-    function removePopulateRequest(address _safe) {
+    function removePopulateRequest(address _safe) public {
         require(
             _isPopulatedAddOwnerWithThreshold[msg.sender][_safe],
             "Owner not populated"
@@ -189,7 +188,10 @@ contract SuperChainModule is EIP712, Ownable {
             superChainAccount[_newOwner].smartAccount == address(0),
             "Owner already has a SuperChainSmartAccount"
         );
-        require(populateAddOwner(_safe).length <= 2, "Max owners populated");
+        require(
+            populatedAddOwnersWithTreshold[_safe].length <= 2,
+            "Max owners populated"
+        );
         populatedAddOwnersWithTreshold[_safe].push(_newOwner);
         _isPopulatedAddOwnerWithThreshold[_newOwner][_safe] = true;
         emit OwnerPopulated(
