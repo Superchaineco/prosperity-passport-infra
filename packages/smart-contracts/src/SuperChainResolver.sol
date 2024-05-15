@@ -4,19 +4,20 @@ pragma solidity ^0.8.19;
 import {SchemaResolver} from "eas-contracts/resolver/SchemaResolver.sol";
 import {IEAS, Attestation} from "eas-contracts/IEAS.sol";
 import {SuperChainModule} from "./SuperChainModule.sol";
+import {Ownable} from "@openzeppelin/contracts/access/Ownable.sol";
 
-contract SuperChainResolver is SchemaResolver {
+contract SuperChainResolver is SchemaResolver, Ownable {
     SuperChainModule public superChainModule;
     address private immutable _attestator;
 
-    constructor(IEAS eas, address attestator) SchemaResolver(eas) {
+    constructor(IEAS eas, address attestator) Ownable(msg.sender) SchemaResolver(eas) {
         _attestator = attestator;
     }
 
     // This might be onlyOwner
     function updateSuperChainAccountsManager(
         SuperChainModule _SuperChainModule
-    ) public {
+    ) public onlyOwner {
         superChainModule = _SuperChainModule;
     }
 

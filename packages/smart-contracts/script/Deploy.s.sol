@@ -15,17 +15,20 @@ contract Deploy is Script {
         SuperChainGuard guard = new SuperChainGuard();
         SuperChainResolver resolver = new SuperChainResolver(
             IEAS(0xC2679fBD37d54388Ce493F1DB75320D236e1815e),
-            address(0)
+            msg.sender
         );
         SuperChainModule module = new SuperChainModule(address(resolver));
-
+        resolver.updateSuperChainAccountsManager(module);
         console.logString(
             string.concat(
                 "SuperChainModule deployed at: ",
                 vm.toString(address(module)),
                 "\n",
                 "SuperChainGuard deployed at: ",
-                vm.toString(address(guard))
+                vm.toString(address(guard)),
+                "\n",
+                "SuperChainResolver deployed at: ",
+                vm.toString(address(resolver))
             )
         );
         vm.stopBroadcast();
