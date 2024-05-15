@@ -16,9 +16,10 @@ CREATE TABLE AccountBadges(
     isDeleted BOOLEAN DEFAULT FALSE,
     FOREIGN KEY (account) REFERENCES Account(address),
     FOREIGN KEY (badgeId) REFERENCES Badges(id)
-) CREATE TABLE CITIZENS(
+);
+CREATE TABLE CITIZENS(
     id SERIAL PRIMARY KEY,
     claimed BOOLEAN DEFAULT FALSE,
     address VARCHAR(42) NOT NULL,
     ens VARCHAR(255)
-)
+)a

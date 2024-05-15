@@ -2,6 +2,7 @@
 pragma solidity 0.8.23;
 
 import "../interfaces/ISafe.sol";
+import "./SuperChainModule.sol";
 
 /**
  * @title SafeModuleSetup - A utility contract for setting up a Safe with modules.
@@ -11,21 +12,31 @@ import "../interfaces/ISafe.sol";
  *      of a ERC-4337 user operation with the `Safe4337Module` enabled right away.
  * @custom:security-contact bounty@safe.global
  */
-contract SafeSetup {
+contract SuperChainAccountSetup {
     /**
      * @notice Enable the specified Safe modules.
      * @dev This call will only work if used from a Safe via delegatecall. It is intended to be used as part of the
      *      Safe `setup`, allowing Safes to be created with an initial set of enabled modules.
      * @param modules The modules to enable.
      */
-    function enableModulesAndGuard(
+    function setupSuperChainAccount(
         address[] calldata modules,
-        address  guard
+        address superChainModule,
+        address guard,
+        address owner,
+        NounMetadata memory seed,
+        string calldata superChainID
     ) external {
         for (uint256 i = 0; i < modules.length; i++) {
             ISafe(address(this)).enableModule(modules[i]);
         }
-
+        ISafe(address(this)).enableModule(superChainModule);
         ISafe(address(this)).setGuard(guard);
+        SuperChainModule(superChainModule).setInitialOwner(
+            address(this),
+            owner,
+            seed,
+            superChainID
+        );
     }
 }

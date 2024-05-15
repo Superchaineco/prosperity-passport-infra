@@ -6,6 +6,14 @@ import {ECDSA} from "@openzeppelin/contracts/utils/cryptography/ECDSA.sol";
 import {EIP712} from "@openzeppelin/contracts/utils/cryptography/EIP712.sol";
 import {Ownable} from "@openzeppelin/contracts/access/Ownable.sol";
 
+struct NounMetadata {
+    uint48 background;
+    uint48 body;
+    uint48 accessory;
+    uint48 head;
+    uint48 glasses;
+}
+
 contract SuperChainModule is EIP712, Ownable {
     using ECDSA for bytes32;
 
@@ -34,21 +42,12 @@ contract SuperChainModule is EIP712, Ownable {
         address superChainAccount;
         address newOwner;
     }
-    struct NounMetadata {
-        uint256 id;
-        uint48 background;
-        uint48 body;
-        uint48 accessory;
-        uint48 head;
-        uint48 glasses;
-    }
 
     struct Account {
         address smartAccount;
         string superChainID;
         uint256 points;
         uint16 level;
-        address[] eoas;
         NounMetadata noun;
     }
 
@@ -201,16 +200,6 @@ contract SuperChainModule is EIP712, Ownable {
         );
     }
 
-    function getSuperChainAccount(
-        address _owner
-    ) public view returns (Account memory) {
-        require(
-            superChainAccount[_owner].smartAccount != address(0),
-            "Account not found"
-        );
-        return superChainAccount[_owner];
-    }
-
     function incrementSuperChainPoints(
         uint256 _points,
         address recipent
@@ -290,6 +279,14 @@ contract SuperChainModule is EIP712, Ownable {
         } else {
             return false;
         }
+    }
+
+    function getSuperChainAccount(
+        address _safe
+    ) external view returns (Account memory) {
+        address[] memory owners = ISafe(_safe).getOwners();
+        require(owners.length > 0, "No owners found");
+        return superChainAccount[owners[0]];
     }
 
     modifier firstOwnerSet(address _safe) {
