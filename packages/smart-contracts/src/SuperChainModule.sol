@@ -34,9 +34,10 @@ contract SuperChainModule is EIP712, Ownable {
     mapping(address => address[]) public populatedAddOwnersWithTreshold;
     mapping(address => Account) public superChainAccount;
     mapping(address => bool) public hasFirstOwnerYet;
+    mapping(string => bool) public SuperChainIDRegistered;
 
     address private _resolver;
-    uint256[] private _tierTreshold = [0];
+    uint256[] private _tierTreshold;
 
     struct AddOwnerRequest {
         address superChainAccount;
@@ -160,11 +161,16 @@ contract SuperChainModule is EIP712, Ownable {
             !_isInvalidSuperChainId(superChainID),
             "The last 11 characters cannot be '.superchain'"
         );
+        require(
+            !SuperChainIDRegistered[superChainID],
+            "The superchain ID was registered yet."
+        );
         superChainAccount[_owner].smartAccount = _safe;
         superChainAccount[_owner].superChainID = string.concat(
             superChainID,
             ".superchain"
         );
+        SuperChainIDRegistered[superChainID] = true;
         hasFirstOwnerYet[_safe] = true;
         superChainAccount[_owner].noun = _noun;
         emit OwnerAdded(_safe, _owner, superChainAccount[_owner].superChainID);
@@ -203,28 +209,40 @@ contract SuperChainModule is EIP712, Ownable {
     function incrementSuperChainPoints(
         uint256 _points,
         address recipent
-    ) public {
-        Account storage _account = superChainAccount[recipent];
+    ) public returns (bool levelUp) {
+        address _owner = _getSuperChainAccountOwner(recipent);
+        Account storage _account = superChainAccount[_owner];
         require(
             msg.sender == _resolver,
             "Only the resolver can increment the points"
         );
         require(_account.smartAccount != address(0), "Account not found");
         _account.points += _points;
-        if (_account.points >= _tierTreshold[_account.level]) {
-            _account.level++;
+        for (uint16 i = uint16(_tierTreshold.length); i > 0; i--) {
+            uint16 index = i - 1;
+            if (_tierTreshold[index] <= _account.points) {
+                if (_account.level == index + 1) {
+                    break;
+                }
+                _account.level = index + 1;
+                levelUp = true;
+                break;
+            }
         }
         emit PointsIncremented(recipent, _points);
+        return levelUp;
     }
 
     function _changeResolver(address resolver) public onlyOwner {
         _resolver = resolver;
     }
     function _addTierTreshold(uint256 _treshold) public onlyOwner {
-        require(
-            _tierTreshold[_tierTreshold.length - 1] < _treshold,
-            "The treshold must be higher than the last one"
-        );
+        if (_tierTreshold.length > 0) {
+            require(
+                _tierTreshold[_tierTreshold.length - 1] < _treshold,
+                "The treshold must be higher than the last one"
+            );
+        }
         _tierTreshold.push(_treshold);
     }
 
@@ -287,6 +305,14 @@ contract SuperChainModule is EIP712, Ownable {
         address[] memory owners = ISafe(_safe).getOwners();
         require(owners.length > 0, "No owners found");
         return superChainAccount[owners[0]];
+    }
+
+    function _getSuperChainAccountOwner(
+        address _safe
+    ) private view returns (address) {
+        address[] memory owners = ISafe(_safe).getOwners();
+        require(owners.length > 0, "No owners found");
+        return owners[0];
     }
 
     modifier firstOwnerSet(address _safe) {
