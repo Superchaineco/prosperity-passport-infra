@@ -12,7 +12,7 @@ contract Deploy is Script {
 
     function run() public {
         vm.startBroadcast();
-        SuperChainGuard guard = new SuperChainGuard();
+        // SuperChainGuard guard = new SuperChainGuard();
         SuperChainResolver resolver = SuperChainResolver(
             payable(0xD8060F8f0C3DD073F7c7676d31156d7A712a239c)
         );
@@ -25,13 +25,13 @@ contract Deploy is Script {
         console.logString(
             string.concat(
                 "SuperChainModule deployed at: ",
-                vm.toString(address(module)),
-                "\n",
-                "SuperChainGuard deployed at: ",
-                vm.toString(address(guard)),
-                "\n",
-                "SuperChainResolver deployed at: ",
-                vm.toString(address(resolver))
+                vm.toString(address(module))
+                // "\n",
+                // "SuperChainGuard deployed at: ",
+                // vm.toString(address(guard)),
+                // "\n",
+                // "SuperChainResolver deployed at: ",
+                // vm.toString(address(resolver))
             )
         );
         vm.stopBroadcast();

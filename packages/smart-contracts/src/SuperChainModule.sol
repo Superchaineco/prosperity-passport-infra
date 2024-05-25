@@ -233,6 +233,28 @@ contract SuperChainModule is EIP712, Ownable {
         return levelUp;
     }
 
+    function simulateIncrementSuperChainPoints(
+        uint256 _points,
+        address recipent
+    ) public view returns (bool levelUp) {
+        address _owner = _getSuperChainAccountOwner(recipent);
+        Account memory _account = superChainAccount[_owner];
+        require(_account.smartAccount != address(0), "Account not found");
+        _account.points += _points;
+        for (uint16 i = uint16(_tierTreshold.length); i > 0; i--) {
+            uint16 index = i - 1;
+            if (_tierTreshold[index] <= _account.points) {
+                if (_account.level == index + 1) {
+                    break;
+                }
+                _account.level = index + 1;
+                levelUp = true;
+                break;
+            }
+        }
+        return levelUp;
+    }
+
     function _changeResolver(address resolver) public onlyOwner {
         _resolver = resolver;
     }
