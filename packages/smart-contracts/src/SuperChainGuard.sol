@@ -2,8 +2,9 @@
 pragma solidity ^0.8.13;
 import {IGuard} from "../interfaces/IGuard.sol";
 import {Enum} from "../libraries/Enum.sol";
+import {BaseGuard} from "../utils/BaseGuard.sol";
 
-contract SuperChainGuard is IGuard {
+contract SuperChainGuard is BaseGuard {
     bytes4 private immutable ADD_OWNER_WITH_THRESHOLD_SELECTOR = 0x0d582f13;
     bytes4 private immutable REMOVE_OWNER_SELECTOR = 0xf8dc5dd9;
     bytes4 private immutable SWAP_OWNER_SELECTOR = 0xe318b52b;
@@ -14,23 +15,29 @@ contract SuperChainGuard is IGuard {
     error UnableToSwapOwnersInDPGAccount();
     error UnableToChangeThresholdInDPGAccount();
 
-    function supportsInterface(
-        bytes4 interfaceId
-    ) external view override returns (bool) {
-        return interfaceId == type(IGuard).interfaceId;
+    fallback() external {
+        // We don't revert on fallback to avoid issues in case of a Safe upgrade
+        // E.g. The expected check method might change and then the Safe would be locked.
     }
 
+
+    /**
+     * @notice Called by the Safe contract before a transaction is executed.
+     * @dev Reverts if the transaction is related to update treshold owner.
+     * @param msgSender Executor of the transaction.
+     */
     function checkTransaction(
-        address to,
-        uint256 value,
+        address,
+        uint256,
         bytes memory data,
-        Enum.Operation operation,
-        uint256 safeTxGas,
-        uint256 baseGas,
-        uint256 gasPrice,
-        address gasToken,
-        address payable refundReceiver,
-        bytes memory signatures,
+        Enum.Operation,
+        uint256,
+        uint256,
+        uint256,
+        address,
+        // solhint-disable-next-line no-unused-vars
+        address payable,
+        bytes memory,
         address msgSender
     ) external override {
         if (data.length >= 4) {
@@ -54,15 +61,22 @@ contract SuperChainGuard is IGuard {
     }
 
     function checkModuleTransaction(
-        address to,
-        uint256 value,
-        bytes memory data,
-        Enum.Operation operation,
-        address module
+        address,
+        uint256,
+        bytes memory,
+        Enum.Operation,
+        address
     ) external override returns (bytes32 moduleTxHash) {}
 
-    function checkAfterExecution(
-        bytes32 hash,
-        bool success
-    ) external override {}
+    /**
+     * @notice Called by the Safe contract after a module transaction is executed.
+     * @dev No-op.
+     */
+    function checkAfterModuleExecution(bytes32, bool) external override {}
+
+    /**
+     * @notice Called by the Safe contract after a transaction is executed.
+     * @dev No-op.
+     */
+    function checkAfterExecution(bytes32, bool) external view override {}
 }
