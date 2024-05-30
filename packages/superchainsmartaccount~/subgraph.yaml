@@ -1,0 +1,38 @@
+specVersion: 1.0.0
+indexerHints:
+  prune: auto
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum
+    name: SuperChainSmartAccountModule
+    network: sepolia
+    source:
+      address: "0xcAc4E33eA64F8048cdBe5A29e1Ae40bbBde3b024"
+      abi: SuperChainSmartAccountModule
+      startBlock: 5972056
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - EIP712DomainChanged
+        - OwnerAdded
+        - OwnerPopulated
+        - OwnershipTransferred
+        - PointsIncremented
+      abis:
+        - name: SuperChainSmartAccountModule
+          file: ./abis/SuperChainSmartAccountModule.json
+      eventHandlers:
+        - event: EIP712DomainChanged()
+          handler: handleEIP712DomainChanged
+        - event: OwnerAdded(indexed address,indexed address,indexed string)
+          handler: handleOwnerAdded
+        - event: OwnerPopulated(indexed address,indexed address,indexed string)
+          handler: handleOwnerPopulated
+        - event: OwnershipTransferred(indexed address,indexed address)
+          handler: handleOwnershipTransferred
+        - event: PointsIncremented(indexed address,uint256)
+          handler: handlePointsIncremented
+      file: ./src/super-chain-smart-account-module.ts

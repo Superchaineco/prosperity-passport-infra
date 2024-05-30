@@ -1,0 +1,8 @@
+{
+  "sepolia": {
+    "SuperChainSmartAccountModule": {
+      "address": "0xcAc4E33eA64F8048cdBe5A29e1Ae40bbBde3b024",
+      "startBlock": 5972056
+    }
+  }
+}
