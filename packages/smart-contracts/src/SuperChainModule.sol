@@ -25,7 +25,7 @@ contract SuperChainModule is EIP712, Ownable {
     event OwnerAdded(
         address indexed safe,
         address indexed newOwner,
-        string  superChainId
+        string superChainId
     );
     event PointsIncremented(address indexed recipient, uint256 points);
 
@@ -199,11 +199,8 @@ contract SuperChainModule is EIP712, Ownable {
         );
         populatedAddOwnersWithTreshold[_safe].push(_newOwner);
         _isPopulatedAddOwnerWithThreshold[_newOwner][_safe] = true;
-        emit OwnerPopulated(
-            _safe,
-            _newOwner,
-            superChainAccount[_newOwner].superChainID
-        );
+        string memory _superChainId = getSuperChainAccount(_safe).superChainID;
+        emit OwnerPopulated(_safe, _newOwner, _superChainId);
     }
 
     function incrementSuperChainPoints(
