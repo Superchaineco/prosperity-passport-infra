@@ -4,3 +4,9 @@ out = "out"
 libs = ["lib"]
 
 # See more config options https://github.com/foundry-rs/foundry/blob/master/crates/config/README.md#all-options
+
+[etherscan]
+sepolia = { key = "I36FHHV8SEQP38FSSMQUCI92BJK4H5PJSE" }
+
+[rpc_endpoints]
+sepolia = "https://rpc.sepolia.org " 

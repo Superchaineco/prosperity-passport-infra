@@ -8,7 +8,7 @@ dataSources:
     name: SuperChainSmartAccountModule
     network: sepolia
     source:
-      address: "0xfFa4e71D820B70A7Aa0410DAfE3629F8f39C967E"
+      address: "0x22E9C7f61f7e022D2637C46D8bdc986661E26EA9"
       abi: SuperChainSmartAccountModule
       startBlock: 5972056
     mapping:
