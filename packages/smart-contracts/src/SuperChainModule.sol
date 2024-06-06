@@ -20,12 +20,12 @@ contract SuperChainModule is EIP712, Ownable {
     event OwnerPopulated(
         address indexed safe,
         address indexed newOwner,
-        string indexed superChainId
+        string superChainId
     );
     event OwnerAdded(
         address indexed safe,
         address indexed newOwner,
-        string indexed superChainId
+        string  superChainId
     );
     event PointsIncremented(address indexed recipient, uint256 points);
 
