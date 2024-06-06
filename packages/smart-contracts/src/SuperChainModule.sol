@@ -320,7 +320,7 @@ contract SuperChainModule is EIP712, Ownable {
 
     function getSuperChainAccount(
         address _safe
-    ) external view returns (Account memory) {
+    ) public view returns (Account memory) {
         address[] memory owners = ISafe(_safe).getOwners();
         require(owners.length > 0, "No owners found");
         return superChainAccount[owners[0]];
