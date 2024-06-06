@@ -261,7 +261,7 @@
       {
         "name": "superChainId",
         "type": "string",
-        "indexed": true,
+        "indexed": false,
         "internalType": "string"
       }
     ],
@@ -286,7 +286,7 @@
       {
         "name": "superChainId",
         "type": "string",
-        "indexed": true,
+        "indexed": false,
         "internalType": "string"
       }
     ],
