@@ -57,7 +57,11 @@
         "internalType": "address"
       },
       { "name": "salt", "type": "bytes32", "internalType": "bytes32" },
-      { "name": "extensions", "type": "uint256[]", "internalType": "uint256[]" }
+      {
+        "name": "extensions",
+        "type": "uint256[]",
+        "internalType": "uint256[]"
+      }
     ],
     "stateMutability": "view"
   },
@@ -102,7 +106,11 @@
                 "internalType": "uint48"
               },
               { "name": "head", "type": "uint48", "internalType": "uint48" },
-              { "name": "glasses", "type": "uint48", "internalType": "uint48" }
+              {
+                "name": "glasses",
+                "type": "uint48",
+                "internalType": "uint48"
+              }
             ]
           }
         ]
@@ -124,7 +132,9 @@
       { "name": "_points", "type": "uint256", "internalType": "uint256" },
       { "name": "recipent", "type": "address", "internalType": "address" }
     ],
-    "outputs": [{ "name": "levelUp", "type": "bool", "internalType": "bool" }],
+    "outputs": [
+      { "name": "levelUp", "type": "bool", "internalType": "bool" }
+    ],
     "stateMutability": "nonpayable"
   },
   {
@@ -181,7 +191,11 @@
         "type": "tuple",
         "internalType": "struct NounMetadata",
         "components": [
-          { "name": "background", "type": "uint48", "internalType": "uint48" },
+          {
+            "name": "background",
+            "type": "uint48",
+            "internalType": "uint48"
+          },
           { "name": "body", "type": "uint48", "internalType": "uint48" },
           { "name": "accessory", "type": "uint48", "internalType": "uint48" },
           { "name": "head", "type": "uint48", "internalType": "uint48" },
@@ -200,7 +214,9 @@
       { "name": "_points", "type": "uint256", "internalType": "uint256" },
       { "name": "recipent", "type": "address", "internalType": "address" }
     ],
-    "outputs": [{ "name": "levelUp", "type": "bool", "internalType": "bool" }],
+    "outputs": [
+      { "name": "levelUp", "type": "bool", "internalType": "bool" }
+    ],
     "stateMutability": "view"
   },
   {
@@ -208,7 +224,11 @@
     "name": "superChainAccount",
     "inputs": [{ "name": "", "type": "address", "internalType": "address" }],
     "outputs": [
-      { "name": "smartAccount", "type": "address", "internalType": "address" },
+      {
+        "name": "smartAccount",
+        "type": "address",
+        "internalType": "address"
+      },
       { "name": "superChainID", "type": "string", "internalType": "string" },
       { "name": "points", "type": "uint256", "internalType": "uint256" },
       { "name": "level", "type": "uint16", "internalType": "uint16" },
@@ -217,7 +237,11 @@
         "type": "tuple",
         "internalType": "struct NounMetadata",
         "components": [
-          { "name": "background", "type": "uint48", "internalType": "uint48" },
+          {
+            "name": "background",
+            "type": "uint48",
+            "internalType": "uint48"
+          },
           { "name": "body", "type": "uint48", "internalType": "uint48" },
           { "name": "accessory", "type": "uint48", "internalType": "uint48" },
           { "name": "head", "type": "uint48", "internalType": "uint48" },
