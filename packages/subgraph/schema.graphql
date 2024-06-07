@@ -43,3 +43,18 @@ type PointsIncremented @entity(immutable: true) {
   blockTimestamp: BigInt!
   transactionHash: Bytes!
 }
+
+type SuperChainSmartAccountCreated @entity(immutable: true) {
+  id: Bytes!
+  safe: Bytes! # address
+  initialOwner: Bytes! # address
+  superChainId: String! # string
+  noun_background: BigInt! # uint48
+  noun_body: BigInt! # uint48
+  noun_accessory: BigInt! # uint48
+  noun_head: BigInt! # uint48
+  noun_glasses: BigInt! # uint48
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
