@@ -36,8 +36,7 @@
     "name": "addOwnerWithThreshold",
     "inputs": [
       { "name": "_safe", "type": "address", "internalType": "address" },
-      { "name": "_newOwner", "type": "address", "internalType": "address" },
-      { "name": "signature", "type": "bytes", "internalType": "bytes" }
+      { "name": "_newOwner", "type": "address", "internalType": "address" }
     ],
     "outputs": [],
     "stateMutability": "nonpayable"
@@ -395,19 +394,6 @@
       }
     ],
     "anonymous": false
-  },
-  { "type": "error", "name": "ECDSAInvalidSignature", "inputs": [] },
-  {
-    "type": "error",
-    "name": "ECDSAInvalidSignatureLength",
-    "inputs": [
-      { "name": "length", "type": "uint256", "internalType": "uint256" }
-    ]
-  },
-  {
-    "type": "error",
-    "name": "ECDSAInvalidSignatureS",
-    "inputs": [{ "name": "s", "type": "bytes32", "internalType": "bytes32" }]
   },
   { "type": "error", "name": "InvalidShortString", "inputs": [] },
   {

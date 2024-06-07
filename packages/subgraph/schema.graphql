@@ -14,6 +14,8 @@ type OwnerAdded @entity(immutable: true) {
   blockNumber: BigInt!
   blockTimestamp: BigInt!
   transactionHash: Bytes!
+  superChainSmartAccount: SuperChainSmartAccount!
+
 }
 
 type OwnerPopulated @entity(immutable: true) {
@@ -24,15 +26,8 @@ type OwnerPopulated @entity(immutable: true) {
   blockNumber: BigInt!
   blockTimestamp: BigInt!
   transactionHash: Bytes!
-}
+  superChainSmartAccount: SuperChainSmartAccount!
 
-type OwnershipTransferred @entity(immutable: true) {
-  id: Bytes!
-  previousOwner: Bytes! # address
-  newOwner: Bytes! # address
-  blockNumber: BigInt!
-  blockTimestamp: BigInt!
-  transactionHash: Bytes!
 }
 
 type PointsIncremented @entity(immutable: true) {
@@ -42,9 +37,11 @@ type PointsIncremented @entity(immutable: true) {
   blockNumber: BigInt!
   blockTimestamp: BigInt!
   transactionHash: Bytes!
+  superChainSmartAccount: SuperChainSmartAccount!
+
 }
 
-type SuperChainSmartAccountCreated @entity(immutable: true) {
+type SuperChainSmartAccount @entity(immutable: true) {
   id: Bytes!
   safe: Bytes! # address
   initialOwner: Bytes! # address

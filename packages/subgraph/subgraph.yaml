@@ -5,12 +5,12 @@ schema:
   file: ./schema.graphql
 dataSources:
   - kind: ethereum
-    name: Contract
+    name: SuperChainSmartAccountModule
     network: sepolia
     source:
-      address: "0x22E9C7f61f7e022D2637C46D8bdc986661E26EA9"
-      abi: Contract
-      startBlock: 6054252
+      address: '0xe0f6b93b437fB85859eafD795E6c99A83b302D85'
+      abi: SuperChainSmartAccountModule
+      startBlock: 5972056
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.7
@@ -19,12 +19,12 @@ dataSources:
         - EIP712DomainChanged
         - OwnerAdded
         - OwnerPopulated
-        - OwnershipTransferred
         - PointsIncremented
         - SuperChainSmartAccountCreated
+
       abis:
-        - name: Contract
-          file: ./abis/Contract.json
+        - name: SuperChainSmartAccountModule
+          file: ./abis/SuperChainSmartAccountModule.json
       eventHandlers:
         - event: EIP712DomainChanged()
           handler: handleEIP712DomainChanged
@@ -32,10 +32,8 @@ dataSources:
           handler: handleOwnerAdded
         - event: OwnerPopulated(indexed address,indexed address,string)
           handler: handleOwnerPopulated
-        - event: OwnershipTransferred(indexed address,indexed address)
-          handler: handleOwnershipTransferred
         - event: PointsIncremented(indexed address,uint256)
           handler: handlePointsIncremented
         - event: SuperChainSmartAccountCreated(indexed address,indexed address,string,(uint48,uint48,uint48,uint48,uint48))
           handler: handleSuperChainSmartAccountCreated
-      file: ./src/contract.ts
+      file: ./src/super-chain-smart-account-module.ts

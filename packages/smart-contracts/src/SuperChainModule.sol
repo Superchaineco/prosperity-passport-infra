@@ -44,7 +44,7 @@ contract SuperChainModule is EIP712, Ownable {
     address private _resolver;
     uint256[] private _tierTreshold;
 
-    struct AddOwnerRequest {
+struct AddOwnerRequest {
         address superChainAccount;
         address newOwner;
     }

@@ -2,15 +2,15 @@ import {
   EIP712DomainChanged as EIP712DomainChangedEvent,
   OwnerAdded as OwnerAddedEvent,
   OwnerPopulated as OwnerPopulatedEvent,
-  OwnershipTransferred as OwnershipTransferredEvent,
   PointsIncremented as PointsIncrementedEvent,
+  SuperChainSmartAccountCreated as SuperChainSmartAccountCreatedEvent,
 } from '../generated/SuperChainSmartAccountModule/SuperChainSmartAccountModule';
 import {
   EIP712DomainChanged,
   OwnerAdded,
   OwnerPopulated,
-  OwnershipTransferred,
   PointsIncremented,
+  SuperChainSmartAccount
 } from '../generated/schema';
 
 export function handleEIP712DomainChanged(
@@ -38,7 +38,11 @@ export function handleOwnerAdded(event: OwnerAddedEvent): void {
   entity.blockNumber = event.block.number;
   entity.blockTimestamp = event.block.timestamp;
   entity.transactionHash = event.transaction.hash;
-
+  let superChainSmartAccount = SuperChainSmartAccount.load(entity.safe);
+  if (superChainSmartAccount == null) {
+    superChainSmartAccount = new SuperChainSmartAccount(entity.safe);
+  }
+  entity.superChainSmartAccount = superChainSmartAccount.id;
   entity.save();
 }
 
@@ -53,25 +57,14 @@ export function handleOwnerPopulated(event: OwnerPopulatedEvent): void {
   entity.blockNumber = event.block.number;
   entity.blockTimestamp = event.block.timestamp;
   entity.transactionHash = event.transaction.hash;
-
+  let superChainSmartAccount = SuperChainSmartAccount.load(entity.safe);
+  if (superChainSmartAccount == null) {
+    superChainSmartAccount = new SuperChainSmartAccount(entity.safe);
+  }
+  entity.superChainSmartAccount = superChainSmartAccount.id;
   entity.save();
 }
 
-export function handleOwnershipTransferred(
-  event: OwnershipTransferredEvent
-): void {
-  let entity = new OwnershipTransferred(
-    event.transaction.hash.concatI32(event.logIndex.toI32())
-  );
-  entity.previousOwner = event.params.previousOwner;
-  entity.newOwner = event.params.newOwner;
-
-  entity.blockNumber = event.block.number;
-  entity.blockTimestamp = event.block.timestamp;
-  entity.transactionHash = event.transaction.hash;
-
-  entity.save();
-}
 
 export function handlePointsIncremented(event: PointsIncrementedEvent): void {
   let entity = new PointsIncremented(
@@ -83,6 +76,33 @@ export function handlePointsIncremented(event: PointsIncrementedEvent): void {
   entity.blockNumber = event.block.number;
   entity.blockTimestamp = event.block.timestamp;
   entity.transactionHash = event.transaction.hash;
+  let superChainSmartAccount = SuperChainSmartAccount.load(entity.recipient);
+  if (superChainSmartAccount == null) {
+    superChainSmartAccount = new SuperChainSmartAccount(entity.recipient);
+  }
+  entity.superChainSmartAccount = superChainSmartAccount.id;
+  entity.save();
+}
+
+export function handleSuperChainSmartAccountCreated(
+  event: SuperChainSmartAccountCreatedEvent
+): void {
+  let entity = new SuperChainSmartAccount(
+   event.params.safe
+  );
+  entity.safe = event.params.safe;
+  entity.initialOwner = event.params.initialOwner;
+  entity.superChainId = event.params.superChainId;
+  entity.noun_background = event.params.noun.background;
+  entity.noun_body = event.params.noun.body;
+  entity.noun_accessory = event.params.noun.accessory;
+  entity.noun_head = event.params.noun.head;
+  entity.noun_glasses = event.params.noun.glasses;
+
+  entity.blockNumber = event.block.number;
+  entity.blockTimestamp = event.block.timestamp;
+  entity.transactionHash = event.transaction.hash;
 
   entity.save();
+  
 }
