@@ -2,7 +2,6 @@
 pragma solidity ^0.8.13;
 import {ISafe} from "../interfaces/ISafe.sol";
 import {Enum} from "../libraries/Enum.sol";
-import {ECDSA} from "@openzeppelin/contracts/utils/cryptography/ECDSA.sol";
 import {EIP712} from "@openzeppelin/contracts/utils/cryptography/EIP712.sol";
 import {Ownable} from "@openzeppelin/contracts/access/Ownable.sol";
 
@@ -15,7 +14,13 @@ struct NounMetadata {
 }
 
 contract SuperChainModule is EIP712, Ownable {
-    using ECDSA for bytes32;
+
+    event SuperChainSmartAccountCreated(
+        address indexed safe,
+        address indexed initialOwner,
+        string superChainId,
+        NounMetadata noun
+    );
 
     event OwnerPopulated(
         address indexed safe,
@@ -60,13 +65,9 @@ contract SuperChainModule is EIP712, Ownable {
 
     function addOwnerWithThreshold(
         address _safe,
-        address _newOwner,
-        bytes calldata signature
+        address _newOwner
     ) public firstOwnerSet(_safe) {
-        require(
-            _verifySignature(_safe, _newOwner, signature),
-            "Signature verification failed"
-        );
+        require(msg.sender == _newOwner, "Caller is not the new owner");
         require(
             superChainAccount[_newOwner].smartAccount == address(0),
             "Owner already has a SuperChainAccount"
@@ -174,6 +175,12 @@ contract SuperChainModule is EIP712, Ownable {
         hasFirstOwnerYet[_safe] = true;
         superChainAccount[_owner].noun = _noun;
         emit OwnerAdded(_safe, _owner, superChainAccount[_owner].superChainID);
+        emit SuperChainSmartAccountCreated(
+            _safe,
+            _owner,
+            superChainAccount[_owner].superChainID,
+            _noun
+        );
     }
 
     function populateAddOwner(
@@ -287,36 +294,7 @@ contract SuperChainModule is EIP712, Ownable {
         return true;
     }
 
-    function _verifySignature(
-        address _safe,
-        address _newOwner,
-        bytes calldata signature
-    ) internal view returns (bool) {
-        AddOwnerRequest memory request = AddOwnerRequest({
-            superChainAccount: _safe,
-            newOwner: _newOwner
-        });
-
-        bytes32 structHash = keccak256(
-            abi.encode(
-                keccak256(
-                    "AddOwnerRequest(address superChainAccount,address newOwner)"
-                ),
-                request.superChainAccount,
-                request.newOwner
-            )
-        );
-
-        bytes32 digest = _hashTypedDataV4(structHash);
-
-        address signer = ECDSA.recover(digest, signature);
-
-        if (signer == _newOwner) {
-            return true;
-        } else {
-            return false;
-        }
-    }
+   
 
     function getSuperChainAccount(
         address _safe
