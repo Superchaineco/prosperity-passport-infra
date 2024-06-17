@@ -14,12 +14,21 @@ struct NounMetadata {
 }
 
 contract SuperChainModule is EIP712, Ownable {
+    //TODO: add a event to remove populate requests
+
+    error MaxLvlReached();
 
     event SuperChainSmartAccountCreated(
         address indexed safe,
         address indexed initialOwner,
         string superChainId,
         NounMetadata noun
+    );
+
+    event OwnerPopulationRemoved(
+        address indexed safe,
+        address indexed owner,
+        string superChainId
     );
 
     event OwnerPopulated(
@@ -44,7 +53,7 @@ contract SuperChainModule is EIP712, Ownable {
     address private _resolver;
     uint256[] private _tierTreshold;
 
-struct AddOwnerRequest {
+    struct AddOwnerRequest {
         address superChainAccount;
         address newOwner;
     }
@@ -117,12 +126,14 @@ struct AddOwnerRequest {
             _isPopulatedAddOwnerWithThreshold[msg.sender][_safe],
             "Owner not populated"
         );
+        require(ISafe(_safe).isOwner(msg.sender), "The address is not an owner");
         for (
             uint i = 0;
             i < populatedAddOwnersWithTreshold[msg.sender].length;
             i++
         ) {
             if (populatedAddOwnersWithTreshold[msg.sender][i] == msg.sender) {
+                Account memory _account = superChainAccount[msg.sender];
                 populatedAddOwnersWithTreshold[msg.sender][
                     i
                 ] = populatedAddOwnersWithTreshold[msg.sender][
@@ -130,6 +141,11 @@ struct AddOwnerRequest {
                 ];
                 populatedAddOwnersWithTreshold[msg.sender].pop();
                 _isPopulatedAddOwnerWithThreshold[msg.sender][_safe] = false;
+                emit OwnerPopulationRemoved(
+                    _safe,
+                    msg.sender,
+                    _account.superChainID
+                );
                 break;
             }
         }
@@ -272,6 +288,13 @@ struct AddOwnerRequest {
         _tierTreshold.push(_treshold);
     }
 
+    function getNextLevelPoints(address _safe) public view returns (uint256) {
+        if (superChainAccount[_safe].level == _tierTreshold.length) {
+            revert MaxLvlReached();
+        }
+        return _tierTreshold[superChainAccount[_safe].level];
+    }
+
     function _isInvalidSuperChainId(
         string memory str
     ) internal pure returns (bool) {
@@ -293,8 +316,6 @@ struct AddOwnerRequest {
 
         return true;
     }
-
-   
 
     function getSuperChainAccount(
         address _safe
