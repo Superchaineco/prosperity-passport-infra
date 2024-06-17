@@ -19,6 +19,7 @@ dataSources:
         - EIP712DomainChanged
         - OwnerAdded
         - OwnerPopulated
+        - OwnerPopulationRemoved
         - PointsIncremented
         - SuperChainSmartAccountCreated
 
@@ -32,6 +33,8 @@ dataSources:
           handler: handleOwnerAdded
         - event: OwnerPopulated(indexed address,indexed address,string)
           handler: handleOwnerPopulated
+        - event: OwnerPopulationRemoved(indexed address,indexed address,string)
+          handler: handleOwnerPopulationRemoved
         - event: PointsIncremented(indexed address,uint256)
           handler: handlePointsIncremented
         - event: SuperChainSmartAccountCreated(indexed address,indexed address,string,(uint48,uint48,uint48,uint48,uint48))

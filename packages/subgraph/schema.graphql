@@ -30,6 +30,18 @@ type OwnerPopulated @entity(immutable: true) {
 
 }
 
+type OwnerPopulationRemoved @entity(immutable: true) {
+  id: Bytes!
+  safe: Bytes! # address
+  owner: Bytes! # address
+  superChainId: String! # string
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+  superChainSmartAccount: SuperChainSmartAccount!
+
+}
+
 type PointsIncremented @entity(immutable: true) {
   id: Bytes!
   recipient: Bytes! # address

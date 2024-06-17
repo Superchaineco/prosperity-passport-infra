@@ -9,4 +9,4 @@ libs = ["lib"]
 sepolia = { key = "I36FHHV8SEQP38FSSMQUCI92BJK4H5PJSE" }
 
 [rpc_endpoints]
-sepolia = "https://rpc.sepolia.org " 
+sepolia = "https://rpc.ankr.com/eth_sepolia" 
