@@ -52,7 +52,7 @@ contract SuperChainBadges is ERC1155, Ownable {
     function setBadgeLevel(
         uint256 badgeId,
         uint256 level,
-        string memory uri,
+        string memory newURI,
         uint256 points
     ) public onlyOwner {
         require(level > 0, "Level must be greater than 0");
@@ -66,9 +66,9 @@ contract SuperChainBadges is ERC1155, Ownable {
                 "Points must be greater than the previous level"
             );
         }
-        _badges[badgeId].levels[level] = BadgeLevel(uri, points);
+        _badges[badgeId].levels[level] = BadgeLevel(newURI, points);
         _badges[badgeId].highestLevel = level;
-        emit BadgeLevelSet(badgeId, level, uri, points);
+        emit BadgeLevelSet(badgeId, level, newURI, points);
     }
 
     function mintBadge(
@@ -103,7 +103,7 @@ contract SuperChainBadges is ERC1155, Ownable {
         uint256 newTokenId = _encodeTokenId(badgeId, newLevel);
 
         _burn(user, oldTokenId, 1);
-        _mint(user, newTokenId, 1);
+        _mint(user, newTokenId, 1, "");
 
         _userBadgeLevels[user][badgeId] = newLevel;
         for (uint256 level = oldLevel + 1; level <= newLevel; level++) {
@@ -112,7 +112,7 @@ contract SuperChainBadges is ERC1155, Ownable {
         emit BadgeLevelUpdated(user, badgeId, newLevel, totalPoints, _badges[badgeId].levels[newLevel].uri);
     }
 
-    function getBadgeURIForUser(
+    function getBadgeURIForUser(    
         address user,
         uint256 badgeId
     ) public view returns (string memory) {
