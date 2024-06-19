@@ -43,11 +43,11 @@ contract SuperChainBadges is ERC1155, Ownable {
         address indexed user,
         uint256 indexed badgeId,
         uint256 level,
-        uint256 points
-        string uri,
+        uint256 points,
+        string uri
     );
 
-    constructor() ERC1155("https://token-cdn-domain/{id}.json") {}
+    constructor() ERC1155("") {}
 
     function setBadgeLevel(
         uint256 badgeId,

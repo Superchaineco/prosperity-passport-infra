@@ -46,10 +46,10 @@ contract SuperChainResolver is SchemaResolver, Ownable {
             badgeUpdates
         );
 
-        superChainModule.incrementSuperChainPoints(
-            points,
-            attestation.recipient
-        );
+        // superChainModule.incrementSuperChainPoints(
+        //     points,
+        //     attestation.recipient
+        // );
         return true;
     }
 
