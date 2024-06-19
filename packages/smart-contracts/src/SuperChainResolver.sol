@@ -4,14 +4,21 @@ pragma solidity ^0.8.19;
 import {SchemaResolver} from "eas-contracts/resolver/SchemaResolver.sol";
 import {IEAS, Attestation} from "eas-contracts/IEAS.sol";
 import {SuperChainModule} from "./SuperChainModule.sol";
+import "./SuperChainBadges.sol";
 import {Ownable} from "@openzeppelin/contracts/access/Ownable.sol";
 
 contract SuperChainResolver is SchemaResolver, Ownable {
     SuperChainModule public superChainModule;
+    SuperChainBadges public superChainBadges;
     address private immutable _attestator;
 
-    constructor(IEAS eas, address attestator) Ownable(msg.sender) SchemaResolver(eas) {
+    constructor(
+        IEAS eas,
+        address attestator,
+        SuperChainBadges _superChainBadges
+    ) Ownable(msg.sender) SchemaResolver(eas) {
         _attestator = attestator;
+        superChainBadges = _superChainBadges;
     }
 
     // This might be onlyOwner
@@ -28,7 +35,17 @@ contract SuperChainResolver is SchemaResolver, Ownable {
         if (attestation.attester != _attestator) {
             return false;
         }
-        uint256 points = abi.decode(attestation.data, (uint256));
+        BadgeUpdate[] memory badgeUpdates = abi.decode(
+            attestation.data,
+            (BadgeUpdate[])
+        );
+        uint256[] memory badgeIds = [];
+        uint256[] memory levels = [];
+        uint256 points = superChainBadges.updateOrMintBadges(
+            attestation.recipient,
+            badgeUpdates
+        );
+
         superChainModule.incrementSuperChainPoints(
             points,
             attestation.recipient
