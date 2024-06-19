@@ -47,6 +47,17 @@ export function handleOwnerAdded(event: OwnerAddedEvent): void {
   }
   entity.superChainSmartAccount = superChainSmartAccount.id;
   entity.save();
+  let entityId = event.params.safe.concat(event.params.newOwner);
+  let populatedEntity = OwnerPopulated.load(
+    entityId
+  );
+  if (populatedEntity != null) {
+    store.remove(
+      'OwnerPopulated',
+      entityId.toHexString()
+    );
+  }
+  
 }
 
 export function handleOwnerPopulated(event: OwnerPopulatedEvent): void {
@@ -86,13 +97,14 @@ export function handleOwnerPopulationRemoved(
   }
   entity.superChainSmartAccount = superChainSmartAccount.id;
   entity.save();
+  let entityId = event.params.safe.concat(event.params.owner);
   let populatedEntity = OwnerPopulated.load(
-    event.params.safe.concat(event.params.owner)
+    entityId
   );
   if (populatedEntity != null) {
     store.remove(
       'OwnerPopulated',
-      event.params.safe.toHexString() + event.params.owner.toHexString()
+      entityId.toHexString()
     );
   }
 }

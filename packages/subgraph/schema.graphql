@@ -18,7 +18,7 @@ type OwnerAdded @entity(immutable: true) {
 
 }
 
-type OwnerPopulated @entity(immutable: true) {
+type OwnerPopulated @entity {
   id: Bytes!
   safe: Bytes! # address
   newOwner: Bytes! # address
