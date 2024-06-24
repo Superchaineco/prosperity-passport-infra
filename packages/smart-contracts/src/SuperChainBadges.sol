@@ -47,7 +47,7 @@ contract SuperChainBadges is ERC1155, Ownable {
         string uri
     );
 
-    constructor() ERC1155("") {}
+    constructor() ERC1155("") Ownable(msg.sender) {}
 
     function setBadgeLevel(
         uint256 badgeId,
@@ -86,7 +86,13 @@ contract SuperChainBadges is ERC1155, Ownable {
         for (uint256 level = 1; level <= initialLevel; level++) {
             totalPoints += _badges[badgeId].levels[level].points;
         }
-        emit BadgeMinted(to, badgeId, initialLevel, totalPoints, _badges[badgeId].levels[initialLevel].uri);
+        emit BadgeMinted(
+            to,
+            badgeId,
+            initialLevel,
+            totalPoints,
+            _badges[badgeId].levels[initialLevel].uri
+        );
     }
 
     function updateBadgeLevel(
@@ -109,10 +115,16 @@ contract SuperChainBadges is ERC1155, Ownable {
         for (uint256 level = oldLevel + 1; level <= newLevel; level++) {
             totalPoints += _badges[badgeId].levels[level].points;
         }
-        emit BadgeLevelUpdated(user, badgeId, newLevel, totalPoints, _badges[badgeId].levels[newLevel].uri);
+        emit BadgeLevelUpdated(
+            user,
+            badgeId,
+            newLevel,
+            totalPoints,
+            _badges[badgeId].levels[newLevel].uri
+        );
     }
 
-    function getBadgeURIForUser(    
+    function getBadgeURIForUser(
         address user,
         uint256 badgeId
     ) public view returns (string memory) {
@@ -155,21 +167,21 @@ contract SuperChainBadges is ERC1155, Ownable {
     }
 
     function safeTransferFrom(
-        address from,
-        address to,
-        uint256 id,
-        uint256 amount,
-        bytes memory data
+        address,
+        address,
+        uint256,
+        uint256,
+        bytes memory
     ) public virtual override {
         revert("BadgeNFT: Transfers are disabled");
     }
 
     function safeBatchTransferFrom(
-        address from,
-        address to,
-        uint256[] memory ids,
-        uint256[] memory amounts,
-        bytes memory data
+        address,
+        address,
+        uint256[] memory,
+        uint256[] memory,
+        bytes memory
     ) public virtual override {
         revert("BadgeNFT: Transfers are disabled");
     }

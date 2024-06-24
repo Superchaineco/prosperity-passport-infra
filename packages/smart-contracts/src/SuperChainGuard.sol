@@ -24,7 +24,6 @@ contract SuperChainGuard is BaseGuard {
     /**
      * @notice Called by the Safe contract before a transaction is executed.
      * @dev Reverts if the transaction is related to update treshold owner.
-     * @param msgSender Executor of the transaction.
      */
     function checkTransaction(
         address,
@@ -38,7 +37,7 @@ contract SuperChainGuard is BaseGuard {
         // solhint-disable-next-line no-unused-vars
         address payable,
         bytes memory,
-        address msgSender
+        address 
     ) external override {
         if (data.length >= 4) {
             bytes4 selector;
