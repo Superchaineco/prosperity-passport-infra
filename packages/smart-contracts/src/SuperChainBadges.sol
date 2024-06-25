@@ -6,44 +6,48 @@ import "@openzeppelin/contracts/access/Ownable.sol";
 
 struct BadgeUpdate {
     uint256 badgeId;
-    uint256 level;
+    uint256 tier;
 }
 
 contract SuperChainBadges is ERC1155, Ownable {
     uint256 constant LEVEL_MASK = uint256(type(uint128).max);
     uint256 constant LEVEL_SHIFT = 128;
 
-    struct BadgeLevel {
+    struct BadgeTier {
         string uri;
         uint256 points;
     }
 
     struct Badge {
         string uri;
-        mapping(uint256 => BadgeLevel) levels;
-        uint256 highestLevel;
+        mapping(uint256 => BadgeTier) tiers;
+        uint256 highestTier;
     }
 
     mapping(uint256 => Badge) private _badges;
-    mapping(address => mapping(uint256 => uint256)) private _userBadgeLevels;
+    mapping(address => mapping(uint256 => uint256)) private _userBadgeTiers;
 
-    event BadgeLevelSet(
+    event BadgeTierSet(
         uint256 indexed badgeId,
-        uint256 level,
+        uint256 tier,
         string uri,
         uint256 points
     );
     event BadgeMinted(
         address indexed user,
         uint256 indexed badgeId,
-        uint256 initialLevel,
+        uint256 initialTier,
         uint256 points,
         string uri
     );
-    event BadgeLevelUpdated(
+    event BadgeMetadataSettled(
+        uint256 indexed badgeId,
+        string generalUri
+    );
+    event BadgeTierUpdated(
         address indexed user,
         uint256 indexed badgeId,
-        uint256 level,
+        uint256 tier,
         uint256 points,
         string uri
     );
@@ -55,11 +59,12 @@ contract SuperChainBadges is ERC1155, Ownable {
         string memory generalUri
     ) public onlyOwner {
         _badges[badgeId].generalUri = generalUri;
+        emit BadgeMetadataSettled(badgeId, generalUri);
     }
 
-    function setBadgeLevel(
+    function setBadgeTier(
         uint256 badgeId,
-        uint256 level,
+        uint256 tier,
         string memory newURI,
         uint256 points
     ) public onlyOwner {
@@ -67,82 +72,82 @@ contract SuperChainBadges is ERC1155, Ownable {
             bytes(_badges[badgeId].uri).length != 0,
             "Badge does not exist"
         );
-        require(level > 0, "Level must be greater than 0");
+        require(tier > 0, "Tier must be greater than 0");
         require(
-            level == _badges[badgeId].highestLevel + 1,
-            "Levels must be added sequentially"
+            tier == _badges[badgeId].highestTier + 1,
+            "Tiers must be added sequentially"
         );
-        if (level > 1) {
+        if (tier > 1) {
             require(
-                points > _badges[badgeId].levels[level - 1].points,
-                "Points must be greater than the previous level"
+                points > _badges[badgeId].tiers[tier - 1].points,
+                "Points must be greater than the previous tier"
             );
         }
-        _badges[badgeId].levels[level] = BadgeLevel(newURI, points);
-        _badges[badgeId].highestLevel = level;
-        emit BadgeLevelSet(badgeId, level, newURI, points);
+        _badges[badgeId].tiers[tier] = BadgeTier(newURI, points);
+        _badges[badgeId].highestTier = tier;
+        emit BadgeTierSet(badgeId, tier, newURI, points);
     }
 
     function mintBadge(
         address to,
         uint256 badgeId,
-        uint256 initialLevel
+        uint256 initialTier
     ) internal returns (uint256 totalPoints) {
         require(
-            bytes(_badges[badgeId].levels[initialLevel].uri).length != 0,
-            "URI for initial level not set"
+            bytes(_badges[badgeId].tiers[initialTier].uri).length != 0,
+            "URI for initial tier not set"
         );
-        uint256 tokenId = _encodeTokenId(badgeId, initialLevel);
+        uint256 tokenId = _encodeTokenId(badgeId, initialTier);
         _mint(to, tokenId, 1, "");
-        _userBadgeLevels[to][badgeId] = initialLevel;
-        for (uint256 level = 1; level <= initialLevel; level++) {
-            totalPoints += _badges[badgeId].levels[level].points;
+        _userBadgeTiers[to][badgeId] = initialTier;
+        for (uint256 tier = 1; tier <= initialTier; tier++) {
+            totalPoints += _badges[badgeId].tiers[tier].points;
         }
         emit BadgeMinted(
             to,
             badgeId,
-            initialLevel,
+            initialTier,
             totalPoints,
-            _badges[badgeId].levels[initialLevel].uri
+            _badges[badgeId].tiers[initialTier].uri
         );
     }
 
-    function updateBadgeLevel(
+    function updateBadgeTier(
         address user,
         uint256 badgeId,
-        uint256 newLevel
+        uint256 newTier
     ) internal returns (uint256 totalPoints) {
         require(
-            bytes(_badges[badgeId].levels[newLevel].uri).length != 0,
-            "URI for new level not set"
+            bytes(_badges[badgeId].tiers[newTier].uri).length != 0,
+            "URI for new tier not set"
         );
-        uint256 oldLevel = _userBadgeLevels[user][badgeId];
-        uint256 oldTokenId = _encodeTokenId(badgeId, oldLevel);
-        uint256 newTokenId = _encodeTokenId(badgeId, newLevel);
+        uint256 oldTier = _userBadgeTiers[user][badgeId];
+        uint256 oldTokenId = _encodeTokenId(badgeId, oldTier);
+        uint256 newTokenId = _encodeTokenId(badgeId, newTier);
 
         _burn(user, oldTokenId, 1);
         _mint(user, newTokenId, 1, "");
 
-        _userBadgeLevels[user][badgeId] = newLevel;
-        for (uint256 level = oldLevel + 1; level <= newLevel; level++) {
-            totalPoints += _badges[badgeId].levels[level].points;
+        _userBadgeTiers[user][badgeId] = newTier;
+        for (uint256 tier = oldTier + 1; tier <= newTier; tier++) {
+            totalPoints += _badges[badgeId].tiers[tier].points;
         }
-        emit BadgeLevelUpdated(
+        emit BadgeTierUpdated(
             user,
             badgeId,
-            newLevel,
+            newTier,
             totalPoints,
-            _badges[badgeId].levels[newLevel].uri
+            _badges[badgeId].tiers[newTier].uri
         );
     }
 
   function getBadgeURIForUser(
         address user,
         uint256 badgeId
-    ) public view returns (string memory generalUri, string memory levelUri) {
-        uint256 userLevel = _userBadgeLevels[user][badgeId];
+    ) public view returns (string memory generalUri, string memory tierUri) {
+        uint256 userTier = _userBadgeTiers[user][badgeId];
         generalUri = _badges[badgeId].uri;
-        levelUri = _badges[badgeId].levels[userLevel].uri;
+        tierUri = _badges[badgeId].tiers[userTier].uri;
     }
 
     function getGeneralBadgeURI(
@@ -151,11 +156,11 @@ contract SuperChainBadges is ERC1155, Ownable {
         return _badges[badgeId].generalUri;
     }
 
-    function getUserBadgeLevel(
+    function getUserBadgeTier(
         address user,
         uint256 badgeId
     ) public view returns (uint256) {
-        return _userBadgeLevels[user][badgeId];
+        return _userBadgeTiers[user][badgeId];
     }
 
     function updateOrMintBadges(
@@ -164,26 +169,26 @@ contract SuperChainBadges is ERC1155, Ownable {
     ) public returns (uint256 points) {
         for (uint256 i = 0; i < updates.length; i++) {
             uint256 badgeId = updates[i].badgeId;
-            uint256 level = updates[i].level;
+            uint256 tier = updates[i].tier;
 
-            if (_userBadgeLevels[user][badgeId] > 0) {
-                points += updateBadgeLevel(user, badgeId, level);
+            if (_userBadgeTiers[user][badgeId] > 0) {
+                points += updateBadgeTier(user, badgeId, tier);
             } else {
-                points += mintBadge(user, badgeId, level);
+                points += mintBadge(user, badgeId, tier);
             }
         }
     }
 
-    function getHighestBadgeLevel(
+    function getHighestBadgeTier(
         uint256 badgeId
     ) public view returns (uint256) {
-        return _badges[badgeId].highestLevel;
+        return _badges[badgeId].highestTier;
     }
 
-    function uri(uint256 tokenId) public view override returns (string memory baseURI, string memory levelURI) {
-        (uint256 badgeId, uint256 level) = _decodeTokenId(tokenId);
+    function uri(uint256 tokenId) public view override returns (string memory baseURI, string memory tierURI) {
+        (uint256 badgeId, uint256 tier) = _decodeTokenId(tokenId);
         baseURI = _badges[badgeId].generalUri;
-        levelURI = _badges[badgeId].levels[level].uri;
+        tierURI = _badges[badgeId].tiers[tier].uri;
     }
 
     function safeTransferFrom(
@@ -208,15 +213,15 @@ contract SuperChainBadges is ERC1155, Ownable {
 
     function _encodeTokenId(
         uint256 badgeId,
-        uint256 level
+        uint256 tier
     ) internal pure returns (uint256) {
-        return (badgeId << LEVEL_SHIFT) | (level & LEVEL_MASK);
+        return (badgeId << LEVEL_SHIFT) | (tier & LEVEL_MASK);
     }
 
     function _decodeTokenId(
         uint256 tokenId
-    ) internal pure returns (uint256 badgeId, uint256 level) {
+    ) internal pure returns (uint256 badgeId, uint256 tier) {
         badgeId = tokenId >> LEVEL_SHIFT;
-        level = tokenId & LEVEL_MASK;
+        tier = tokenId & LEVEL_MASK;
     }
 }
