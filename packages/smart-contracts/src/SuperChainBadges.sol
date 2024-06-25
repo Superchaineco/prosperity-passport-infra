@@ -19,6 +19,7 @@ contract SuperChainBadges is ERC1155, Ownable {
     }
 
     struct Badge {
+        string uri;
         mapping(uint256 => BadgeLevel) levels;
         uint256 highestLevel;
     }
@@ -49,12 +50,23 @@ contract SuperChainBadges is ERC1155, Ownable {
 
     constructor() ERC1155("") Ownable(msg.sender) {}
 
+    function setBadgeMetadata(
+        uint256 badgeId,
+        string memory generalUri
+    ) public onlyOwner {
+        _badges[badgeId].generalUri = generalUri;
+    }
+
     function setBadgeLevel(
         uint256 badgeId,
         uint256 level,
         string memory newURI,
         uint256 points
     ) public onlyOwner {
+        require(
+            bytes(_badges[badgeId].uri).length != 0,
+            "Badge does not exist"
+        );
         require(level > 0, "Level must be greater than 0");
         require(
             level == _badges[badgeId].highestLevel + 1,
@@ -124,12 +136,19 @@ contract SuperChainBadges is ERC1155, Ownable {
         );
     }
 
-    function getBadgeURIForUser(
+  function getBadgeURIForUser(
         address user,
         uint256 badgeId
-    ) public view returns (string memory) {
+    ) public view returns (string memory generalUri, string memory levelUri) {
         uint256 userLevel = _userBadgeLevels[user][badgeId];
-        return _badges[badgeId].levels[userLevel].uri;
+        generalUri = _badges[badgeId].uri;
+        levelUri = _badges[badgeId].levels[userLevel].uri;
+    }
+
+    function getGeneralBadgeURI(
+        uint256 badgeId
+    ) public view returns (string memory) {
+        return _badges[badgeId].generalUri;
     }
 
     function getUserBadgeLevel(
@@ -161,9 +180,10 @@ contract SuperChainBadges is ERC1155, Ownable {
         return _badges[badgeId].highestLevel;
     }
 
-    function uri(uint256 tokenId) public view override returns (string memory) {
+    function uri(uint256 tokenId) public view override returns (string memory baseURI, string memory levelURI) {
         (uint256 badgeId, uint256 level) = _decodeTokenId(tokenId);
-        return _badges[badgeId].levels[level].uri;
+        baseURI = _badges[badgeId].generalUri;
+        levelURI = _badges[badgeId].levels[level].uri;
     }
 
     function safeTransferFrom(
