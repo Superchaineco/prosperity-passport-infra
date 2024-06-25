@@ -40,3 +40,29 @@ dataSources:
         - event: SuperChainSmartAccountCreated(indexed address,indexed address,string,(uint48,uint48,uint48,uint48,uint48))
           handler: handleSuperChainSmartAccountCreated
       file: ./src/super-chain-smart-account-module.ts
+  - kind: ethereum
+    name: SuperChainBadges
+    network: sepolia
+    source:
+      address: "0xe6ab53dBd7Ca445a94D27964401D9169156191be"
+      abi: SuperChainBadges
+      startBlock: 6177239
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - BadgeTier
+        - Badge
+        - AccountBadge
+      abis:
+        - name: SuperChainBadges
+          file: ./abis/SuperChainBadges.json
+      eventHandlers:
+        - event: BadgeLevelSet(indexed uint256,uint256,string,uint256)
+          handler: handleBadgeLevelSet
+        - event: BadgeLevelUpdated(indexed address,indexed uint256,uint256,uint256,string)
+          handler: handleBadgeLevelUpdated
+        - event: BadgeMinted(indexed address,indexed uint256,uint256,uint256,string)
+          handler: handleBadgeMinted
+      file: ./src/super-chain-badges.ts

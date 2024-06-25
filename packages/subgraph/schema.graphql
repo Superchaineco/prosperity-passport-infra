@@ -67,3 +67,26 @@ type SuperChainSmartAccount @entity(immutable: true) {
   blockTimestamp: BigInt!
   transactionHash: Bytes!
 }
+
+
+type BadgeTier @entity {
+  id: Bytes!
+  points: BigInt!
+  tier: BigInt!
+  badge: Badge! # Relación con Badge
+  uri: String! # string
+}
+
+type Badge @entity {
+  id: String!
+  badgeId: BigInt!
+  badgeTiers: [BadgeTier!]! @derivedFrom(field: "badge")
+}
+
+type AccountBadge @entity {
+  id: Bytes!
+  user: Bytes! # address
+  badge: Badge! # Relación con Badge
+  tier: BigInt!
+  points: BigInt! # uint256
+}
