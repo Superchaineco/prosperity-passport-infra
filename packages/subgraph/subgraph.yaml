@@ -44,7 +44,7 @@ dataSources:
     name: SuperChainBadges
     network: sepolia
     source:
-      address: "0xe6ab53dBd7Ca445a94D27964401D9169156191be"
+      address: "0xBC5505f3939397D8A3d725a68D6674b6421A350a"
       abi: SuperChainBadges
       startBlock: 6177239
     mapping:
@@ -59,10 +59,12 @@ dataSources:
         - name: SuperChainBadges
           file: ./abis/SuperChainBadges.json
       eventHandlers:
-        - event: BadgeLevelSet(indexed uint256,uint256,string,uint256)
-          handler: handleBadgeLevelSet
-        - event: BadgeLevelUpdated(indexed address,indexed uint256,uint256,uint256,string)
-          handler: handleBadgeLevelUpdated
+        - event: BadgeTierSet(indexed uint256,uint256,string,uint256)
+          handler: handleBadgeTierSet
+        - event: BadgeMetadataSettled(indexed uint256,string)
+          handler: handleBadgeMetadataSettled
+        - event: BadgeTierUpdated(indexed address,indexed uint256,uint256,uint256,string)
+          handler: handleBadgeTierUpdated
         - event: BadgeMinted(indexed address,indexed uint256,uint256,uint256,string)
           handler: handleBadgeMinted
       file: ./src/super-chain-badges.ts

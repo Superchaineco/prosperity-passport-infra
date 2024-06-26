@@ -19,7 +19,7 @@ contract SuperChainBadges is ERC1155, Ownable {
     }
 
     struct Badge {
-        string uri;
+        string generalURI;
         mapping(uint256 => BadgeTier) tiers;
         uint256 highestTier;
     }
@@ -42,7 +42,7 @@ contract SuperChainBadges is ERC1155, Ownable {
     );
     event BadgeMetadataSettled(
         uint256 indexed badgeId,
-        string generalUri
+        string generalURI
     );
     event BadgeTierUpdated(
         address indexed user,
@@ -56,10 +56,10 @@ contract SuperChainBadges is ERC1155, Ownable {
 
     function setBadgeMetadata(
         uint256 badgeId,
-        string memory generalUri
+        string memory generalURI
     ) public onlyOwner {
-        _badges[badgeId].generalUri = generalUri;
-        emit BadgeMetadataSettled(badgeId, generalUri);
+        _badges[badgeId].generalURI = generalURI;
+        emit BadgeMetadataSettled(badgeId, generalURI);
     }
 
     function setBadgeTier(
@@ -69,7 +69,7 @@ contract SuperChainBadges is ERC1155, Ownable {
         uint256 points
     ) public onlyOwner {
         require(
-            bytes(_badges[badgeId].uri).length != 0,
+            bytes(_badges[badgeId].generalURI).length != 0,
             "Badge does not exist"
         );
         require(tier > 0, "Tier must be greater than 0");
@@ -144,16 +144,16 @@ contract SuperChainBadges is ERC1155, Ownable {
   function getBadgeURIForUser(
         address user,
         uint256 badgeId
-    ) public view returns (string memory generalUri, string memory tierUri) {
+    ) public view returns (string memory generalURI, string memory tierUri) {
         uint256 userTier = _userBadgeTiers[user][badgeId];
-        generalUri = _badges[badgeId].uri;
+        generalURI = _badges[badgeId].generalURI;
         tierUri = _badges[badgeId].tiers[userTier].uri;
     }
 
     function getGeneralBadgeURI(
         uint256 badgeId
     ) public view returns (string memory) {
-        return _badges[badgeId].generalUri;
+        return _badges[badgeId].generalURI;
     }
 
     function getUserBadgeTier(
@@ -185,10 +185,16 @@ contract SuperChainBadges is ERC1155, Ownable {
         return _badges[badgeId].highestTier;
     }
 
-    function uri(uint256 tokenId) public view override returns (string memory baseURI, string memory tierURI) {
+    function uri(uint256 tokenId) public view override returns (string memory) {
         (uint256 badgeId, uint256 tier) = _decodeTokenId(tokenId);
-        baseURI = _badges[badgeId].generalUri;
-        tierURI = _badges[badgeId].tiers[tier].uri;
+        string memory baseURI = _badges[badgeId].generalURI;
+        string memory tierURI = _badges[badgeId].tiers[tier].uri;
+        return string(abi.encodePacked(
+            '{',
+            '"generalURI": "', baseURI, '",',
+            '"tierURI": "', tierURI, '"',
+            '}'
+        ));
     }
 
     function safeTransferFrom(

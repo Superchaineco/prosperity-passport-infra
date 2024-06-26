@@ -80,6 +80,7 @@ type BadgeTier @entity {
 type Badge @entity {
   id: String!
   badgeId: BigInt!
+  uri: String!
   badgeTiers: [BadgeTier!]! @derivedFrom(field: "badge")
 }
 

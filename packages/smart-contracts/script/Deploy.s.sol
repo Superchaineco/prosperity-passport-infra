@@ -22,9 +22,9 @@ contract Deploy is Script {
         );
         SuperChainModule module = new SuperChainModule(address(resolver));
         resolver.updateSuperChainAccountsManager(module);
-        badges.setBadgeLevel(1,1,"https://picsum.photos/id/1/200/300", 10);
-        badges.setBadgeLevel(1,2,"https://picsum.photos/id/2/200/300", 20);
-        badges.setBadgeLevel(1,3,"https://picsum.photos/id/3/200/300", 30);
+        badges.setBadgeTier(1,1,"https://picsum.photos/id/1/200/300", 10);
+        badges.setBadgeTier(1,2,"https://picsum.photos/id/2/200/300", 20);
+        badges.setBadgeTier(1,3,"https://picsum.photos/id/3/200/300", 30);
 
         console.logString(
             string.concat(
