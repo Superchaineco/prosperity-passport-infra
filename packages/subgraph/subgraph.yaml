@@ -44,9 +44,9 @@ dataSources:
     name: SuperChainBadges
     network: sepolia
     source:
-      address: "0xBC5505f3939397D8A3d725a68D6674b6421A350a"
+      address: "0x7163afb686dd50b2Ae8C75fDf549b75993a8cbb1"
       abi: SuperChainBadges
-      startBlock: 6177239
+      startBlock: 6196309
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.7

@@ -87,8 +87,9 @@ async function generateAndPinBadges() {
                 level: levelId,
                 minValue: badge.levels[j].minValue,
                 '2DImage': badge.levels[j]['2DImage'],
-                '3DImage': badge.levels[j]['3DImage']
-            };
+                '3DImage': badge.levels[j]['3DImage'],
+ 		points: badge.levels[j].points
+	    };
 
             const levelFileName = `${paddedBadgeId.substring(0, 63 - paddedLevelId.length)}${paddedBadgeId}${paddedLevelId}.json`;
             fs.writeFileSync(path.join(OUTPUT_FOLDER, levelFileName), JSON.stringify(levelMetadata, null, 2));
