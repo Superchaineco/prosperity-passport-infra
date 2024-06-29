@@ -5,7 +5,7 @@ import {Script, console} from "forge-std/Script.sol";
 import {SuperChainGuard} from "../src/SuperChainGuard.sol";
 import {SuperChainModule} from "../src/SuperChainModule.sol";
 import {SuperChainResolver} from "../src/SuperChainResolver.sol";
-import {SuperChainBadges} from "../src/SuperChainBadges.sol";
+import {SuperChainBadges, BadgeMetadata, BadgeTierMetadata} from "../src/SuperChainBadges.sol";
 import {IEAS} from "eas-contracts/IEAS.sol";
 
 contract Deploy is Script {
@@ -13,18 +13,55 @@ contract Deploy is Script {
 
     function run() public {
         vm.startBroadcast();
+        BadgeMetadata[] memory badges = new BadgeMetadata[](2);
+        badges[0] = BadgeMetadata({
+            badgeId: 1,
+            generalURI: "ipfs/QmX2mMkn7hEuZUNyoUSwLECQvLFC7UDJhNgWcrqcT7np7L/00000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000000.json"
+        });
+        badges[1] = BadgeMetadata({
+            badgeId: 2,
+            generalURI: "ipfs/QmX2mMkn7hEuZUNyoUSwLECQvLFC7UDJhNgWcrqcT7np7L/00000000000000000000000000000000000000000000000000000000000000020000000000000000000000000000000000000000000000000000000000000000.json"
+        });
+
+        BadgeTierMetadata[] memory badgeTiers = new BadgeTierMetadata[](4);
+        badgeTiers[0] = BadgeTierMetadata({
+            badgeId: 1,
+            tier: 1,
+            newURI: "ipfs/QmX2mMkn7hEuZUNyoUSwLECQvLFC7UDJhNgWcrqcT7np7L/00000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000001.json",
+            points: 20
+        });
+        badgeTiers[1] = BadgeTierMetadata({
+            badgeId: 1,
+            tier: 2,
+            newURI: "ipfs/QmX2mMkn7hEuZUNyoUSwLECQvLFC7UDJhNgWcrqcT7np7L/00000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000002.json",
+            points: 50
+        });
+        badgeTiers[2] = BadgeTierMetadata({
+            badgeId: 2,
+            tier: 1,
+            newURI: "ipfs/QmX2mMkn7hEuZUNyoUSwLECQvLFC7UDJhNgWcrqcT7np7L/00000000000000000000000000000000000000000000000000000000000000020000000000000000000000000000000000000000000000000000000000000001.json",
+            points: 20
+        });
+        badgeTiers[3] = BadgeTierMetadata({
+            badgeId: 2,
+            tier: 2,
+            newURI: "ipfs/QmX2mMkn7hEuZUNyoUSwLECQvLFC7UDJhNgWcrqcT7np7L/00000000000000000000000000000000000000000000000000000000000000020000000000000000000000000000000000000000000000000000000000000002.json",
+            points: 50
+        });
+
+        SuperChainBadges badgesContract = new SuperChainBadges(
+            badges,
+            badgeTiers
+        );
+
         SuperChainGuard guard = new SuperChainGuard();
-        SuperChainBadges badges = new SuperChainBadges();
         SuperChainResolver resolver = new SuperChainResolver(
             IEAS(0xC2679fBD37d54388Ce493F1DB75320D236e1815e),
             msg.sender,
-            badges
+            badgesContract
         );
         SuperChainModule module = new SuperChainModule(address(resolver));
         resolver.updateSuperChainAccountsManager(module);
-        badges.setBadgeTier(1,1,"https://picsum.photos/id/1/200/300", 10);
-        badges.setBadgeTier(1,2,"https://picsum.photos/id/2/200/300", 20);
-        badges.setBadgeTier(1,3,"https://picsum.photos/id/3/200/300", 30);
 
         console.logString(
             string.concat(
@@ -32,7 +69,7 @@ contract Deploy is Script {
                 vm.toString(address(module)),
                 "\n",
                 "SuperChainBadges deployed at: ",
-                vm.toString(address(badges)),
+                vm.toString(address(badgesContract)),
                 "\n",
                 "SuperChainGuard deployed at: ",
                 vm.toString(address(guard)),

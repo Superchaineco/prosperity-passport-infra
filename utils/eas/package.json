@@ -1,0 +1,21 @@
+{
+  "name": "eas",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "register-schema": "cross-env NODE_OPTIONS='--experimental-modules' node src/index.js"
+
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@ethereum-attestation-service/eas-sdk": "^2.3.0",
+    "cross-env": "^7.0.3",
+    "dotenv": "^16.4.5",
+    "ethers": "^6.13.1",
+    "minimist": "^1.2.8"
+  }
+}

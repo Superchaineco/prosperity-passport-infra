@@ -9,6 +9,16 @@ struct BadgeUpdate {
     uint256 tier;
 }
 
+struct BadgeMetadata {
+    uint256 badgeId;
+    string generalURI;
+}
+struct BadgeTierMetadata {
+    uint256 badgeId;
+    uint256 tier;
+    string newURI;
+    uint256 points;
+}
 contract SuperChainBadges is ERC1155, Ownable {
     uint256 constant LEVEL_MASK = uint256(type(uint128).max);
     uint256 constant LEVEL_SHIFT = 128;
@@ -40,10 +50,7 @@ contract SuperChainBadges is ERC1155, Ownable {
         uint256 points,
         string uri
     );
-    event BadgeMetadataSettled(
-        uint256 indexed badgeId,
-        string generalURI
-    );
+    event BadgeMetadataSettled(uint256 indexed badgeId, string generalURI);
     event BadgeTierUpdated(
         address indexed user,
         uint256 indexed badgeId,
@@ -52,7 +59,22 @@ contract SuperChainBadges is ERC1155, Ownable {
         string uri
     );
 
-    constructor() ERC1155("") Ownable(msg.sender) {}
+    constructor(
+        BadgeMetadata[] memory badges,
+        BadgeTierMetadata[] memory badgeTiers
+    ) ERC1155("") Ownable(msg.sender) {
+        for (uint256 i = 0; i < badges.length; i++) {
+            setBadgeMetadata(badges[i].badgeId, badges[i].generalURI);
+        }
+        for (uint256 i = 0; i < badgeTiers.length; i++) {
+            setBadgeTier(
+                badgeTiers[i].badgeId,
+                badgeTiers[i].tier,
+                badgeTiers[i].newURI,
+                badgeTiers[i].points
+            );
+        }
+    }
 
     function setBadgeMetadata(
         uint256 badgeId,
@@ -141,7 +163,7 @@ contract SuperChainBadges is ERC1155, Ownable {
         );
     }
 
-  function getBadgeURIForUser(
+    function getBadgeURIForUser(
         address user,
         uint256 badgeId
     ) public view returns (string memory generalURI, string memory tierUri) {
@@ -189,12 +211,19 @@ contract SuperChainBadges is ERC1155, Ownable {
         (uint256 badgeId, uint256 tier) = _decodeTokenId(tokenId);
         string memory baseURI = _badges[badgeId].generalURI;
         string memory tierURI = _badges[badgeId].tiers[tier].uri;
-        return string(abi.encodePacked(
-            '{',
-            '"generalURI": "', baseURI, '",',
-            '"tierURI": "', tierURI, '"',
-            '}'
-        ));
+        return
+            string(
+                abi.encodePacked(
+                    "{",
+                    '"generalURI": "',
+                    baseURI,
+                    '",',
+                    '"tierURI": "',
+                    tierURI,
+                    '"',
+                    "}"
+                )
+            );
     }
 
     function safeTransferFrom(
