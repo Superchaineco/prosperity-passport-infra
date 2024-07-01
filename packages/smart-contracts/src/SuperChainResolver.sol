@@ -39,8 +39,8 @@ contract SuperChainResolver is SchemaResolver, Ownable {
             attestation.data,
             (BadgeUpdate[])
         );
-        uint256[] memory badgeIds = [];
-        uint256[] memory levels = [];
+        uint256[] memory badgeIds = new uint256[](0);
+        uint256[] memory levels = new uint256[](0);
         uint256 points = superChainBadges.updateOrMintBadges(
             attestation.recipient,
             badgeUpdates

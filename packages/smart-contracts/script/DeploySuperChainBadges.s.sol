@@ -2,11 +2,7 @@
 pragma solidity ^0.8.13;
 
 import {Script, console} from "forge-std/Script.sol";
-import {SuperChainGuard} from "../src/SuperChainGuard.sol";
-import {SuperChainModule} from "../src/SuperChainModule.sol";
-import {SuperChainResolver} from "../src/SuperChainResolver.sol";
-import {SuperChainBadges, BadgeMetadata, BadgeTierMetadata} from "../src/SuperChainBadges.sol";
-import {IEAS} from "eas-contracts/IEAS.sol";
+import {SuperChainBadges,BadgeMetadata,BadgeTierMetadata} from "../src/SuperChainBadges.sol";
 
 contract Deploy is Script {
     function setUp() public {}
@@ -49,33 +45,13 @@ contract Deploy is Script {
             points: 50
         });
 
-        SuperChainBadges badgesContract = new SuperChainBadges(
-            badges,
-            badgeTiers
-        );
-
-        SuperChainGuard guard = new SuperChainGuard();
-        SuperChainResolver resolver = new SuperChainResolver(
-            IEAS(0xC2679fBD37d54388Ce493F1DB75320D236e1815e),
-            msg.sender,
-            badgesContract
-        );
-        SuperChainModule module = new SuperChainModule(address(resolver));
-        resolver.updateSuperChainAccountsManager(module);
+         SuperChainBadges badgesContract = new SuperChainBadges(badges, badgeTiers);
+     
 
         console.logString(
             string.concat(
-                "SuperChainModule deployed at: ",
-                vm.toString(address(module)),
-                "\n",
                 "SuperChainBadges deployed at: ",
-                vm.toString(address(badgesContract)),
-                "\n",
-                "SuperChainGuard deployed at: ",
-                vm.toString(address(guard)),
-                "\n",
-                "SuperChainResolver deployed at: ",
-                vm.toString(address(resolver))
+                vm.toString(address(badges))
             )
         );
         vm.stopBroadcast();
