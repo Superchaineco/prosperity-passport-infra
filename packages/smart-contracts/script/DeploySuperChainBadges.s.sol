@@ -18,6 +18,7 @@ contract Deploy is Script {
             badgeId: 2,
             generalURI: "ipfs/QmX2mMkn7hEuZUNyoUSwLECQvLFC7UDJhNgWcrqcT7np7L/00000000000000000000000000000000000000000000000000000000000000020000000000000000000000000000000000000000000000000000000000000000.json"
         });
+        
 
         BadgeTierMetadata[] memory badgeTiers = new BadgeTierMetadata[](4);
         badgeTiers[0] = BadgeTierMetadata({

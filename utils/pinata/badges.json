@@ -41,6 +41,84 @@
       ],
       "condition": "{{variable}} transactions on OP Mainnet",
       "chain": "Optimism"
+    },
+    {
+      "name": "Ethereum Sepolia User",
+      "description": "Number of transactions made on ETH testnet",
+      "platform": "Sepolia",
+      "levels": [
+        {
+          "2DImage": "https://ikjhtwwevrmwwjatccqi.supabase.co/storage/v1/object/public/Badges/2DImages/OPUser-1.svg",
+          "3DImage": "https://ikjhtwwevrmwwjatccqi.supabase.co/storage/v1/object/public/Badges/3DImages/OPUser-1.svg",
+          "minValue": 10,
+          "points": 20
+        },
+        {
+          "2DImage": "https://ikjhtwwevrmwwjatccqi.supabase.co/storage/v1/object/public/Badges/2DImages/OPUser-2.svg",
+          "3DImage": "https://ikjhtwwevrmwwjatccqi.supabase.co/storage/v1/object/public/Badges/3DImages/OPUser-2.svg",
+          "minValue": 20,
+          "points": 80
+        }
+      ],
+      "condition": "{{variable}} transactions on ETH Testnet",
+      "chain": "Sepolia"
+    },
+    {
+      "name": "Mode User",
+      "description": "Number of transactions made on Mode",
+      "platform": "Mode",
+      "levels": [
+        {
+          "2DImage": "https://ikjhtwwevrmwwjatccqi.supabase.co/storage/v1/object/public/Badges/2DImages/ModeUser-1.svg",
+          "3DImage": "https://ikjhtwwevrmwwjatccqi.supabase.co/storage/v1/object/public/Badges/3DImages/ModeUser-1.svg",
+          "minValue": 100,
+          "points": 20
+        },
+        {
+          "2DImage": "https://ikjhtwwevrmwwjatccqi.supabase.co/storage/v1/object/public/Badges/2DImages/ModeUser-2.svg",
+          "3DImage": "https://ikjhtwwevrmwwjatccqi.supabase.co/storage/v1/object/public/Badges/3DImages/ModeUser-2.svg",
+          "minValue": 250,
+          "points": 50
+        }
+      ],
+      "condition": "{{variable}} transactions on Mode",
+      "chain": "Mode"
+    },
+    {
+      "name": "Hold Nouns",
+      "description": "Hold Nouns on Ethereum Mainnet",
+      "platform": "Nouns",
+      "levels": [
+        {
+          "2DImage": "https://ikjhtwwevrmwwjatccqi.supabase.co/storage/v1/object/public/Badges/2DImages/HoldNouns-1.svg",
+          "3DImage": "https://ikjhtwwevrmwwjatccqi.supabase.co/storage/v1/object/public/Badges/3DImages/HoldNouns-1.svg",
+          "minValue": 1,
+          "points": 20
+        },
+        {
+          "2DImage": "https://ikjhtwwevrmwwjatccqi.supabase.co/storage/v1/object/public/Badges/2DImages/HoldNouns-2.svg",
+          "3DImage": "https://ikjhtwwevrmwwjatccqi.supabase.co/storage/v1/object/public/Badges/3DImages/HoldNouns-2.svg",
+          "minValue": 3,
+          "points": 50
+        }
+      ],
+      "condition": "Hold {{variable}} Nouns on Ethereum Mainnet.",
+      "chain": "Ethereum"
+    },
+    {
+      "name": "Citizen",
+      "description": "Become a Optimism Citizen",
+      "platform": "Optimism",
+      "levels": [
+        {
+          "2DImage": "https://ikjhtwwevrmwwjatccqi.supabase.co/storage/v1/object/public/Badges/2DImages/Citizen-1.svg",
+          "3DImage": "https://ikjhtwwevrmwwjatccqi.supabase.co/storage/v1/object/public/Badges/3DImages/Citizen-1.svg",
+          "minValue": 1,
+          "points": 20
+        }
+      ],
+      "condition": "Be the owner of a {{variable}} wallet who is a Citizen.",
+      "chain": "Optimism"
     }
   ]
 }
