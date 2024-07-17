@@ -113,7 +113,8 @@ contract SuperChainModule is EIP712, Ownable {
         );
 
         require(success, "Failed to add owner");
-        superChainAccount[_newOwner].smartAccount = _safe;
+        Account memory _account = getSuperChainAccount(_safe);
+        superChainAccount[_newOwner] = _account;
         emit OwnerAdded(
             _safe,
             _newOwner,
