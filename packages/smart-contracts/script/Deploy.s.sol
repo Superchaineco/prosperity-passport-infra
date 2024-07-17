@@ -13,7 +13,7 @@ contract Deploy is Script {
 
     function run() public {
         vm.startBroadcast();
-        BadgeMetadata[] memory badges = new BadgeMetadata[](2);
+        BadgeMetadata[] memory badges = new BadgeMetadata[](6);
         badges[0] = BadgeMetadata({
             badgeId: 1,
             generalURI: "ipfs/Qmej7BDXB8hFe28P7uQKY5ECH1UhzLR2uawNpoXMDTQr1x/00000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000000.json"
@@ -41,7 +41,7 @@ contract Deploy is Script {
             generalURI: "ipfs/Qmej7BDXB8hFe28P7uQKY5ECH1UhzLR2uawNpoXMDTQr1x/00000000000000000000000000000000000000000000000000000000000000060000000000000000000000000000000000000000000000000000000000000000.json"
         });
 
-        BadgeTierMetadata[] memory badgeTiers = new BadgeTierMetadata[](4);
+        BadgeTierMetadata[] memory badgeTiers = new BadgeTierMetadata[](11);
         badgeTiers[0] = BadgeTierMetadata({
             badgeId: 1,
             tier: 1,
@@ -68,7 +68,7 @@ contract Deploy is Script {
         });
 
         badgeTiers[4] = BadgeTierMetadata({
-            badgeI4: 3,
+            badgeId: 3,
             tier: 1,
             newURI: "ipfs/Qmej7BDXB8hFe28P7uQKY5ECH1UhzLR2uawNpoXMDTQr1x/00000000000000000000000000000000000000000000000000000000000000030000000000000000000000000000000000000000000000000000000000000001.json",
             points: 20
