@@ -76,6 +76,7 @@ contract SuperChainModule is EIP712, Ownable {
         address _safe,
         address _newOwner
     ) public firstOwnerSet(_safe) {
+        Account memory _account = getSuperChainAccount(_safe);
         require(msg.sender == _newOwner, "Caller is not the new owner");
         require(
             superChainAccount[_newOwner].smartAccount == address(0),
@@ -113,7 +114,6 @@ contract SuperChainModule is EIP712, Ownable {
         );
 
         require(success, "Failed to add owner");
-        Account memory _account = getSuperChainAccount(_safe);
         superChainAccount[_newOwner] = _account;
         emit OwnerAdded(
             _safe,
