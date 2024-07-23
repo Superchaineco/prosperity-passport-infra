@@ -121,6 +121,9 @@ contract Deploy is Script {
             badgesContract
         );
         SuperChainModule module = new SuperChainModule(address(resolver));
+        module._addTierTreshold(100);
+        module._addTierTreshold(250);
+        module._addTierTreshold(500);
         resolver.updateSuperChainAccountsManager(module);
 
         console.logString(
