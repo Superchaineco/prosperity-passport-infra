@@ -47,6 +47,7 @@ contract SuperChainModule is EIP712, Ownable {
         private _isPopulatedAddOwnerWithThreshold;
     mapping(address => address[]) public populatedAddOwnersWithTreshold;
     mapping(address => Account) public superChainAccount;
+    mapping(address => address) public userSuperChainAccount;
     mapping(address => bool) public hasFirstOwnerYet;
     mapping(string => bool) public SuperChainIDRegistered;
 
@@ -76,10 +77,10 @@ contract SuperChainModule is EIP712, Ownable {
         address _safe,
         address _newOwner
     ) public firstOwnerSet(_safe) {
-        Account memory _account = getSuperChainAccount(_safe);
+        Account memory _account = superChainAccount[_safe];
         require(msg.sender == _newOwner, "Caller is not the new owner");
         require(
-            superChainAccount[_newOwner].smartAccount == address(0),
+            userSuperChainAccount[_newOwner] == address(0),
             "Owner already has a SuperChainAccount"
         );
         require(
@@ -114,39 +115,35 @@ contract SuperChainModule is EIP712, Ownable {
         );
 
         require(success, "Failed to add owner");
-        superChainAccount[_newOwner] = _account;
+        userSuperChainAccount[_newOwner] = _safe;
         emit OwnerAdded(
             _safe,
             _newOwner,
-            superChainAccount[_newOwner].superChainID
+            superChainAccount[_safe].superChainID
         );
     }
 
-    function removePopulateRequest(address _safe) public {
+    function removePopulateRequest(address _safe, address user) public {
         require(
-            _isPopulatedAddOwnerWithThreshold[msg.sender][_safe],
+            _isPopulatedAddOwnerWithThreshold[user][_safe],
             "Owner not populated"
         );
-        require(ISafe(_safe).isOwner(msg.sender), "The address is not an owner");
+        require(ISafe(_safe).isOwner(user), "The address is not an owner");
         for (
             uint i = 0;
-            i < populatedAddOwnersWithTreshold[msg.sender].length;
+            i < populatedAddOwnersWithTreshold[_safe].length;
             i++
         ) {
-            if (populatedAddOwnersWithTreshold[msg.sender][i] == msg.sender) {
-                Account memory _account = superChainAccount[msg.sender];
-                populatedAddOwnersWithTreshold[msg.sender][
+            if (populatedAddOwnersWithTreshold[_safe][i] == user) {
+                Account memory _account = superChainAccount[_safe];
+                populatedAddOwnersWithTreshold[_safe][
                     i
-                ] = populatedAddOwnersWithTreshold[msg.sender][
-                    populatedAddOwnersWithTreshold[msg.sender].length - 1
+                ] = populatedAddOwnersWithTreshold[_safe][
+                    populatedAddOwnersWithTreshold[_safe].length - 1
                 ];
-                populatedAddOwnersWithTreshold[msg.sender].pop();
-                _isPopulatedAddOwnerWithThreshold[msg.sender][_safe] = false;
-                emit OwnerPopulationRemoved(
-                    _safe,
-                    msg.sender,
-                    _account.superChainID
-                );
+                populatedAddOwnersWithTreshold[_safe].pop();
+                _isPopulatedAddOwnerWithThreshold[user][_safe] = false;
+                emit OwnerPopulationRemoved(_safe, user, _account.superChainID);
                 break;
             }
         }
@@ -159,7 +156,7 @@ contract SuperChainModule is EIP712, Ownable {
         string calldata superChainID
     ) public {
         require(
-            superChainAccount[_owner].smartAccount == address(0),
+            userSuperChainAccount[_owner] == address(0),
             "Owner already has a SuperChainSmartAccount"
         );
         require(ISafe(_safe).isOwner(_owner), "The address is not an owner");
@@ -183,19 +180,20 @@ contract SuperChainModule is EIP712, Ownable {
             !SuperChainIDRegistered[superChainID],
             "The superchain ID was registered yet."
         );
-        superChainAccount[_owner].smartAccount = _safe;
-        superChainAccount[_owner].superChainID = string.concat(
+        superChainAccount[_safe].smartAccount = _safe;
+        userSuperChainAccount[_owner] = _safe;
+        superChainAccount[_safe].superChainID = string.concat(
             superChainID,
             ".superchain"
         );
         SuperChainIDRegistered[superChainID] = true;
         hasFirstOwnerYet[_safe] = true;
-        superChainAccount[_owner].noun = _noun;
-        emit OwnerAdded(_safe, _owner, superChainAccount[_owner].superChainID);
+        superChainAccount[_safe].noun = _noun;
+        emit OwnerAdded(_safe, _owner, superChainAccount[_safe].superChainID);
         emit SuperChainSmartAccountCreated(
             _safe,
             _owner,
-            superChainAccount[_owner].superChainID,
+            superChainAccount[_safe].superChainID,
             _noun
         );
     }
@@ -214,7 +212,7 @@ contract SuperChainModule is EIP712, Ownable {
             "Owner already populated"
         );
         require(
-            superChainAccount[_newOwner].smartAccount == address(0),
+            userSuperChainAccount[_newOwner] == address(0),
             "Owner already has a SuperChainSmartAccount"
         );
         require(
@@ -223,7 +221,7 @@ contract SuperChainModule is EIP712, Ownable {
         );
         populatedAddOwnersWithTreshold[_safe].push(_newOwner);
         _isPopulatedAddOwnerWithThreshold[_newOwner][_safe] = true;
-        string memory _superChainId = getSuperChainAccount(_safe).superChainID;
+        string memory _superChainId = superChainAccount[_safe].superChainID;
         emit OwnerPopulated(_safe, _newOwner, _superChainId);
     }
 
@@ -231,8 +229,7 @@ contract SuperChainModule is EIP712, Ownable {
         uint256 _points,
         address recipent
     ) public returns (bool levelUp) {
-        address _owner = _getSuperChainAccountOwner(recipent);
-        Account storage _account = superChainAccount[_owner];
+        Account storage _account = superChainAccount[recipent];
         require(
             msg.sender == _resolver,
             "Only the resolver can increment the points"
@@ -258,8 +255,7 @@ contract SuperChainModule is EIP712, Ownable {
         uint256 _points,
         address recipent
     ) public view returns (bool levelUp) {
-        address _owner = _getSuperChainAccountOwner(recipent);
-        Account memory _account = superChainAccount[_owner];
+        Account memory _account = superChainAccount[recipent];
         require(_account.smartAccount != address(0), "Account not found");
         _account.points += _points;
         for (uint16 i = uint16(_tierTreshold.length); i > 0; i--) {
@@ -321,19 +317,14 @@ contract SuperChainModule is EIP712, Ownable {
     function getSuperChainAccount(
         address _safe
     ) public view returns (Account memory) {
-        address[] memory owners = ISafe(_safe).getOwners();
-        require(owners.length > 0, "No owners found");
-        return superChainAccount[owners[0]];
+        return superChainAccount[_safe];
     }
 
-    function _getSuperChainAccountOwner(
-        address _safe
-    ) private view returns (address) {
-        address[] memory owners = ISafe(_safe).getOwners();
-        require(owners.length > 0, "No owners found");
-        return owners[0];
+    function getUserSuperChainAccount(
+        address _owner
+    ) public view returns (Account memory) {
+        return superChainAccount[userSuperChainAccount[_owner]];
     }
-
     modifier firstOwnerSet(address _safe) {
         require(hasFirstOwnerYet[_safe], "Initial owner not set yet");
         _;

@@ -10,7 +10,7 @@ import {Ownable} from "@openzeppelin/contracts/access/Ownable.sol";
 contract SuperChainResolver is SchemaResolver, Ownable {
     SuperChainModule public superChainModule;
     SuperChainBadges public superChainBadges;
-    address private immutable _attestator;
+    address private  _attestator;
 
     constructor(
         IEAS eas,
@@ -26,6 +26,10 @@ contract SuperChainResolver is SchemaResolver, Ownable {
         SuperChainModule _SuperChainModule
     ) public onlyOwner {
         superChainModule = _SuperChainModule;
+    }
+
+    function updateAttestator(address attestator) public onlyOwner {
+        _attestator = attestator;
     }
 
     function onAttest(
