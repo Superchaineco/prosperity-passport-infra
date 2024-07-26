@@ -77,7 +77,6 @@ contract SuperChainModule is EIP712, Ownable {
         address _safe,
         address _newOwner
     ) public firstOwnerSet(_safe) {
-        Account memory _account = superChainAccount[_safe];
         require(msg.sender == _newOwner, "Caller is not the new owner");
         require(
             userSuperChainAccount[_newOwner] == address(0),
