@@ -7,6 +7,8 @@ libs = ["lib"]
 
 [etherscan]
 sepolia = { key = "I36FHHV8SEQP38FSSMQUCI92BJK4H5PJSE" }
+optimism = {key = "UGB21JYI7XRY68M6IBNNYHPJYTSX2V5ATX"}
 
 [rpc_endpoints]
 sepolia = "https://rpc.ankr.com/eth_sepolia" 
+optimism = "https://mainnet.optimism.io"

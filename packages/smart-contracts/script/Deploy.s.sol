@@ -13,6 +13,17 @@ contract Deploy is Script {
 
     function run() public {
         vm.startBroadcast();
+        
+        string memory network = vm.envString("NETWORK");
+        string memory easAddress;
+        if (keccak256(bytes(network)) == keccak256("sepolia")) {
+            easAddress = vm.envString("EAS_ADDRESS_SEPOLIA");
+        } else if (keccak256(bytes(network)) == keccak256("optimism")) {
+            easAddress = vm.envString("EAS_ADDRESS_OPTIMISM");
+        } else {
+            revert("Unsupported network");
+        }
+
         BadgeMetadata[] memory badges = new BadgeMetadata[](6);
         badges[0] = BadgeMetadata({
             badgeId: 1,

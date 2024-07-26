@@ -1,0 +1,17 @@
+sepolia:
+  network: sepolia
+  SuperChainSmartAccountModule:
+    address: '0xe847Aa5c25eC18571511C7ADE94a3Aee85668268'
+    startBlock: 5972056
+  SuperChainBadges:
+    address: '0x34bB9b58dc4B2F98D328bEbf13891F742B80BaAA'
+    startBlock: 6196309
+optimism:
+  network: optimism
+  SuperChainSmartAccountModule:
+    address: '0xC1c604C563C496973499EE356Bc36f5Bcd9124d0'
+    startBlock: 123174468
+  SuperChainBadges:
+    address: '0x0aC0864746De337857840Ce187e2696C8796f1ea'
+    startBlock: 123174468
+   
