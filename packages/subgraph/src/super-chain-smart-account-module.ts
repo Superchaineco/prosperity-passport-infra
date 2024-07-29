@@ -5,7 +5,7 @@ import {
   OwnerPopulationRemoved as OwnerPopulationRemovedEvent,
   PointsIncremented as PointsIncrementedEvent,
   SuperChainSmartAccountCreated as SuperChainSmartAccountCreatedEvent,
-} from '../generated/SuperChainSmartAccountModule/SuperChainSmartAccountModule';
+} from "../generated/SuperChainSmartAccountModule/SuperChainSmartAccountModule";
 import {
   EIP712DomainChanged,
   OwnerAdded,
@@ -13,14 +13,15 @@ import {
   PointsIncremented,
   OwnerPopulationRemoved,
   SuperChainSmartAccount,
-} from '../generated/schema';
-import { store } from '@graphprotocol/graph-ts';
+  Meta,
+} from "../generated/schema";
+import { BigInt, store } from "@graphprotocol/graph-ts";
 
 export function handleEIP712DomainChanged(
-  event: EIP712DomainChangedEvent
+  event: EIP712DomainChangedEvent,
 ): void {
   let entity = new EIP712DomainChanged(
-    event.transaction.hash.concatI32(event.logIndex.toI32())
+    event.transaction.hash.concatI32(event.logIndex.toI32()),
   );
 
   entity.blockNumber = event.block.number;
@@ -32,7 +33,7 @@ export function handleEIP712DomainChanged(
 
 export function handleOwnerAdded(event: OwnerAddedEvent): void {
   let entity = new OwnerAdded(
-    event.transaction.hash.concatI32(event.logIndex.toI32())
+    event.transaction.hash.concatI32(event.logIndex.toI32()),
   );
   entity.safe = event.params.safe;
   entity.newOwner = event.params.newOwner;
@@ -48,21 +49,22 @@ export function handleOwnerAdded(event: OwnerAddedEvent): void {
   entity.superChainSmartAccount = superChainSmartAccount.id;
   entity.save();
   let entityId = event.params.safe.concat(event.params.newOwner);
-  let populatedEntity = OwnerPopulated.load(
-    entityId
-  );
+  let populatedEntity = OwnerPopulated.load(entityId);
   if (populatedEntity != null) {
-    store.remove(
-      'OwnerPopulated',
-      entityId.toHexString()
-    );
+    store.remove("OwnerPopulated", entityId.toHexString());
   }
-  
 }
 
 export function handleOwnerPopulated(event: OwnerPopulatedEvent): void {
   let entityId = event.params.safe.concat(event.params.newOwner);
   let entity = new OwnerPopulated(entityId);
+  let meta = Meta.load("OwnerPopulated");
+  if (meta == null) {
+    meta = new Meta("meta");
+    meta.count = BigInt.fromI32(0);
+  }
+  meta.count = meta.count.plus(BigInt.fromI32(1));
+  meta.save();
   entity.safe = event.params.safe;
   entity.newOwner = event.params.newOwner;
   entity.superChainId = event.params.superChainId;
@@ -79,11 +81,19 @@ export function handleOwnerPopulated(event: OwnerPopulatedEvent): void {
 }
 
 export function handleOwnerPopulationRemoved(
-  event: OwnerPopulationRemovedEvent
+  event: OwnerPopulationRemovedEvent,
 ): void {
   let entity = new OwnerPopulationRemoved(
-    event.transaction.hash.concatI32(event.logIndex.toI32())
+    event.transaction.hash.concatI32(event.logIndex.toI32()),
   );
+  let meta = Meta.load("OwnerPopulated");
+  if (meta == null) {
+    meta = new Meta("meta");
+    meta.count = BigInt.fromI32(0);
+  }
+  meta.count = meta.count.minus(BigInt.fromI32(1));
+  meta.save();
+
   entity.safe = event.params.safe;
   entity.owner = event.params.owner;
   entity.superChainId = event.params.superChainId;
@@ -98,20 +108,15 @@ export function handleOwnerPopulationRemoved(
   entity.superChainSmartAccount = superChainSmartAccount.id;
   entity.save();
   let entityId = event.params.safe.concat(event.params.owner);
-  let populatedEntity = OwnerPopulated.load(
-    entityId
-  );
+  let populatedEntity = OwnerPopulated.load(entityId);
   if (populatedEntity != null) {
-    store.remove(
-      'OwnerPopulated',
-      entityId.toHexString()
-    );
+    store.remove("OwnerPopulated", entityId.toHexString());
   }
 }
 
 export function handlePointsIncremented(event: PointsIncrementedEvent): void {
   let entity = new PointsIncremented(
-    event.transaction.hash.concatI32(event.logIndex.toI32())
+    event.transaction.hash.concatI32(event.logIndex.toI32()),
   );
   entity.recipient = event.params.recipient;
   entity.points = event.params.points;
@@ -128,7 +133,7 @@ export function handlePointsIncremented(event: PointsIncrementedEvent): void {
 }
 
 export function handleSuperChainSmartAccountCreated(
-  event: SuperChainSmartAccountCreatedEvent
+  event: SuperChainSmartAccountCreatedEvent,
 ): void {
   let entity = new SuperChainSmartAccount(event.params.safe);
   entity.safe = event.params.safe;

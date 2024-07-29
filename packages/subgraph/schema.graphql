@@ -15,7 +15,6 @@ type OwnerAdded @entity(immutable: true) {
   blockTimestamp: BigInt!
   transactionHash: Bytes!
   superChainSmartAccount: SuperChainSmartAccount!
-
 }
 
 type OwnerPopulated @entity {
@@ -27,7 +26,6 @@ type OwnerPopulated @entity {
   blockTimestamp: BigInt!
   transactionHash: Bytes!
   superChainSmartAccount: SuperChainSmartAccount!
-
 }
 
 type OwnerPopulationRemoved @entity(immutable: true) {
@@ -39,7 +37,6 @@ type OwnerPopulationRemoved @entity(immutable: true) {
   blockTimestamp: BigInt!
   transactionHash: Bytes!
   superChainSmartAccount: SuperChainSmartAccount!
-
 }
 
 type PointsIncremented @entity(immutable: true) {
@@ -50,7 +47,6 @@ type PointsIncremented @entity(immutable: true) {
   blockTimestamp: BigInt!
   transactionHash: Bytes!
   superChainSmartAccount: SuperChainSmartAccount!
-
 }
 
 type SuperChainSmartAccount @entity(immutable: true) {
@@ -68,7 +64,6 @@ type SuperChainSmartAccount @entity(immutable: true) {
   transactionHash: Bytes!
 }
 
-
 type BadgeTier @entity {
   id: Bytes!
   points: BigInt!
@@ -81,7 +76,9 @@ type Badge @entity {
   id: String!
   badgeId: BigInt!
   uri: String!
-  badgeTiers: [BadgeTier!]! @derivedFrom(field: "badge") @orderBy(direction: asc) 
+  badgeTiers: [BadgeTier!]!
+    @derivedFrom(field: "badge")
+    @orderBy(direction: asc)
 }
 
 type AccountBadge @entity {
@@ -91,3 +88,9 @@ type AccountBadge @entity {
   tier: BigInt!
   points: BigInt! # uint256
 }
+
+type Meta @entity {
+  id: String!
+  count: BigInt!
+}
+
