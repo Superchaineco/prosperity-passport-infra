@@ -13,13 +13,13 @@ contract Deploy is Script {
 
     function run() public {
         vm.startBroadcast();
-        
+
         string memory network = vm.envString("NETWORK");
-        string memory easAddress;
+        address easAddress;
         if (keccak256(bytes(network)) == keccak256("sepolia")) {
-            easAddress = vm.envString("EAS_ADDRESS_SEPOLIA");
+            easAddress = vm.envAddress("EAS_ADDRESS_SEPOLIA");
         } else if (keccak256(bytes(network)) == keccak256("optimism")) {
-            easAddress = vm.envString("EAS_ADDRESS_OPTIMISM");
+            easAddress = vm.envAddress("EAS_ADDRESS_OPTIMISM");
         } else {
             revert("Unsupported network");
         }
@@ -127,7 +127,7 @@ contract Deploy is Script {
 
         SuperChainGuard guard = new SuperChainGuard();
         SuperChainResolver resolver = new SuperChainResolver(
-            IEAS(0xC2679fBD37d54388Ce493F1DB75320D236e1815e),
+            IEAS(easAddress),
             msg.sender,
             badgesContract
         );
@@ -149,7 +149,10 @@ contract Deploy is Script {
                 vm.toString(address(guard)),
                 "\n",
                 "SuperChainResolver deployed at: ",
-                vm.toString(address(resolver))
+                vm.toString(address(resolver)),
+                "\n",
+                "EAS Address: ",
+                vm.toString(easAddress)
             )
         );
         vm.stopBroadcast();

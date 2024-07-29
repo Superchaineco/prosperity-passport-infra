@@ -8,7 +8,7 @@ dataSources:
     name: SuperChainSmartAccountModule
     network: optimism
     source:
-      address: '0xC1c604C563C496973499EE356Bc36f5Bcd9124d0'
+      address: '0x02134F84ae23571E4D5b57d121bbe512A1f9fAFB'
       abi: SuperChainSmartAccountModule
       startBlock: 123174468
     mapping:
@@ -44,7 +44,7 @@ dataSources:
     name: SuperChainBadges
     network: optimism
     source:
-      address: '0x0aC0864746De337857840Ce187e2696C8796f1ea'
+      address: '0xED12D87487B372cf4447C8147a89aA01C133Dc52'
       abi: SuperChainBadges
       startBlock: 123174468
     mapping:
