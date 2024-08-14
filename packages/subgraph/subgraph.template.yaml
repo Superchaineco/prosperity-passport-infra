@@ -1,14 +1,14 @@
 specVersion: 1.0.0
-indexerHints:
-  prune: auto
 schema:
   file: ./schema.graphql
+indexerHints:
+  prune: never
 dataSources:
   - kind: ethereum
     name: SuperChainSmartAccountModule
     network: {{network}}
     source:
-      address: '{{SuperChainSmartAccountModule.address}}'
+      address: "{{SuperChainSmartAccountModule.address}}"
       abi: SuperChainSmartAccountModule
       startBlock: {{SuperChainSmartAccountModule.startBlock}}
     mapping:
@@ -44,7 +44,7 @@ dataSources:
     name: SuperChainBadges
     network: {{network}}
     source:
-      address: '{{SuperChainBadges.address}}'
+      address: "{{SuperChainBadges.address}}"
       abi: SuperChainBadges
       startBlock: {{SuperChainBadges.startBlock}}
     mapping:

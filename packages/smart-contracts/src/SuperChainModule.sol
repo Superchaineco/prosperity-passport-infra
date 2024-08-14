@@ -41,7 +41,8 @@ contract SuperChainModule is EIP712, Ownable {
         address indexed newOwner,
         string superChainId
     );
-    event PointsIncremented(address indexed recipient, uint256 points);
+    event PointsIncremented(address indexed recipient, uint256 points, bool levelUp);
+    event TierTresholdAdded(uint256 treshold);
 
     mapping(address => mapping(address => bool))
         private _isPopulatedAddOwnerWithThreshold;
@@ -127,7 +128,7 @@ contract SuperChainModule is EIP712, Ownable {
             _isPopulatedAddOwnerWithThreshold[user][_safe],
             "Owner not populated"
         );
-        require(ISafe(_safe).isOwner(user), "The address is not an owner");
+        require(ISafe(_safe).isOwner(msg.sender) || _isPopulatedAddOwnerWithThreshold[msg.sender][_safe] || msg.sender == _safe  , "The address is not an owner or the populated user");
         for (
             uint i = 0;
             i < populatedAddOwnersWithTreshold[_safe].length;
@@ -246,7 +247,7 @@ contract SuperChainModule is EIP712, Ownable {
                 break;
             }
         }
-        emit PointsIncremented(recipent, _points);
+        emit PointsIncremented(recipent, _points, levelUp);
         return levelUp;
     }
 
@@ -282,6 +283,7 @@ contract SuperChainModule is EIP712, Ownable {
             );
         }
         _tierTreshold.push(_treshold);
+        emit TierTresholdAdded(_treshold);
     }
 
     function getNextLevelPoints(address _safe) public view returns (uint256) {

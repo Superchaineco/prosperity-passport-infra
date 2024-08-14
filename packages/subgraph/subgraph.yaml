@@ -1,16 +1,16 @@
 specVersion: 1.0.0
-indexerHints:
-  prune: auto
 schema:
   file: ./schema.graphql
+indexerHints:
+  prune: never
 dataSources:
   - kind: ethereum
     name: SuperChainSmartAccountModule
     network: sepolia
     source:
-      address: '0xe847Aa5c25eC18571511C7ADE94a3Aee85668268'
+      address: "0x5b46F961E4d9282486Da3B77f3EF63553A5e0380"
       abi: SuperChainSmartAccountModule
-      startBlock: 5972056
+      startBlock: 6405012
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.7
@@ -44,9 +44,9 @@ dataSources:
     name: SuperChainBadges
     network: sepolia
     source:
-      address: '0x34bB9b58dc4B2F98D328bEbf13891F742B80BaAA'
+      address: "0xC1c604C563C496973499EE356Bc36f5Bcd9124d0"
       abi: SuperChainBadges
-      startBlock: 6196309
+      startBlock: 6405012
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.7

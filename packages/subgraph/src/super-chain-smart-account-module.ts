@@ -60,7 +60,7 @@ export function handleOwnerPopulated(event: OwnerPopulatedEvent): void {
   let entity = new OwnerPopulated(entityId);
   let meta = Meta.load("OwnerPopulated");
   if (meta == null) {
-    meta = new Meta("meta");
+    meta = new Meta("OwnerPopulated");
     meta.count = BigInt.fromI32(0);
   }
   meta.count = meta.count.plus(BigInt.fromI32(1));
@@ -88,7 +88,7 @@ export function handleOwnerPopulationRemoved(
   );
   let meta = Meta.load("OwnerPopulated");
   if (meta == null) {
-    meta = new Meta("meta");
+    meta = new Meta("OwnerPopulated");
     meta.count = BigInt.fromI32(0);
   }
   meta.count = meta.count.minus(BigInt.fromI32(1));
@@ -120,7 +120,6 @@ export function handlePointsIncremented(event: PointsIncrementedEvent): void {
   );
   entity.recipient = event.params.recipient;
   entity.points = event.params.points;
-
   entity.blockNumber = event.block.number;
   entity.blockTimestamp = event.block.timestamp;
   entity.transactionHash = event.transaction.hash;
@@ -128,6 +127,10 @@ export function handlePointsIncremented(event: PointsIncrementedEvent): void {
   if (superChainSmartAccount == null) {
     superChainSmartAccount = new SuperChainSmartAccount(entity.recipient);
   }
+  superChainSmartAccount.points = superChainSmartAccount.points.plus(
+    entity.points,
+  );
+  superChainSmartAccount.save();
   entity.superChainSmartAccount = superChainSmartAccount.id;
   entity.save();
 }
@@ -144,6 +147,8 @@ export function handleSuperChainSmartAccountCreated(
   entity.noun_accessory = event.params.noun.accessory;
   entity.noun_head = event.params.noun.head;
   entity.noun_glasses = event.params.noun.glasses;
+  entity.points = BigInt.fromI32(0);
+  entity.level = BigInt.fromI32(0);
 
   entity.blockNumber = event.block.number;
   entity.blockTimestamp = event.block.timestamp;
