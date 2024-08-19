@@ -130,6 +130,9 @@ export function handlePointsIncremented(event: PointsIncrementedEvent): void {
   superChainSmartAccount.points = superChainSmartAccount.points.plus(
     entity.points,
   );
+  if(event.params.levelUp){
+    superChainSmartAccount.level = superChainSmartAccount.level.plus(BigInt.fromI32(1));
+  }
   superChainSmartAccount.save();
   entity.superChainSmartAccount = superChainSmartAccount.id;
   entity.save();

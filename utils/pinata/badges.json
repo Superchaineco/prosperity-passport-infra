@@ -8,12 +8,33 @@
         {
           "2DImage": "https://ikjhtwwevrmwwjatccqi.supabase.co/storage/v1/object/public/Badges/2DImages/BaseUser-1.svg",
           "3DImage": "https://ikjhtwwevrmwwjatccqi.supabase.co/storage/v1/object/public/Badges/3DImages/BaseUser-1.svg",
-          "minValue": 100,
-          "points": 20
+          "minValue": 5,
+          "points": 10
         },
         {
-          "2DImage": "https://ikjhtwwevrmwwjatccqi.supabase.co/storage/v1/object/public/Badges/2DImages/BaseUser-1.svg",
+          "2DImage": "https://ikjhtwwevrmwwjatccqi.supabase.co/storage/v1/object/public/Badges/2DImages/BaseUser-2.svg",
           "3DImage": "https://ikjhtwwevrmwwjatccqi.supabase.co/storage/v1/object/public/Badges/3DImages/BaseUser-2.svg",
+          "minValue": 20,
+          "points": 20
+        },
+
+        {
+          "2DImage": "https://ikjhtwwevrmwwjatccqi.supabase.co/storage/v1/object/public/Badges/2DImages/BaseUser-3.svg",
+          "3DImage": "https://ikjhtwwevrmwwjatccqi.supabase.co/storage/v1/object/public/Badges/3DImages/BaseUser-3.svg",
+          "minValue": 50,
+          "points": 30
+        },
+
+        {
+          "2DImage": "https://ikjhtwwevrmwwjatccqi.supabase.co/storage/v1/object/public/Badges/2DImages/BaseUser-4.svg",
+          "3DImage": "https://ikjhtwwevrmwwjatccqi.supabase.co/storage/v1/object/public/Badges/3DImages/BaseUser-4.svg",
+          "minValue": 100,
+          "points": 40
+        },
+
+        {
+          "2DImage": "https://ikjhtwwevrmwwjatccqi.supabase.co/storage/v1/object/public/Badges/2DImages/BaseUser-5.svg",
+          "3DImage": "https://ikjhtwwevrmwwjatccqi.supabase.co/storage/v1/object/public/Badges/3DImages/BaseUser-5.svg",
           "minValue": 250,
           "points": 50
         }
@@ -29,12 +50,33 @@
         {
           "2DImage": "https://ikjhtwwevrmwwjatccqi.supabase.co/storage/v1/object/public/Badges/2DImages/OPUser-1.svg",
           "3DImage": "https://ikjhtwwevrmwwjatccqi.supabase.co/storage/v1/object/public/Badges/3DImages/OPUser-1.svg",
-          "minValue": 100,
-          "points": 20
+          "minValue": 5,
+          "points": 10
         },
         {
           "2DImage": "https://ikjhtwwevrmwwjatccqi.supabase.co/storage/v1/object/public/Badges/2DImages/OPUser-2.svg",
           "3DImage": "https://ikjhtwwevrmwwjatccqi.supabase.co/storage/v1/object/public/Badges/3DImages/OPUser-2.svg",
+          "minValue": 20,
+          "points": 20
+        },
+
+        {
+          "2DImage": "https://ikjhtwwevrmwwjatccqi.supabase.co/storage/v1/object/public/Badges/2DImages/OPUser-3.svg",
+          "3DImage": "https://ikjhtwwevrmwwjatccqi.supabase.co/storage/v1/object/public/Badges/3DImages/OPUser-3.svg",
+          "minValue": 50,
+          "points": 30
+        },
+
+        {
+          "2DImage": "https://ikjhtwwevrmwwjatccqi.supabase.co/storage/v1/object/public/Badges/2DImages/OPUser-4.svg",
+          "3DImage": "https://ikjhtwwevrmwwjatccqi.supabase.co/storage/v1/object/public/Badges/3DImages/OPUser-4.svg",
+          "minValue": 100,
+          "points": 40
+        },
+
+        {
+          "2DImage": "https://ikjhtwwevrmwwjatccqi.supabase.co/storage/v1/object/public/Badges/2DImages/OPUser-5.svg",
+          "3DImage": "https://ikjhtwwevrmwwjatccqi.supabase.co/storage/v1/object/public/Badges/3DImages/OPUser-5.svg",
           "minValue": 250,
           "points": 50
         }
@@ -71,14 +113,20 @@
         {
           "2DImage": "https://ikjhtwwevrmwwjatccqi.supabase.co/storage/v1/object/public/Badges/2DImages/ModeUser-1.svg",
           "3DImage": "https://ikjhtwwevrmwwjatccqi.supabase.co/storage/v1/object/public/Badges/3DImages/ModeUser-1.svg",
-          "minValue": 100,
-          "points": 20
+          "minValue": 5,
+          "points": 10
         },
         {
           "2DImage": "https://ikjhtwwevrmwwjatccqi.supabase.co/storage/v1/object/public/Badges/2DImages/ModeUser-2.svg",
           "3DImage": "https://ikjhtwwevrmwwjatccqi.supabase.co/storage/v1/object/public/Badges/3DImages/ModeUser-2.svg",
-          "minValue": 250,
-          "points": 50
+          "minValue": 20,
+          "points": 20
+        },
+        {
+          "2DImage": "https://ikjhtwwevrmwwjatccqi.supabase.co/storage/v1/object/public/Badges/2DImages/ModeUser-3.svg",
+          "3DImage": "https://ikjhtwwevrmwwjatccqi.supabase.co/storage/v1/object/public/Badges/3DImages/ModeUser-3.svg",
+          "minValue": 50,
+          "points": 30
         }
       ],
       "condition": "{{variable}} transactions on Mode",
@@ -93,13 +141,19 @@
           "2DImage": "https://ikjhtwwevrmwwjatccqi.supabase.co/storage/v1/object/public/Badges/2DImages/HoldNouns-1.svg",
           "3DImage": "https://ikjhtwwevrmwwjatccqi.supabase.co/storage/v1/object/public/Badges/3DImages/HoldNouns-1.svg",
           "minValue": 1,
-          "points": 20
+          "points": 10
         },
         {
           "2DImage": "https://ikjhtwwevrmwwjatccqi.supabase.co/storage/v1/object/public/Badges/2DImages/HoldNouns-2.svg",
           "3DImage": "https://ikjhtwwevrmwwjatccqi.supabase.co/storage/v1/object/public/Badges/3DImages/HoldNouns-2.svg",
           "minValue": 3,
-          "points": 50
+          "points": 20
+        },
+        {
+          "2DImage": "https://ikjhtwwevrmwwjatccqi.supabase.co/storage/v1/object/public/Badges/2DImages/HoldNouns-3.svg",
+          "3DImage": "https://ikjhtwwevrmwwjatccqi.supabase.co/storage/v1/object/public/Badges/3DImages/HoldNouns-3.svg",
+          "minValue": 5,
+          "points": 30
         }
       ],
       "condition": "Hold {{variable}} Nouns on Ethereum Mainnet.",
@@ -114,7 +168,7 @@
           "2DImage": "https://ikjhtwwevrmwwjatccqi.supabase.co/storage/v1/object/public/Badges/2DImages/Citizen-1.svg",
           "3DImage": "https://ikjhtwwevrmwwjatccqi.supabase.co/storage/v1/object/public/Badges/3DImages/Citizen-1.svg",
           "minValue": 1,
-          "points": 20
+          "points": 100
         }
       ],
       "condition": "Be the owner of a {{variable}} wallet who is a Citizen.",

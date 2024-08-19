@@ -35,7 +35,7 @@ dataSources:
           handler: handleOwnerPopulated
         - event: OwnerPopulationRemoved(indexed address,indexed address,string)
           handler: handleOwnerPopulationRemoved
-        - event: PointsIncremented(indexed address,uint256)
+        - event: PointsIncremented(indexed address,uint256,bool)
           handler: handlePointsIncremented
         - event: SuperChainSmartAccountCreated(indexed address,indexed address,string,(uint48,uint48,uint48,uint48,uint48))
           handler: handleSuperChainSmartAccountCreated
