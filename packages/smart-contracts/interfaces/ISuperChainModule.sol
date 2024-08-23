@@ -13,10 +13,8 @@ struct NounMetadata {
 
 
 interface ISuperChainModule {
-    // Errors
     error MaxLvlReached();
 
-    // Events
     event SuperChainSmartAccountCreated(
         address indexed safe,
         address indexed initialOwner,
@@ -35,17 +33,13 @@ interface ISuperChainModule {
         address indexed newOwner,
         string superChainId
     );
-
     event OwnerAdded(
         address indexed safe,
         address indexed newOwner,
         string superChainId
     );
-
     event PointsIncremented(address indexed recipient, uint256 points, bool levelUp);
-
     event TierTresholdAdded(uint256 treshold);
-
     // Functions
     function addOwnerWithThreshold(address _safe, address _newOwner) external;
 
@@ -74,7 +68,7 @@ interface ISuperChainModule {
 
     function getUserSuperChainAccount(address _owner) external view returns (Account memory);
 
-    // Structs
+
     struct AddOwnerRequest {
         address superChainAccount;
         address newOwner;

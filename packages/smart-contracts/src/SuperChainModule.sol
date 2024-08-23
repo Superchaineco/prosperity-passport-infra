@@ -4,38 +4,10 @@ import {ISafe} from "../interfaces/ISafe.sol";
 import {Enum} from "../libraries/Enum.sol";
 import {EIP712} from "@openzeppelin/contracts/utils/cryptography/EIP712.sol";
 import {Ownable} from "@openzeppelin/contracts/access/Ownable.sol";
-import "../interfaces/ISuperChainModule.sol"
+import "../interfaces/ISuperChainModule.sol";
 
 contract SuperChainModule is ISuperChainModule, EIP712, Ownable {
-    //TODO: add a event to remove populate requests
-
-    error MaxLvlReached();
-
-    event SuperChainSmartAccountCreated(
-        address indexed safe,
-        address indexed initialOwner,
-        string superChainId,
-        NounMetadata noun
-    );
-
-    event OwnerPopulationRemoved(
-        address indexed safe,
-        address indexed owner,
-        string superChainId
-    );
-
-    event OwnerPopulated(
-        address indexed safe,
-        address indexed newOwner,
-        string superChainId
-    );
-    event OwnerAdded(
-        address indexed safe,
-        address indexed newOwner,
-        string superChainId
-    );
-    event PointsIncremented(address indexed recipient, uint256 points, bool levelUp);
-    event TierTresholdAdded(uint256 treshold);
+  
 
     mapping(address => mapping(address => bool))
         private _isPopulatedAddOwnerWithThreshold;
@@ -48,18 +20,6 @@ contract SuperChainModule is ISuperChainModule, EIP712, Ownable {
     address private _resolver;
     uint256[] private _tierTreshold;
 
-    struct AddOwnerRequest {
-        address superChainAccount;
-        address newOwner;
-    }
-
-    struct Account {
-        address smartAccount;
-        string superChainID;
-        uint256 points;
-        uint16 level;
-        NounMetadata noun;
-    }
 
     constructor(
         address resolver
