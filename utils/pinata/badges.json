@@ -173,6 +173,74 @@
       ],
       "condition": "Be the owner of a {{variable}} wallet who is a Citizen.",
       "chain": "Optimism"
+    },
+    {
+      "name": "Giveth Donations Made",
+      "description": "Donate on Giveth",
+      "platform": "Giveth",
+      "levels": [
+        {
+          "2DImage": "https://ikjhtwwevrmwwjatccqi.supabase.co/storage/v1/object/public/Badges/2DImages/GivethDonationsMade-1.svg",
+          "3DImage": "https://ikjhtwwevrmwwjatccqi.supabase.co/storage/v1/object/public/Badges/3DImages/GivethDonationsMade-1.svg",
+          "minValue": 25,
+          "points": 10
+        },
+        {
+          "2DImage": "https://ikjhtwwevrmwwjatccqi.supabase.co/storage/v1/object/public/Badges/2DImages/GivethDonationsMade-2.svg",
+          "3DImage": "https://ikjhtwwevrmwwjatccqi.supabase.co/storage/v1/object/public/Badges/3DImages/GivethDonationsMade-2.svg",
+          "minValue": 100,
+          "points": 20
+        },
+
+        {
+          "2DImage": "https://ikjhtwwevrmwwjatccqi.supabase.co/storage/v1/object/public/Badges/2DImages/GivethDonationsMade-3.svg",
+          "3DImage": "https://ikjhtwwevrmwwjatccqi.supabase.co/storage/v1/object/public/Badges/3DImages/GivethDonationsMade-3.svg",
+          "minValue": 250,
+          "points": 30
+        },
+
+        {
+          "2DImage": "https://ikjhtwwevrmwwjatccqi.supabase.co/storage/v1/object/public/Badges/2DImages/GivethDonationsMade-4.svg",
+          "3DImage": "https://ikjhtwwevrmwwjatccqi.supabase.co/storage/v1/object/public/Badges/3DImages/GivethDonationsMade-4.svg",
+          "minValue": 1000,
+          "points": 40
+        }
+      ],
+      "condition": "Donate ${{variable}} more on Giveth",
+      "chain": "Optimism"
+    },
+    {
+      "name": "Gitcoin Donations Made",
+      "description": "Donate on Gitcoin",
+      "platform": "Gitcoin",
+      "levels": [
+        {
+          "2DImage": "https://ikjhtwwevrmwwjatccqi.supabase.co/storage/v1/object/public/Badges/2DImages/GitcoinDonationsMade-1.svg",
+          "3DImage": "https://ikjhtwwevrmwwjatccqi.supabase.co/storage/v1/object/public/Badges/3DImages/GitcoinDonationsMade-1.svg",
+          "minValue": 25,
+          "points": 10
+        },
+        {
+          "2DImage": "https://ikjhtwwevrmwwjatccqi.supabase.co/storage/v1/object/public/Badges/2DImages/GitcoinDonationsMade-2.svg",
+          "3DImage": "https://ikjhtwwevrmwwjatccqi.supabase.co/storage/v1/object/public/Badges/3DImages/GitcoinDonationsMade-2.svg",
+          "minValue": 100,
+          "points": 20
+        },
+        {
+          "2DImage": "https://ikjhtwwevrmwwjatccqi.supabase.co/storage/v1/object/public/Badges/2DImages/GitcoinDonationsMade-3.svg",
+          "3DImage": "https://ikjhtwwevrmwwjatccqi.supabase.co/storage/v1/object/public/Badges/3DImages/GitcoinDonationsMade-3.svg",
+          "minValue": 250,
+          "points": 30
+        },
+        {
+          "2DImage": "https://ikjhtwwevrmwwjatccqi.supabase.co/storage/v1/object/public/Badges/2DImages/GitcoinDonationsMade-4.svg",
+          "3DImage": "https://ikjhtwwevrmwwjatccqi.supabase.co/storage/v1/object/public/Badges/3DImages/GitcoinDonationsMade-4.svg",
+          "minValue": 1000,
+          "points": 40
+        }
+      ],
+      "condition": "Donate ${{variable}} more on Gitcoin",
+      "chain": "Optimism"
     }
   ]
 }

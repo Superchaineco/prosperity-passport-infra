@@ -4,16 +4,9 @@ import {ISafe} from "../interfaces/ISafe.sol";
 import {Enum} from "../libraries/Enum.sol";
 import {EIP712} from "@openzeppelin/contracts/utils/cryptography/EIP712.sol";
 import {Ownable} from "@openzeppelin/contracts/access/Ownable.sol";
+import "../interfaces/ISuperChainModule.sol"
 
-struct NounMetadata {
-    uint48 background;
-    uint48 body;
-    uint48 accessory;
-    uint48 head;
-    uint48 glasses;
-}
-
-contract SuperChainModule is EIP712, Ownable {
+contract SuperChainModule is ISuperChainModule, EIP712, Ownable {
     //TODO: add a event to remove populate requests
 
     error MaxLvlReached();
