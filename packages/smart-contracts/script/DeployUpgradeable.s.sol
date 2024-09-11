@@ -210,7 +210,6 @@ contract DeployUpgradeable is Script {
                 vm.toString(easAddress)
             )
         );
-        vm.stopBroadcast();
         ApprovalProcessResponse memory upgradeApprovalProcess = Defender
             .getUpgradeApprovalProcess();
         if (upgradeApprovalProcess.via == address(0)) {
@@ -229,18 +228,15 @@ contract DeployUpgradeable is Script {
             "SuperChainModuleUpgradeable.sol",
             abi.encodeCall(
                 SuperChainModuleUpgradeable.initialize,
-                address(resolver)
+                (address(resolver), address(msg.sender))
             ),
             opts
         );
 
-        vm.startBroadcast();
-        SuperChainModule(proxy)._addTierTreshold(100);
-        SuperChainModule(proxy)._addTierTreshold(250);
-        SuperChainModule(proxy)._addTierTreshold(500);
         resolver.updateSuperChainAccountsManager(SuperChainModule(proxy));
-        vm.stopBroadcast();
 
+        vm.stopBroadcast();
         console.log("Deployed proxy to address", proxy);
+        vm.writeFile("output/proxy_address.txt", proxyAddressString);
     }
 }

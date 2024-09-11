@@ -38,9 +38,9 @@ contract SuperChainModuleUpgradeable is
         }
     }
 
-    function initialize(address resolver) public initializer {
+    function initialize(address resolver, address owner) public initializer {
         SuperChainStorage storage s = superChainStorage();
-        __Ownable_init(msg.sender);
+        __Ownable_init(owner);
         __EIP712_init("SuperChainAccountModule", "1");
         s._resolver = resolver;
     }
