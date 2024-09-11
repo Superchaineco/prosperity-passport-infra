@@ -1,14 +1,16 @@
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.20;
-
 import {Script, console} from "forge-std/Script.sol";
+import {Defender, ApprovalProcessResponse} from "openzeppelin-foundry-upgrades/Defender.sol";
+import {Upgrades, Options} from "openzeppelin-foundry-upgrades/Upgrades.sol";
+import {SuperChainModuleUpgradeable} from "../src/SuperChainModuleUpgradeable.sol";
 import {SuperChainGuard} from "../src/SuperChainGuard.sol";
 import {SuperChainModule} from "../src/SuperChainModule.sol";
 import {SuperChainResolver} from "../src/SuperChainResolver.sol";
 import {SuperChainBadges, BadgeMetadata, BadgeTierMetadata} from "../src/SuperChainBadges.sol";
 import {IEAS} from "eas-contracts/IEAS.sol";
 
-contract Deploy is Script {
+contract DeployUpgradeable is Script {
     function setUp() public {}
 
     function run() public {
@@ -23,6 +25,10 @@ contract Deploy is Script {
         } else {
             revert("Unsupported network");
         }
+        require(
+            easAddress != address(0),
+            "EAS address is not set for this network"
+        );
 
         BadgeMetadata[] memory badges = new BadgeMetadata[](6);
         badges[0] = BadgeMetadata({
@@ -188,17 +194,9 @@ contract Deploy is Script {
             msg.sender,
             badgesContract
         );
-        SuperChainModule module = new SuperChainModule(address(resolver));
-        module._addTierTreshold(100);
-        module._addTierTreshold(250);
-        module._addTierTreshold(500);
-        resolver.updateSuperChainAccountsManager(module);
 
         console.logString(
             string.concat(
-                "SuperChainModule deployed at: ",
-                vm.toString(address(module)),
-                "\n",
                 "SuperChainBadges deployed at: ",
                 vm.toString(address(badgesContract)),
                 "\n",
@@ -213,5 +211,36 @@ contract Deploy is Script {
             )
         );
         vm.stopBroadcast();
+        ApprovalProcessResponse memory upgradeApprovalProcess = Defender
+            .getUpgradeApprovalProcess();
+        if (upgradeApprovalProcess.via == address(0)) {
+            revert(
+                string.concat(
+                    "Upgrade approval process with id ",
+                    upgradeApprovalProcess.approvalProcessId,
+                    " has no assigned address"
+                )
+            );
+        }
+        Options memory opts;
+        opts.defender.useDefenderDeploy = true;
+
+        address proxy = Upgrades.deployUUPSProxy(
+            "SuperChainModuleUpgradeable.sol",
+            abi.encodeCall(
+                SuperChainModuleUpgradeable.initialize,
+                address(resolver)
+            ),
+            opts
+        );
+
+        vm.startBroadcast();
+        SuperChainModule(proxy)._addTierTreshold(100);
+        SuperChainModule(proxy)._addTierTreshold(250);
+        SuperChainModule(proxy)._addTierTreshold(500);
+        resolver.updateSuperChainAccountsManager(SuperChainModule(proxy));
+        vm.stopBroadcast();
+
+        console.log("Deployed proxy to address", proxy);
     }
 }
