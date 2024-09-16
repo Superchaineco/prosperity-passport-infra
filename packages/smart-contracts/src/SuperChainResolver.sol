@@ -3,12 +3,12 @@ pragma solidity ^0.8.19;
 
 import {SchemaResolver} from "eas-contracts/resolver/SchemaResolver.sol";
 import {IEAS, Attestation} from "eas-contracts/IEAS.sol";
-import {SuperChainModule} from "./SuperChainModule.sol";
+import {SuperChainModuleUpgradeable} from "./SuperChainModuleUpgradeable.sol";
 import "./SuperChainBadges.sol";
 import {Ownable} from "@openzeppelin/contracts/access/Ownable.sol";
 
 contract SuperChainResolver is SchemaResolver, Ownable {
-    SuperChainModule public superChainModule;
+    SuperChainModuleUpgradeable public superChainModule;
     SuperChainBadges public superChainBadges;
     address private  _attestator;
 
@@ -23,9 +23,9 @@ contract SuperChainResolver is SchemaResolver, Ownable {
 
     // This might be onlyOwner
     function updateSuperChainAccountsManager(
-        SuperChainModule _SuperChainModule
+        SuperChainModuleUpgradeable _superChainModule
     ) public onlyOwner {
-        superChainModule = _SuperChainModule;
+        superChainModule = _superChainModule;
     }
 
     function updateAttestator(address attestator) public onlyOwner {
@@ -43,8 +43,6 @@ contract SuperChainResolver is SchemaResolver, Ownable {
             attestation.data,
             (BadgeUpdate[])
         );
-        uint256[] memory badgeIds = new uint256[](0);
-        uint256[] memory levels = new uint256[](0);
         uint256 points = superChainBadges.updateOrMintBadges(
             attestation.recipient,
             badgeUpdates

@@ -5,7 +5,6 @@ import {Defender, ApprovalProcessResponse} from "openzeppelin-foundry-upgrades/D
 import {Upgrades, Options} from "openzeppelin-foundry-upgrades/Upgrades.sol";
 import {SuperChainModuleUpgradeable} from "../src/SuperChainModuleUpgradeable.sol";
 import {SuperChainGuard} from "../src/SuperChainGuard.sol";
-import {SuperChainModule} from "../src/SuperChainModule.sol";
 import {SuperChainResolver} from "../src/SuperChainResolver.sol";
 import {SuperChainBadges, BadgeMetadata, BadgeTierMetadata} from "../src/SuperChainBadges.sol";
 import {IEAS} from "eas-contracts/IEAS.sol";
@@ -233,10 +232,9 @@ contract DeployUpgradeable is Script {
             opts
         );
 
-        resolver.updateSuperChainAccountsManager(SuperChainModule(proxy));
+        resolver.updateSuperChainAccountsManager(SuperChainModuleUpgradeable(proxy));
 
         vm.stopBroadcast();
         console.log("Deployed proxy to address", proxy);
-        vm.writeFile("output/proxy_address.txt", proxyAddressString);
     }
 }

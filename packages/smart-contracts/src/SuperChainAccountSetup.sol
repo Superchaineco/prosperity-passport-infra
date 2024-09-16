@@ -2,7 +2,7 @@
 pragma solidity 0.8.23;
 
 import "../interfaces/ISafe.sol";
-import "./SuperChainModule.sol";
+import "./SuperChainModule__DEPRECATED.sol";
 
 /**
  * @title SuperChainAccountSetup - A utility contract for setting up a Safe with modules and guards.

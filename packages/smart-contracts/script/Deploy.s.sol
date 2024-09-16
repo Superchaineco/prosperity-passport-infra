@@ -3,7 +3,7 @@ pragma solidity ^0.8.20;
 
 import {Script, console} from "forge-std/Script.sol";
 import {SuperChainGuard} from "../src/SuperChainGuard.sol";
-import {SuperChainModule} from "../src/SuperChainModule.sol";
+import {SuperChainModule} from "../src/SuperChainModule__DEPRECATED.sol";
 import {SuperChainResolver} from "../src/SuperChainResolver.sol";
 import {SuperChainBadges, BadgeMetadata, BadgeTierMetadata} from "../src/SuperChainBadges.sol";
 import {IEAS} from "eas-contracts/IEAS.sol";
@@ -192,7 +192,7 @@ contract Deploy is Script {
         module._addTierTreshold(100);
         module._addTierTreshold(250);
         module._addTierTreshold(500);
-        resolver.updateSuperChainAccountsManager(module);
+        // resolver.updateSuperChainAccountsManager(module);
 
         console.logString(
             string.concat(

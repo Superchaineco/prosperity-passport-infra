@@ -273,6 +273,21 @@ contract SuperChainModuleUpgradeable is
         s._tierTreshold.push(_treshold);
         emit TierTresholdAdded(_treshold);
     }
+    function updateTierThreshold(
+        uint256 index,
+        uint256 newThreshold
+    ) public onlyOwner {
+        SuperChainStorage storage s = superChainStorage();
+        require(index < s._tierTreshold.length, "Index out of bounds");
+        require(
+            (index == 0 || s._tierTreshold[index - 1] < newThreshold) &&
+                (index == s._tierTreshold.length - 1 ||
+                    newThreshold < s._tierTreshold[index + 1]),
+            "Invalid threshold update"
+        );
+        s._tierTreshold[index] = newThreshold;
+        emit TierTresholdUpdated(index, newThreshold);
+    }
 
     function getNextLevelPoints(address _safe) public view returns (uint256) {
         SuperChainStorage storage s = superChainStorage();
@@ -318,7 +333,18 @@ contract SuperChainModuleUpgradeable is
         return s.superChainAccount[s.userSuperChainAccount[_owner]];
     }
 
-    function populatedAddOwnersWithTreshold(address $) public view returns (address[] memory) {
+    function UpdateNounAvatar(address _safe, NounMetadata calldata _noun) public {
+        SuperChainStorage storage s = superChainStorage();
+        require(
+            msg.sender == _safe,
+            "Only the SuperChainSmartAccount can update the noun"
+        );
+        s.superChainAccount[_safe].noun = _noun;
+    }
+
+    function populatedAddOwnersWithTreshold(
+        address $
+    ) public view returns (address[] memory) {
         SuperChainStorage storage s = superChainStorage();
         return s.populatedAddOwnersWithTreshold[$];
     }
@@ -334,11 +360,10 @@ contract SuperChainModuleUpgradeable is
         SuperChainStorage storage s = superChainStorage();
         return s.hasFirstOwnerYet[$];
     }
-    function SuperChainIDRegistered(string memory $) public view returns (bool) {
+    function SuperChainIDRegistered(
+        string memory $
+    ) public view returns (bool) {
         SuperChainStorage storage s = superChainStorage();
         return s.SuperChainIDRegistered[$];
     }
-
 }
-
-
