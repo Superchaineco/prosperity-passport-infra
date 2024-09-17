@@ -3,7 +3,6 @@ pragma solidity ^0.8.20;
 
 import {Script, console} from "forge-std/Script.sol";
 import {SuperChainGuard} from "../src/SuperChainGuard.sol";
-import {SuperChainModule} from "../src/SuperChainModule__DEPRECATED.sol";
 import {SuperChainResolver} from "../src/SuperChainResolver.sol";
 import {SuperChainBadges, BadgeMetadata, BadgeTierMetadata} from "../src/SuperChainBadges.sol";
 import {IEAS} from "eas-contracts/IEAS.sol";
@@ -12,6 +11,7 @@ contract Deploy is Script {
     function setUp() public {}
 
     function run() public {
+    
         vm.startBroadcast();
 
         string memory network = vm.envString("NETWORK");
@@ -23,6 +23,10 @@ contract Deploy is Script {
         } else {
             revert("Unsupported network");
         }
+        require(
+            easAddress != address(0),
+            "EAS address is not set for this network"
+        );
 
         BadgeMetadata[] memory badges = new BadgeMetadata[](6);
         badges[0] = BadgeMetadata({
@@ -188,17 +192,9 @@ contract Deploy is Script {
             msg.sender,
             badgesContract
         );
-        SuperChainModule module = new SuperChainModule(address(resolver));
-        module._addTierTreshold(100);
-        module._addTierTreshold(250);
-        module._addTierTreshold(500);
-        // resolver.updateSuperChainAccountsManager(module);
 
         console.logString(
             string.concat(
-                "SuperChainModule deployed at: ",
-                vm.toString(address(module)),
-                "\n",
                 "SuperChainBadges deployed at: ",
                 vm.toString(address(badgesContract)),
                 "\n",
@@ -212,6 +208,8 @@ contract Deploy is Script {
                 vm.toString(easAddress)
             )
         );
+
         vm.stopBroadcast();
+        // vm.envSet("RESOLVER_ADDRESS", address(resolver));
     }
 }
