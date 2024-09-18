@@ -5,7 +5,7 @@ import {Script, console} from "forge-std/Script.sol";
 import {SuperChainGuard} from "../src/SuperChainGuard.sol";
 import {SuperChainResolver} from "../src/SuperChainResolver.sol";
 import {SuperChainBadges, BadgeMetadata, BadgeTierMetadata} from "../src/SuperChainBadges.sol";
-import "./ScriptReader.s.sol";
+import "./JSONReader.s.sol";
 import {IEAS} from "eas-contracts/IEAS.sol";
 
 contract Deploy is Script {
@@ -80,6 +80,7 @@ contract Deploy is Script {
             msg.sender,
             badgesContract
         );
+        badgesContract.setResolver(address(resolver));
 
         console.logString(
             string.concat(

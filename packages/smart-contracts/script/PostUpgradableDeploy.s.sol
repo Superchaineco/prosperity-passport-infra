@@ -18,7 +18,18 @@ contract PostUpgradableDeploy is Script {
         );
 
         SuperChainModuleUpgradeable module = SuperChainModuleUpgradeable(proxy);
-        module.addTiersTreshold([50, 150, 400, 750, 1250, 2000, 3250, 5000, 7000, 10000]);
+        uint256[] memory tresholds = new uint256[](10);
+        tresholds[0] = 50;
+        tresholds[1] = 150;
+        tresholds[2] = 400;
+        tresholds[3] = 750;
+        tresholds[4] = 1250;
+        tresholds[5] = 2000;
+        tresholds[6] = 3250;
+        tresholds[7] = 5000;
+        tresholds[8] = 7000;
+        tresholds[9] = 10000;
+        module.addTiersTreshold(tresholds);
 
         vm.stopBroadcast();
     }

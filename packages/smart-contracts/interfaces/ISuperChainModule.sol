@@ -59,9 +59,10 @@ interface ISuperChainModule {
 
     function simulateIncrementSuperChainPoints(uint256 _points, address recipient) external view returns (bool levelUp);
 
+    function addTiersTreshold(uint256[] memory tresholds) external;
+
     function _changeResolver(address resolver) external;
 
-    function _addTierTreshold(uint256 _treshold) external;
 
     function getNextLevelPoints(address _safe) external view returns (uint256);
 

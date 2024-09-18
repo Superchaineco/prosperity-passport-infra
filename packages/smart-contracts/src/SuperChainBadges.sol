@@ -22,6 +22,7 @@ struct BadgeTierMetadata {
 contract SuperChainBadges is ERC1155, Ownable {
     uint256 constant LEVEL_MASK = uint256(type(uint128).max);
     uint256 constant LEVEL_SHIFT = 128;
+    address public resolver;
 
     struct BadgeTier {
         string uri;
@@ -204,7 +205,8 @@ contract SuperChainBadges is ERC1155, Ownable {
     function updateOrMintBadges(
         address user,
         BadgeUpdate[] memory updates
-    ) public onlyOwner returns (uint256 points) {
+    ) public returns (uint256 points) {
+        require(msg.sender == resolver, "Only resolver can call this function");
         for (uint256 i = 0; i < updates.length; i++) {
             uint256 badgeId = updates[i].badgeId;
             uint256 tier = updates[i].tier;
@@ -215,6 +217,10 @@ contract SuperChainBadges is ERC1155, Ownable {
                 points += mintBadge(user, badgeId, tier);
             }
         }
+    }
+
+    function setResolver(address _resolver) public onlyOwner {
+        resolver = _resolver;
     }
 
     function getHighestBadgeTier(

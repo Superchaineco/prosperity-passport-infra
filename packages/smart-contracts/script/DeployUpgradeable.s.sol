@@ -44,7 +44,7 @@ contract DeployUpgradeable is Script {
             )
         );
 
-        string memory filePath = "deploy_data.txt";
+        string memory filePath = "deploy_data_upgradeable.txt";
         vm.writeFile(
             filePath,
             string.concat("Proxy Address: ", proxyAddress, "\n", "Constructor Args: ", constructorArgs)

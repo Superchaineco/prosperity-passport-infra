@@ -2,7 +2,7 @@
 pragma solidity 0.8.23;
 
 import "../interfaces/ISafe.sol";
-import "./SuperChainModule__DEPRECATED.sol";
+import "./SuperChainModuleUpgradeable.sol";
 
 /**
  * @title SuperChainAccountSetup - A utility contract for setting up a Safe with modules and guards.
@@ -36,7 +36,7 @@ contract SuperChainAccountSetup {
         }
         ISafe(address(this)).enableModule(superChainModule);
         ISafe(address(this)).setGuard(guard);
-        SuperChainModule(superChainModule).setInitialOwner(
+        SuperChainModuleUpgradeable(superChainModule).setInitialOwner(
             address(this),
             owner,
             seed,
