@@ -10,14 +10,14 @@ import {Ownable} from "@openzeppelin/contracts/access/Ownable.sol";
 contract SuperChainResolver is SchemaResolver, Ownable {
     SuperChainModuleUpgradeable public superChainModule;
     SuperChainBadges public superChainBadges;
-    address private  _attestator;
+    address public attestator;
 
     constructor(
         IEAS eas,
-        address attestator,
+        address _attestator,
         SuperChainBadges _superChainBadges
     ) Ownable(msg.sender) SchemaResolver(eas) {
-        _attestator = attestator;
+        attestator = _attestator;
         superChainBadges = _superChainBadges;
     }
 
@@ -28,15 +28,21 @@ contract SuperChainResolver is SchemaResolver, Ownable {
         superChainModule = _superChainModule;
     }
 
-    function updateAttestator(address attestator) public onlyOwner {
-        _attestator = attestator;
+    function updateAttestator(address _attestator) public onlyOwner {
+        attestator = _attestator;
+    }
+
+    function updateSuperChainBadges(
+        SuperChainBadges _superChainBadges
+    ) public onlyOwner {
+        superChainBadges = _superChainBadges;
     }
 
     function onAttest(
         Attestation calldata attestation,
         uint256 /*value*/
     ) internal override returns (bool) {
-        if (attestation.attester != _attestator) {
+        if (attestation.attester != attestator) {
             return false;
         }
         BadgeUpdate[] memory badgeUpdates = abi.decode(

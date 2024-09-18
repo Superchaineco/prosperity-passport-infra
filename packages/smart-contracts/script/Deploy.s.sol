@@ -193,6 +193,7 @@ contract Deploy is Script {
             badgesContract
         );
 
+
         console.logString(
             string.concat(
                 "SuperChainBadges deployed at: ",

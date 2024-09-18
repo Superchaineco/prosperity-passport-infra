@@ -51,6 +51,7 @@ contract SuperChainBadges is ERC1155, Ownable {
         string uri
     );
     event BadgeMetadataSettled(uint256 indexed badgeId, string generalURI);
+    event BadgeTierMetadataUpdated(uint256 indexed badgeId, uint256 tier, string newURI);
     event BadgeTierUpdated(
         address indexed user,
         uint256 indexed badgeId,
@@ -58,6 +59,7 @@ contract SuperChainBadges is ERC1155, Ownable {
         uint256 points,
         string uri
     );
+
 
     constructor(
         BadgeMetadata[] memory badges,
@@ -83,6 +85,20 @@ contract SuperChainBadges is ERC1155, Ownable {
         _badges[badgeId].generalURI = generalURI;
         emit BadgeMetadataSettled(badgeId, generalURI);
     }
+
+    function updateBadgeTierMetadata(uint256 badgeId, uint256 tier, string memory newURI)public onlyOwner{
+        require(
+            bytes(_badges[badgeId].generalURI).length != 0,
+            "Badge does not exist"
+        );
+        require(
+            bytes(_badges[badgeId].tiers[tier].uri).length != 0,
+            "URI for initial tier not set"
+        );
+        _badges[badgeId].tiers[tier].uri = newURI;
+        emit BadgeTierMetadataUpdated(badgeId, tier, newURI);
+    }
+
 
     function setBadgeTier(
         uint256 badgeId,
@@ -188,7 +204,7 @@ contract SuperChainBadges is ERC1155, Ownable {
     function updateOrMintBadges(
         address user,
         BadgeUpdate[] memory updates
-    ) public returns (uint256 points) {
+    ) public onlyOwner returns (uint256 points) {
         for (uint256 i = 0; i < updates.length; i++) {
             uint256 badgeId = updates[i].badgeId;
             uint256 tier = updates[i].tier;
