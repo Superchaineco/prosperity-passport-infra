@@ -18,9 +18,7 @@ contract PostUpgradableDeploy is Script {
         );
 
         SuperChainModuleUpgradeable module = SuperChainModuleUpgradeable(proxy);
-        module._addTierTreshold(100);
-        module._addTierTreshold(250);
-        module._addTierTreshold(500);
+        module.addTiersTreshold([50, 150, 400, 750, 1250, 2000, 3250, 5000, 7000, 10000]);
 
         vm.stopBroadcast();
     }
