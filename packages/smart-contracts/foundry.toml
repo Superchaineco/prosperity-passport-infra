@@ -18,4 +18,4 @@ optimism = { key = "UGB21JYI7XRY68M6IBNNYHPJYTSX2V5ATX" }
 
 [rpc_endpoints]
 sepolia = "https://rpc.ankr.com/eth_sepolia"
-optimism = "https://mainnet.optimism.io"
+optimism = "https://rpc.ankr.com/optimism"
