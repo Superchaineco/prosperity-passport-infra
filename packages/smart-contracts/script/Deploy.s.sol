@@ -5,13 +5,54 @@ import {Script, console} from "forge-std/Script.sol";
 import {SuperChainGuard} from "../src/SuperChainGuard.sol";
 import {SuperChainResolver} from "../src/SuperChainResolver.sol";
 import {SuperChainBadges, BadgeMetadata, BadgeTierMetadata} from "../src/SuperChainBadges.sol";
+import "./ScriptReader.s.sol";
 import {IEAS} from "eas-contracts/IEAS.sol";
 
 contract Deploy is Script {
     function setUp() public {}
 
     function run() public {
-    
+        JSONReader jsonReader = new JSONReader();
+        (JSON memory badgesJson, uint256 tierCount) = jsonReader.run();
+        BadgeMetadata[] memory badges = new BadgeMetadata[](
+            badgesJson.badges.length
+        );
+        BadgeTierMetadata[] memory badgeTiers = new BadgeTierMetadata[](
+            tierCount
+        );
+        for (uint256 i = 0; i < badgesJson.badges.length; i++) {
+            badges[i] = BadgeMetadata({
+                badgeId: i + 1,
+                generalURI: badgesJson.badges[i].URI
+            });
+        }
+        uint256 tierIndex = 0;
+        for (uint256 i = 0; i < badgesJson.badges.length; i++) {
+            for (uint256 j = 0; j < badgesJson.badges[i].levels.length; j++) {
+                badgeTiers[tierIndex] = BadgeTierMetadata({
+                    badgeId: i + 1,
+                    tier: j + 1,
+                    newURI: badgesJson.badges[i].levels[j].URI,
+                    points: badgesJson.badges[i].levels[j].points
+                });
+                tierIndex++;
+            }
+        }
+
+        // console.log("Badges:");
+        // for (uint256 i = 0; i < badges.length; i++) {
+        //     console.log("Badge ID:", badges[i].badgeId);
+        //     console.log("Badge General URI:", badges[i].generalURI);
+        // }
+
+        // console.log("Badge Tiers:");
+        // for (uint256 i = 0; i < badgeTiers.length; i++) {
+        //     console.log("Badge ID:", badgeTiers[i].badgeId);
+        //     console.log("Tier:", badgeTiers[i].tier);
+        //     console.log("New URI:", badgeTiers[i].newURI);
+        //     console.log("Points:", badgeTiers[i].points);
+        // }
+
         vm.startBroadcast();
 
         string memory network = vm.envString("NETWORK");
@@ -28,159 +69,6 @@ contract Deploy is Script {
             "EAS address is not set for this network"
         );
 
-        BadgeMetadata[] memory badges = new BadgeMetadata[](6);
-        badges[0] = BadgeMetadata({
-            badgeId: 1,
-            generalURI: "ipfs/QmPp9Zac4YbUQ79KKwPptLHZarVZLWEZB2uj2cS5y4N4dD/00000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000000.json"
-        });
-        badges[1] = BadgeMetadata({
-            badgeId: 2,
-            generalURI: "ipfs/QmPp9Zac4YbUQ79KKwPptLHZarVZLWEZB2uj2cS5y4N4dD/00000000000000000000000000000000000000000000000000000000000000020000000000000000000000000000000000000000000000000000000000000000.json"
-        });
-
-        badges[2] = BadgeMetadata({
-            badgeId: 3,
-            generalURI: "ipfs/QmPp9Zac4YbUQ79KKwPptLHZarVZLWEZB2uj2cS5y4N4dD/00000000000000000000000000000000000000000000000000000000000000030000000000000000000000000000000000000000000000000000000000000000.json"
-        });
-        badges[3] = BadgeMetadata({
-            badgeId: 4,
-            generalURI: "ipfs/QmPp9Zac4YbUQ79KKwPptLHZarVZLWEZB2uj2cS5y4N4dD/00000000000000000000000000000000000000000000000000000000000000040000000000000000000000000000000000000000000000000000000000000000.json"
-        });
-
-        badges[4] = BadgeMetadata({
-            badgeId: 5,
-            generalURI: "ipfs/QmPp9Zac4YbUQ79KKwPptLHZarVZLWEZB2uj2cS5y4N4dD/00000000000000000000000000000000000000000000000000000000000000050000000000000000000000000000000000000000000000000000000000000000.json"
-        });
-        badges[5] = BadgeMetadata({
-            badgeId: 6,
-            generalURI: "ipfs/QmPp9Zac4YbUQ79KKwPptLHZarVZLWEZB2uj2cS5y4N4dD/00000000000000000000000000000000000000000000000000000000000000060000000000000000000000000000000000000000000000000000000000000000.json"
-        });
-
-        BadgeTierMetadata[] memory badgeTiers = new BadgeTierMetadata[](19);
-        badgeTiers[0] = BadgeTierMetadata({
-            badgeId: 1,
-            tier: 1,
-            newURI: "ipfs/QmPp9Zac4YbUQ79KKwPptLHZarVZLWEZB2uj2cS5y4N4dD/00000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000001.json",
-            points: 10
-        });
-        badgeTiers[1] = BadgeTierMetadata({
-            badgeId: 1,
-            tier: 2,
-            newURI: "ipfs/QmPp9Zac4YbUQ79KKwPptLHZarVZLWEZB2uj2cS5y4N4dD/00000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000002.json",
-            points: 20
-        });
-        badgeTiers[2] = BadgeTierMetadata({
-            badgeId: 1,
-            tier: 3,
-            newURI: "ipfs/QmPp9Zac4YbUQ79KKwPptLHZarVZLWEZB2uj2cS5y4N4dD/00000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000003.json",
-            points: 30
-        });
-        badgeTiers[3] = BadgeTierMetadata({
-            badgeId: 1,
-            tier: 4,
-            newURI: "ipfs/QmPp9Zac4YbUQ79KKwPptLHZarVZLWEZB2uj2cS5y4N4dD/00000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000004.json",
-            points: 40
-        });
-        badgeTiers[4] = BadgeTierMetadata({
-            badgeId: 1,
-            tier: 5,
-            newURI: "ipfs/QmPp9Zac4YbUQ79KKwPptLHZarVZLWEZB2uj2cS5y4N4dD/00000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000005.json",
-            points: 50
-        });
-
-        // OP Mainnet User
-        badgeTiers[5] = BadgeTierMetadata({
-            badgeId: 2,
-            tier: 1,
-            newURI: "ipfs/QmPp9Zac4YbUQ79KKwPptLHZarVZLWEZB2uj2cS5y4N4dD/00000000000000000000000000000000000000000000000000000000000000020000000000000000000000000000000000000000000000000000000000000001.json",
-            points: 10
-        });
-        badgeTiers[6] = BadgeTierMetadata({
-            badgeId: 2,
-            tier: 2,
-            newURI: "ipfs/QmPp9Zac4YbUQ79KKwPptLHZarVZLWEZB2uj2cS5y4N4dD/00000000000000000000000000000000000000000000000000000000000000020000000000000000000000000000000000000000000000000000000000000002.json",
-            points: 20
-        });
-        badgeTiers[7] = BadgeTierMetadata({
-            badgeId: 2,
-            tier: 3,
-            newURI: "ipfs/QmPp9Zac4YbUQ79KKwPptLHZarVZLWEZB2uj2cS5y4N4dD/00000000000000000000000000000000000000000000000000000000000000020000000000000000000000000000000000000000000000000000000000000003.json",
-            points: 30
-        });
-        badgeTiers[8] = BadgeTierMetadata({
-            badgeId: 2,
-            tier: 4,
-            newURI: "ipfs/QmPp9Zac4YbUQ79KKwPptLHZarVZLWEZB2uj2cS5y4N4dD/00000000000000000000000000000000000000000000000000000000000000020000000000000000000000000000000000000000000000000000000000000004.json",
-            points: 40
-        });
-        badgeTiers[9] = BadgeTierMetadata({
-            badgeId: 2,
-            tier: 5,
-            newURI: "ipfs/QmPp9Zac4YbUQ79KKwPptLHZarVZLWEZB2uj2cS5y4N4dD/00000000000000000000000000000000000000000000000000000000000000020000000000000000000000000000000000000000000000000000000000000005.json",
-            points: 50
-        });
-
-        // Ethereum Sepolia User
-        badgeTiers[10] = BadgeTierMetadata({
-            badgeId: 3,
-            tier: 1,
-            newURI: "ipfs/QmPp9Zac4YbUQ79KKwPptLHZarVZLWEZB2uj2cS5y4N4dD/00000000000000000000000000000000000000000000000000000000000000030000000000000000000000000000000000000000000000000000000000000001.json",
-            points: 20
-        });
-        badgeTiers[11] = BadgeTierMetadata({
-            badgeId: 3,
-            tier: 2,
-            newURI: "ipfs/QmPp9Zac4YbUQ79KKwPptLHZarVZLWEZB2uj2cS5y4N4dD/00000000000000000000000000000000000000000000000000000000000000030000000000000000000000000000000000000000000000000000000000000002.json",
-            points: 80
-        });
-
-        // Mode User
-        badgeTiers[12] = BadgeTierMetadata({
-            badgeId: 4,
-            tier: 1,
-            newURI: "ipfs/QmPp9Zac4YbUQ79KKwPptLHZarVZLWEZB2uj2cS5y4N4dD/00000000000000000000000000000000000000000000000000000000000000040000000000000000000000000000000000000000000000000000000000000001.json",
-            points: 10
-        });
-        badgeTiers[13] = BadgeTierMetadata({
-            badgeId: 4,
-            tier: 2,
-            newURI: "ipfs/QmPp9Zac4YbUQ79KKwPptLHZarVZLWEZB2uj2cS5y4N4dD/00000000000000000000000000000000000000000000000000000000000000040000000000000000000000000000000000000000000000000000000000000002.json",
-            points: 20
-        });
-        badgeTiers[14] = BadgeTierMetadata({
-            badgeId: 4,
-            tier: 3,
-            newURI: "ipfs/QmPp9Zac4YbUQ79KKwPptLHZarVZLWEZB2uj2cS5y4N4dD/00000000000000000000000000000000000000000000000000000000000000040000000000000000000000000000000000000000000000000000000000000003.json",
-            points: 30
-        });
-
-        // Nouns
-        badgeTiers[15] = BadgeTierMetadata({
-            badgeId: 5,
-            tier: 1,
-            newURI: "ipfs/QmPp9Zac4YbUQ79KKwPptLHZarVZLWEZB2uj2cS5y4N4dD/00000000000000000000000000000000000000000000000000000000000000050000000000000000000000000000000000000000000000000000000000000001.json",
-            points: 10
-        });
-        badgeTiers[16] = BadgeTierMetadata({
-            badgeId: 5,
-            tier: 2,
-            newURI: "ipfs/QmPp9Zac4YbUQ79KKwPptLHZarVZLWEZB2uj2cS5y4N4dD/00000000000000000000000000000000000000000000000000000000000000050000000000000000000000000000000000000000000000000000000000000002.json",
-            points: 20
-        });
-        badgeTiers[17] = BadgeTierMetadata({
-            badgeId: 5,
-            tier: 3,
-            newURI: "ipfs/QmPp9Zac4YbUQ79KKwPptLHZarVZLWEZB2uj2cS5y4N4dD/00000000000000000000000000000000000000000000000000000000000000050000000000000000000000000000000000000000000000000000000000000003.json",
-            points: 30
-        });
-
-        //Citizen
-        badgeTiers[18] = BadgeTierMetadata({
-            badgeId: 6,
-            tier: 1,
-            newURI: "ipfs/QmPp9Zac4YbUQ79KKwPptLHZarVZLWEZB2uj2cS5y4N4dD/00000000000000000000000000000000000000000000000000000000000000060000000000000000000000000000000000000000000000000000000000000001.json",
-            points: 100
-        });
         SuperChainBadges badgesContract = new SuperChainBadges(
             badges,
             badgeTiers
@@ -192,7 +80,6 @@ contract Deploy is Script {
             msg.sender,
             badgesContract
         );
-
 
         console.logString(
             string.concat(
@@ -211,6 +98,5 @@ contract Deploy is Script {
         );
 
         vm.stopBroadcast();
-        // vm.envSet("RESOLVER_ADDRESS", address(resolver));
     }
 }

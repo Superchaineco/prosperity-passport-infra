@@ -1,0 +1,297 @@
+{
+  "badges": [
+    {
+      "name": "Base User",
+      "description": "Number of transactions made on Base",
+      "platform": "Base",
+      "levels": [
+        {
+          "2DImage": "https://account.superchain.eco/static/badges/2DImages/BaseUser-1.svg",
+          "3DImage": "https://account.superchain.eco/static/badges/3DImages/BaseUser-1.svg",
+          "minValue": 5,
+          "points": 10,
+          "URI": "ipfs/QmWXaRgB4SHj1r97bu9kFVd57Hr268NKVdQKUbfscfh7gj/00000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000001.json"
+        },
+        {
+          "2DImage": "https://account.superchain.eco/static/badges/2DImages/BaseUser-2.svg",
+          "3DImage": "https://account.superchain.eco/static/badges/3DImages/BaseUser-2.svg",
+          "minValue": 20,
+          "points": 20,
+          "URI": "ipfs/QmWXaRgB4SHj1r97bu9kFVd57Hr268NKVdQKUbfscfh7gj/00000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000002.json"
+        },
+        {
+          "2DImage": "https://account.superchain.eco/static/badges/2DImages/BaseUser-3.svg",
+          "3DImage": "https://account.superchain.eco/static/badges/3DImages/BaseUser-3.svg",
+          "minValue": 50,
+          "points": 30,
+          "URI": "ipfs/QmWXaRgB4SHj1r97bu9kFVd57Hr268NKVdQKUbfscfh7gj/00000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000003.json"
+        },
+        {
+          "2DImage": "https://account.superchain.eco/static/badges/2DImages/BaseUser-4.svg",
+          "3DImage": "https://account.superchain.eco/static/badges/3DImages/BaseUser-4.svg",
+          "minValue": 100,
+          "points": 40,
+          "URI": "ipfs/QmWXaRgB4SHj1r97bu9kFVd57Hr268NKVdQKUbfscfh7gj/00000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000004.json"
+        },
+        {
+          "2DImage": "https://account.superchain.eco/static/badges/2DImages/BaseUser-5.svg",
+          "3DImage": "https://account.superchain.eco/static/badges/3DImages/BaseUser-5.svg",
+          "minValue": 250,
+          "points": 50,
+          "URI": "ipfs/QmWXaRgB4SHj1r97bu9kFVd57Hr268NKVdQKUbfscfh7gj/00000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000005.json"
+        }
+      ],
+      "condition": "{{variable}} transactions on Base",
+      "chain": "Base",
+      "URI": "ipfs/QmWXaRgB4SHj1r97bu9kFVd57Hr268NKVdQKUbfscfh7gj/00000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000000.json"
+    },
+    {
+      "name": "OP Mainnet User",
+      "description": "Number of transactions made on OP Mainnet",
+      "platform": "Optimism",
+      "levels": [
+        {
+          "2DImage": "https://account.superchain.eco/static/badges/2DImages/OPUser-1.svg",
+          "3DImage": "https://account.superchain.eco/static/badges/3DImages/OPUser-1.svg",
+          "minValue": 5,
+          "points": 10,
+          "URI": "ipfs/QmWXaRgB4SHj1r97bu9kFVd57Hr268NKVdQKUbfscfh7gj/00000000000000000000000000000000000000000000000000000000000000020000000000000000000000000000000000000000000000000000000000000001.json"
+        },
+        {
+          "2DImage": "https://account.superchain.eco/static/badges/2DImages/OPUser-2.svg",
+          "3DImage": "https://account.superchain.eco/static/badges/3DImages/OPUser-2.svg",
+          "minValue": 20,
+          "points": 20,
+          "URI": "ipfs/QmWXaRgB4SHj1r97bu9kFVd57Hr268NKVdQKUbfscfh7gj/00000000000000000000000000000000000000000000000000000000000000020000000000000000000000000000000000000000000000000000000000000002.json"
+        },
+        {
+          "2DImage": "https://account.superchain.eco/static/badges/2DImages/OPUser-3.svg",
+          "3DImage": "https://account.superchain.eco/static/badges/3DImages/OPUser-3.svg",
+          "minValue": 50,
+          "points": 30,
+          "URI": "ipfs/QmWXaRgB4SHj1r97bu9kFVd57Hr268NKVdQKUbfscfh7gj/00000000000000000000000000000000000000000000000000000000000000020000000000000000000000000000000000000000000000000000000000000003.json"
+        },
+        {
+          "2DImage": "https://account.superchain.eco/static/badges/2DImages/OPUser-4.svg",
+          "3DImage": "https://account.superchain.eco/static/badges/3DImages/OPUser-4.svg",
+          "minValue": 100,
+          "points": 40,
+          "URI": "ipfs/QmWXaRgB4SHj1r97bu9kFVd57Hr268NKVdQKUbfscfh7gj/00000000000000000000000000000000000000000000000000000000000000020000000000000000000000000000000000000000000000000000000000000004.json"
+        },
+        {
+          "2DImage": "https://account.superchain.eco/static/badges/2DImages/OPUser-5.svg",
+          "3DImage": "https://account.superchain.eco/static/badges/3DImages/OPUser-5.svg",
+          "minValue": 250,
+          "points": 50,
+          "URI": "ipfs/QmWXaRgB4SHj1r97bu9kFVd57Hr268NKVdQKUbfscfh7gj/00000000000000000000000000000000000000000000000000000000000000020000000000000000000000000000000000000000000000000000000000000005.json"
+        }
+      ],
+      "condition": "{{variable}} transactions on OP Mainnet",
+      "chain": "Optimism",
+      "URI": "ipfs/QmWXaRgB4SHj1r97bu9kFVd57Hr268NKVdQKUbfscfh7gj/00000000000000000000000000000000000000000000000000000000000000020000000000000000000000000000000000000000000000000000000000000000.json"
+    },
+    {
+      "name": "Mode User",
+      "description": "Number of transactions made on Mode",
+      "platform": "Mode",
+      "levels": [
+        {
+          "2DImage": "https://account.superchain.eco/static/badges/2DImages/ModeUser-1.svg",
+          "3DImage": "https://account.superchain.eco/static/badges/3DImages/ModeUser-1.svg",
+          "minValue": 5,
+          "points": 10,
+          "URI": "ipfs/QmWXaRgB4SHj1r97bu9kFVd57Hr268NKVdQKUbfscfh7gj/00000000000000000000000000000000000000000000000000000000000000040000000000000000000000000000000000000000000000000000000000000001.json"
+        },
+        {
+          "2DImage": "https://account.superchain.eco/static/badges/2DImages/ModeUser-2.svg",
+          "3DImage": "https://account.superchain.eco/static/badges/3DImages/ModeUser-2.svg",
+          "minValue": 20,
+          "points": 20,
+          "URI": "ipfs/QmWXaRgB4SHj1r97bu9kFVd57Hr268NKVdQKUbfscfh7gj/00000000000000000000000000000000000000000000000000000000000000040000000000000000000000000000000000000000000000000000000000000002.json"
+        },
+        {
+          "2DImage": "https://account.superchain.eco/static/badges/2DImages/ModeUser-3.svg",
+          "3DImage": "https://account.superchain.eco/static/badges/3DImages/ModeUser-3.svg",
+          "minValue": 50,
+          "points": 30,
+          "URI": "ipfs/QmWXaRgB4SHj1r97bu9kFVd57Hr268NKVdQKUbfscfh7gj/00000000000000000000000000000000000000000000000000000000000000040000000000000000000000000000000000000000000000000000000000000003.json"
+        }
+      ],
+      "condition": "{{variable}} transactions on Mode",
+      "chain": "Mode",
+      "URI": "ipfs/QmWXaRgB4SHj1r97bu9kFVd57Hr268NKVdQKUbfscfh7gj/00000000000000000000000000000000000000000000000000000000000000040000000000000000000000000000000000000000000000000000000000000000.json"
+    },
+    {
+      "name": "Hold Nouns",
+      "description": "Hold Nouns on Ethereum Mainnet",
+      "platform": "Nouns",
+      "levels": [
+        {
+          "2DImage": "https://account.superchain.eco/static/badges/2DImages/HoldNouns-1.svg",
+          "3DImage": "https://account.superchain.eco/static/badges/3DImages/HoldNouns-1.svg",
+          "minValue": 1,
+          "points": 10,
+          "URI": "ipfs/QmWXaRgB4SHj1r97bu9kFVd57Hr268NKVdQKUbfscfh7gj/00000000000000000000000000000000000000000000000000000000000000050000000000000000000000000000000000000000000000000000000000000001.json"
+        },
+        {
+          "2DImage": "https://account.superchain.eco/static/badges/2DImages/HoldNouns-2.svg",
+          "3DImage": "https://account.superchain.eco/static/badges/3DImages/HoldNouns-2.svg",
+          "minValue": 3,
+          "points": 20,
+          "URI": "ipfs/QmWXaRgB4SHj1r97bu9kFVd57Hr268NKVdQKUbfscfh7gj/00000000000000000000000000000000000000000000000000000000000000050000000000000000000000000000000000000000000000000000000000000002.json"
+        },
+        {
+          "2DImage": "https://account.superchain.eco/static/badges/2DImages/HoldNouns-3.svg",
+          "3DImage": "https://account.superchain.eco/static/badges/3DImages/HoldNouns-3.svg",
+          "minValue": 5,
+          "points": 30,
+          "URI": "ipfs/QmWXaRgB4SHj1r97bu9kFVd57Hr268NKVdQKUbfscfh7gj/00000000000000000000000000000000000000000000000000000000000000050000000000000000000000000000000000000000000000000000000000000003.json"
+        }
+      ],
+      "condition": "Hold {{variable}} Nouns on Ethereum Mainnet.",
+      "chain": "Ethereum",
+      "URI": "ipfs/QmWXaRgB4SHj1r97bu9kFVd57Hr268NKVdQKUbfscfh7gj/00000000000000000000000000000000000000000000000000000000000000050000000000000000000000000000000000000000000000000000000000000000.json"
+    },
+    {
+      "name": "Citizen",
+      "description": "Become a Optimism Citizen",
+      "platform": "Optimism",
+      "levels": [
+        {
+          "2DImage": "https://account.superchain.eco/static/badges/2DImages/Citizen-1.svg",
+          "3DImage": "https://account.superchain.eco/static/badges/3DImages/Citizen-1.svg",
+          "minValue": 1,
+          "points": 150,
+          "URI": "ipfs/QmWXaRgB4SHj1r97bu9kFVd57Hr268NKVdQKUbfscfh7gj/00000000000000000000000000000000000000000000000000000000000000060000000000000000000000000000000000000000000000000000000000000001.json"
+        }
+      ],
+      "condition": "Be the owner of a {{variable}} wallet who is a Citizen.",
+      "chain": "Optimism",
+      "URI": "ipfs/QmWXaRgB4SHj1r97bu9kFVd57Hr268NKVdQKUbfscfh7gj/00000000000000000000000000000000000000000000000000000000000000060000000000000000000000000000000000000000000000000000000000000000.json"
+    },
+    {
+      "name": "Giveth Donations Made",
+      "description": "Donate on Giveth",
+      "platform": "Giveth",
+      "levels": [
+        {
+          "2DImage": "https://account.superchain.eco/static/badges/2DImages/GivethDonationsMade-1.svg",
+          "3DImage": "https://account.superchain.eco/static/badges/3DImages/GivethDonationsMade-1.svg",
+          "minValue": 25,
+          "points": 10,
+          "URI": "ipfs/QmWXaRgB4SHj1r97bu9kFVd57Hr268NKVdQKUbfscfh7gj/00000000000000000000000000000000000000000000000000000000000000070000000000000000000000000000000000000000000000000000000000000001.json"
+        },
+        {
+          "2DImage": "https://account.superchain.eco/static/badges/2DImages/GivethDonationsMade-2.svg",
+          "3DImage": "https://account.superchain.eco/static/badges/3DImages/GivethDonationsMade-2.svg",
+          "minValue": 100,
+          "points": 20,
+          "URI": "ipfs/QmWXaRgB4SHj1r97bu9kFVd57Hr268NKVdQKUbfscfh7gj/00000000000000000000000000000000000000000000000000000000000000070000000000000000000000000000000000000000000000000000000000000002.json"
+        },
+        {
+          "2DImage": "https://account.superchain.eco/static/badges/2DImages/GivethDonationsMade-3.svg",
+          "3DImage": "https://account.superchain.eco/static/badges/3DImages/GivethDonationsMade-3.svg",
+          "minValue": 250,
+          "points": 30,
+          "URI": "ipfs/QmWXaRgB4SHj1r97bu9kFVd57Hr268NKVdQKUbfscfh7gj/00000000000000000000000000000000000000000000000000000000000000070000000000000000000000000000000000000000000000000000000000000003.json"
+        },
+        {
+          "2DImage": "https://account.superchain.eco/static/badges/2DImages/GivethDonationsMade-4.svg",
+          "3DImage": "https://account.superchain.eco/static/badges/3DImages/GivethDonationsMade-4.svg",
+          "minValue": 1000,
+          "points": 40,
+          "URI": "ipfs/QmWXaRgB4SHj1r97bu9kFVd57Hr268NKVdQKUbfscfh7gj/00000000000000000000000000000000000000000000000000000000000000070000000000000000000000000000000000000000000000000000000000000004.json"
+        }
+      ],
+      "condition": "Donate ${{variable}} more on Giveth",
+      "chain": "Optimism",
+      "URI": "ipfs/QmWXaRgB4SHj1r97bu9kFVd57Hr268NKVdQKUbfscfh7gj/00000000000000000000000000000000000000000000000000000000000000070000000000000000000000000000000000000000000000000000000000000000.json"
+    },
+    {
+      "name": "Talent Protocol score",
+      "description": "Builder Fi score on Talent Protocol passport",
+      "platform": "Talent Protocol",
+      "levels": [
+        {
+          "2DImage": "https://account.superchain.eco/static/badges/2DImages/TalentProtocolScore-1.svg",
+          "3DImage": "https://account.superchain.eco/static/badges/3DImages/TalentProtocolScore-1.svg",
+          "minValue": 30,
+          "points": 10,
+          "URI": "ipfs/QmWXaRgB4SHj1r97bu9kFVd57Hr268NKVdQKUbfscfh7gj/00000000000000000000000000000000000000000000000000000000000000080000000000000000000000000000000000000000000000000000000000000001.json"
+        },
+        {
+          "2DImage": "https://account.superchain.eco/static/badges/2DImages/TalentProtocolScore-2.svg",
+          "3DImage": "https://account.superchain.eco/static/badges/3DImages/TalentProtocolScore-2.svg",
+          "minValue": 60,
+          "points": 20,
+          "URI": "ipfs/QmWXaRgB4SHj1r97bu9kFVd57Hr268NKVdQKUbfscfh7gj/00000000000000000000000000000000000000000000000000000000000000080000000000000000000000000000000000000000000000000000000000000002.json"
+        },
+        {
+          "2DImage": "https://account.superchain.eco/static/badges/2DImages/TalentProtocolScore-3.svg",
+          "3DImage": "https://account.superchain.eco/static/badges/3DImages/TalentProtocolScore-3.svg",
+          "minValue": 90,
+          "points": 30,
+          "URI": "ipfs/QmWXaRgB4SHj1r97bu9kFVd57Hr268NKVdQKUbfscfh7gj/00000000000000000000000000000000000000000000000000000000000000080000000000000000000000000000000000000000000000000000000000000003.json"
+        }
+      ],
+      "condition": "Have a Builder Fi score of {{variable}}",
+      "chain": "Ethereum",
+      "URI": "ipfs/QmWXaRgB4SHj1r97bu9kFVd57Hr268NKVdQKUbfscfh7gj/00000000000000000000000000000000000000000000000000000000000000080000000000000000000000000000000000000000000000000000000000000000.json"
+    },
+    {
+      "name": "Worldcoin Verification",
+      "description": "Verify on Worldcoin",
+      "platform": "Worldcoin",
+      "levels": [
+        {
+          "2DImage": "https://account.superchain.eco/static/badges/2DImages/WorldCoinVerification-1.svg",
+          "3DImage": "https://account.superchain.eco/static/badges/3DImages/WorldCoinVerification-1.svg",
+          "minValue": 1,
+          "points": 60,
+          "URI": "ipfs/QmWXaRgB4SHj1r97bu9kFVd57Hr268NKVdQKUbfscfh7gj/00000000000000000000000000000000000000000000000000000000000000090000000000000000000000000000000000000000000000000000000000000001.json"
+        }
+      ],
+      "condition": "Get verified with Worldcoin",
+      "chain": "Optimism",
+      "URI": "ipfs/QmWXaRgB4SHj1r97bu9kFVd57Hr268NKVdQKUbfscfh7gj/00000000000000000000000000000000000000000000000000000000000000090000000000000000000000000000000000000000000000000000000000000000.json"
+    },
+    {
+      "name": "Gitcoin Donations Made",
+      "description": "Donate on Gitcoin",
+      "platform": "Gitcoin",
+      "levels": [
+        {
+          "2DImage": "https://account.superchain.eco/static/badges/2DImages/GitcoinDonationsMade-1.svg",
+          "3DImage": "https://account.superchain.eco/static/badges/3DImages/GitcoinDonationsMade-1.svg",
+          "minValue": 25,
+          "points": 10,
+          "URI": "ipfs/QmWXaRgB4SHj1r97bu9kFVd57Hr268NKVdQKUbfscfh7gj/00000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000001.json"
+        },
+        {
+          "2DImage": "https://account.superchain.eco/static/badges/2DImages/GitcoinDonationsMade-2.svg",
+          "3DImage": "https://account.superchain.eco/static/badges/3DImages/GitcoinDonationsMade-2.svg",
+          "minValue": 100,
+          "points": 20,
+          "URI": "ipfs/QmWXaRgB4SHj1r97bu9kFVd57Hr268NKVdQKUbfscfh7gj/00000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000002.json"
+        },
+        {
+          "2DImage": "https://account.superchain.eco/static/badges/2DImages/GitcoinDonationsMade-3.svg",
+          "3DImage": "https://account.superchain.eco/static/badges/3DImages/GitcoinDonationsMade-3.svg",
+          "minValue": 250,
+          "points": 30,
+          "URI": "ipfs/QmWXaRgB4SHj1r97bu9kFVd57Hr268NKVdQKUbfscfh7gj/00000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000003.json"
+        },
+        {
+          "2DImage": "https://account.superchain.eco/static/badges/2DImages/GitcoinDonationsMade-4.svg",
+          "3DImage": "https://account.superchain.eco/static/badges/3DImages/GitcoinDonationsMade-4.svg",
+          "minValue": 1000,
+          "points": 40,
+          "URI": "ipfs/QmWXaRgB4SHj1r97bu9kFVd57Hr268NKVdQKUbfscfh7gj/00000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000004.json"
+        }
+      ],
+      "condition": "Donate ${{variable}} more on Gitcoin",
+      "chain": "Optimism",
+      "URI": "ipfs/QmWXaRgB4SHj1r97bu9kFVd57Hr268NKVdQKUbfscfh7gj/00000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000000.json"
+    }
+  ]
+}
