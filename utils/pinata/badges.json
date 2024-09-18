@@ -6,35 +6,35 @@
       "platform": "Base",
       "levels": [
         {
-          "2DImage": "https://ikjhtwwevrmwwjatccqi.supabase.co/storage/v1/object/public/Badges/2DImages/BaseUser-1.svg",
-          "3DImage": "https://ikjhtwwevrmwwjatccqi.supabase.co/storage/v1/object/public/Badges/3DImages/BaseUser-1.svg",
+          "2DImage": "https://account.superchain.eco/static/badges/2DImages/BaseUser-1.svg",
+          "3DImage": "https://account.superchain.eco/static/badges/3DImages/BaseUser-1.svg",
           "minValue": 5,
           "points": 10
         },
         {
-          "2DImage": "https://ikjhtwwevrmwwjatccqi.supabase.co/storage/v1/object/public/Badges/2DImages/BaseUser-2.svg",
-          "3DImage": "https://ikjhtwwevrmwwjatccqi.supabase.co/storage/v1/object/public/Badges/3DImages/BaseUser-2.svg",
+          "2DImage": "https://account.superchain.eco/static/badges/2DImages/BaseUser-2.svg",
+          "3DImage": "https://account.superchain.eco/static/badges/3DImages/BaseUser-2.svg",
           "minValue": 20,
           "points": 20
         },
 
         {
-          "2DImage": "https://ikjhtwwevrmwwjatccqi.supabase.co/storage/v1/object/public/Badges/2DImages/BaseUser-3.svg",
-          "3DImage": "https://ikjhtwwevrmwwjatccqi.supabase.co/storage/v1/object/public/Badges/3DImages/BaseUser-3.svg",
+          "2DImage": "https://account.superchain.eco/static/badges/2DImages/BaseUser-3.svg",
+          "3DImage": "https://account.superchain.eco/static/badges/3DImages/BaseUser-3.svg",
           "minValue": 50,
           "points": 30
         },
 
         {
-          "2DImage": "https://ikjhtwwevrmwwjatccqi.supabase.co/storage/v1/object/public/Badges/2DImages/BaseUser-4.svg",
-          "3DImage": "https://ikjhtwwevrmwwjatccqi.supabase.co/storage/v1/object/public/Badges/3DImages/BaseUser-4.svg",
+          "2DImage": "https://account.superchain.eco/static/badges/2DImages/BaseUser-4.svg",
+          "3DImage": "https://account.superchain.eco/static/badges/3DImages/BaseUser-4.svg",
           "minValue": 100,
           "points": 40
         },
 
         {
-          "2DImage": "https://ikjhtwwevrmwwjatccqi.supabase.co/storage/v1/object/public/Badges/2DImages/BaseUser-5.svg",
-          "3DImage": "https://ikjhtwwevrmwwjatccqi.supabase.co/storage/v1/object/public/Badges/3DImages/BaseUser-5.svg",
+          "2DImage": "https://account.superchain.eco/static/badges/2DImages/BaseUser-5.svg",
+          "3DImage": "https://account.superchain.eco/static/badges/3DImages/BaseUser-5.svg",
           "minValue": 250,
           "points": 50
         }
@@ -48,35 +48,35 @@
       "platform": "Optimism",
       "levels": [
         {
-          "2DImage": "https://ikjhtwwevrmwwjatccqi.supabase.co/storage/v1/object/public/Badges/2DImages/OPUser-1.svg",
-          "3DImage": "https://ikjhtwwevrmwwjatccqi.supabase.co/storage/v1/object/public/Badges/3DImages/OPUser-1.svg",
+          "2DImage": "https://account.superchain.eco/static/badges/2DImages/OPUser-1.svg",
+          "3DImage": "https://account.superchain.eco/static/badges/3DImages/OPUser-1.svg",
           "minValue": 5,
           "points": 10
         },
         {
-          "2DImage": "https://ikjhtwwevrmwwjatccqi.supabase.co/storage/v1/object/public/Badges/2DImages/OPUser-2.svg",
-          "3DImage": "https://ikjhtwwevrmwwjatccqi.supabase.co/storage/v1/object/public/Badges/3DImages/OPUser-2.svg",
+          "2DImage": "https://account.superchain.eco/static/badges/2DImages/OPUser-2.svg",
+          "3DImage": "https://account.superchain.eco/static/badges/3DImages/OPUser-2.svg",
           "minValue": 20,
           "points": 20
         },
 
         {
-          "2DImage": "https://ikjhtwwevrmwwjatccqi.supabase.co/storage/v1/object/public/Badges/2DImages/OPUser-3.svg",
-          "3DImage": "https://ikjhtwwevrmwwjatccqi.supabase.co/storage/v1/object/public/Badges/3DImages/OPUser-3.svg",
+          "2DImage": "https://account.superchain.eco/static/badges/2DImages/OPUser-3.svg",
+          "3DImage": "https://account.superchain.eco/static/badges/3DImages/OPUser-3.svg",
           "minValue": 50,
           "points": 30
         },
 
         {
-          "2DImage": "https://ikjhtwwevrmwwjatccqi.supabase.co/storage/v1/object/public/Badges/2DImages/OPUser-4.svg",
-          "3DImage": "https://ikjhtwwevrmwwjatccqi.supabase.co/storage/v1/object/public/Badges/3DImages/OPUser-4.svg",
+          "2DImage": "https://account.superchain.eco/static/badges/2DImages/OPUser-4.svg",
+          "3DImage": "https://account.superchain.eco/static/badges/3DImages/OPUser-4.svg",
           "minValue": 100,
           "points": 40
         },
 
         {
-          "2DImage": "https://ikjhtwwevrmwwjatccqi.supabase.co/storage/v1/object/public/Badges/2DImages/OPUser-5.svg",
-          "3DImage": "https://ikjhtwwevrmwwjatccqi.supabase.co/storage/v1/object/public/Badges/3DImages/OPUser-5.svg",
+          "2DImage": "https://account.superchain.eco/static/badges/2DImages/OPUser-5.svg",
+          "3DImage": "https://account.superchain.eco/static/badges/3DImages/OPUser-5.svg",
           "minValue": 250,
           "points": 50
         }
@@ -90,14 +90,14 @@
       "platform": "Sepolia",
       "levels": [
         {
-          "2DImage": "https://ikjhtwwevrmwwjatccqi.supabase.co/storage/v1/object/public/Badges/2DImages/OPUser-1.svg",
-          "3DImage": "https://ikjhtwwevrmwwjatccqi.supabase.co/storage/v1/object/public/Badges/3DImages/OPUser-1.svg",
+          "2DImage": "https://account.superchain.eco/static/badges/2DImages/OPUser-1.svg",
+          "3DImage": "https://account.superchain.eco/static/badges/3DImages/OPUser-1.svg",
           "minValue": 10,
           "points": 20
         },
         {
-          "2DImage": "https://ikjhtwwevrmwwjatccqi.supabase.co/storage/v1/object/public/Badges/2DImages/OPUser-2.svg",
-          "3DImage": "https://ikjhtwwevrmwwjatccqi.supabase.co/storage/v1/object/public/Badges/3DImages/OPUser-2.svg",
+          "2DImage": "https://account.superchain.eco/static/badges/2DImages/OPUser-2.svg",
+          "3DImage": "https://account.superchain.eco/static/badges/3DImages/OPUser-2.svg",
           "minValue": 20,
           "points": 80
         }
@@ -111,20 +111,20 @@
       "platform": "Mode",
       "levels": [
         {
-          "2DImage": "https://ikjhtwwevrmwwjatccqi.supabase.co/storage/v1/object/public/Badges/2DImages/ModeUser-1.svg",
-          "3DImage": "https://ikjhtwwevrmwwjatccqi.supabase.co/storage/v1/object/public/Badges/3DImages/ModeUser-1.svg",
+          "2DImage": "https://account.superchain.eco/static/badges/2DImages/ModeUser-1.svg",
+          "3DImage": "https://account.superchain.eco/static/badges/3DImages/ModeUser-1.svg",
           "minValue": 5,
           "points": 10
         },
         {
-          "2DImage": "https://ikjhtwwevrmwwjatccqi.supabase.co/storage/v1/object/public/Badges/2DImages/ModeUser-2.svg",
-          "3DImage": "https://ikjhtwwevrmwwjatccqi.supabase.co/storage/v1/object/public/Badges/3DImages/ModeUser-2.svg",
+          "2DImage": "https://account.superchain.eco/static/badges/2DImages/ModeUser-2.svg",
+          "3DImage": "https://account.superchain.eco/static/badges/3DImages/ModeUser-2.svg",
           "minValue": 20,
           "points": 20
         },
         {
-          "2DImage": "https://ikjhtwwevrmwwjatccqi.supabase.co/storage/v1/object/public/Badges/2DImages/ModeUser-3.svg",
-          "3DImage": "https://ikjhtwwevrmwwjatccqi.supabase.co/storage/v1/object/public/Badges/3DImages/ModeUser-3.svg",
+          "2DImage": "https://account.superchain.eco/static/badges/2DImages/ModeUser-3.svg",
+          "3DImage": "https://account.superchain.eco/static/badges/3DImages/ModeUser-3.svg",
           "minValue": 50,
           "points": 30
         }
@@ -138,20 +138,20 @@
       "platform": "Nouns",
       "levels": [
         {
-          "2DImage": "https://ikjhtwwevrmwwjatccqi.supabase.co/storage/v1/object/public/Badges/2DImages/HoldNouns-1.svg",
-          "3DImage": "https://ikjhtwwevrmwwjatccqi.supabase.co/storage/v1/object/public/Badges/3DImages/HoldNouns-1.svg",
+          "2DImage": "https://account.superchain.eco/static/badges/2DImages/HoldNouns-1.svg",
+          "3DImage": "https://account.superchain.eco/static/badges/3DImages/HoldNouns-1.svg",
           "minValue": 1,
           "points": 10
         },
         {
-          "2DImage": "https://ikjhtwwevrmwwjatccqi.supabase.co/storage/v1/object/public/Badges/2DImages/HoldNouns-2.svg",
-          "3DImage": "https://ikjhtwwevrmwwjatccqi.supabase.co/storage/v1/object/public/Badges/3DImages/HoldNouns-2.svg",
+          "2DImage": "https://account.superchain.eco/static/badges/2DImages/HoldNouns-2.svg",
+          "3DImage": "https://account.superchain.eco/static/badges/3DImages/HoldNouns-2.svg",
           "minValue": 3,
           "points": 20
         },
         {
-          "2DImage": "https://ikjhtwwevrmwwjatccqi.supabase.co/storage/v1/object/public/Badges/2DImages/HoldNouns-3.svg",
-          "3DImage": "https://ikjhtwwevrmwwjatccqi.supabase.co/storage/v1/object/public/Badges/3DImages/HoldNouns-3.svg",
+          "2DImage": "https://account.superchain.eco/static/badges/2DImages/HoldNouns-3.svg",
+          "3DImage": "https://account.superchain.eco/static/badges/3DImages/HoldNouns-3.svg",
           "minValue": 5,
           "points": 30
         }
@@ -165,10 +165,10 @@
       "platform": "Optimism",
       "levels": [
         {
-          "2DImage": "https://ikjhtwwevrmwwjatccqi.supabase.co/storage/v1/object/public/Badges/2DImages/Citizen-1.svg",
-          "3DImage": "https://ikjhtwwevrmwwjatccqi.supabase.co/storage/v1/object/public/Badges/3DImages/Citizen-1.svg",
+          "2DImage": "https://account.superchain.eco/static/badges/2DImages/Citizen-1.svg",
+          "3DImage": "https://account.superchain.eco/static/badges/3DImages/Citizen-1.svg",
           "minValue": 1,
-          "points": 100
+          "points": 150
         }
       ],
       "condition": "Be the owner of a {{variable}} wallet who is a Citizen.",
@@ -180,28 +180,28 @@
       "platform": "Giveth",
       "levels": [
         {
-          "2DImage": "https://ikjhtwwevrmwwjatccqi.supabase.co/storage/v1/object/public/Badges/2DImages/GivethDonationsMade-1.svg",
-          "3DImage": "https://ikjhtwwevrmwwjatccqi.supabase.co/storage/v1/object/public/Badges/3DImages/GivethDonationsMade-1.svg",
+          "2DImage": "https://account.superchain.eco/static/badges/2DImages/GivethDonationsMade-1.svg",
+          "3DImage": "https://account.superchain.eco/static/badges/3DImages/GivethDonationsMade-1.svg",
           "minValue": 25,
           "points": 10
         },
         {
-          "2DImage": "https://ikjhtwwevrmwwjatccqi.supabase.co/storage/v1/object/public/Badges/2DImages/GivethDonationsMade-2.svg",
-          "3DImage": "https://ikjhtwwevrmwwjatccqi.supabase.co/storage/v1/object/public/Badges/3DImages/GivethDonationsMade-2.svg",
+          "2DImage": "https://account.superchain.eco/static/badges/2DImages/GivethDonationsMade-2.svg",
+          "3DImage": "https://account.superchain.eco/static/badges/3DImages/GivethDonationsMade-2.svg",
           "minValue": 100,
           "points": 20
         },
 
         {
-          "2DImage": "https://ikjhtwwevrmwwjatccqi.supabase.co/storage/v1/object/public/Badges/2DImages/GivethDonationsMade-3.svg",
-          "3DImage": "https://ikjhtwwevrmwwjatccqi.supabase.co/storage/v1/object/public/Badges/3DImages/GivethDonationsMade-3.svg",
+          "2DImage": "https://account.superchain.eco/static/badges/2DImages/GivethDonationsMade-3.svg",
+          "3DImage": "https://account.superchain.eco/static/badges/3DImages/GivethDonationsMade-3.svg",
           "minValue": 250,
           "points": 30
         },
 
         {
-          "2DImage": "https://ikjhtwwevrmwwjatccqi.supabase.co/storage/v1/object/public/Badges/2DImages/GivethDonationsMade-4.svg",
-          "3DImage": "https://ikjhtwwevrmwwjatccqi.supabase.co/storage/v1/object/public/Badges/3DImages/GivethDonationsMade-4.svg",
+          "2DImage": "https://account.superchain.eco/static/badges/2DImages/GivethDonationsMade-4.svg",
+          "3DImage": "https://account.superchain.eco/static/badges/3DImages/GivethDonationsMade-4.svg",
           "minValue": 1000,
           "points": 40
         }
@@ -210,31 +210,73 @@
       "chain": "Optimism"
     },
     {
+      "name": "Talent Protocol score",
+      "description": "Builder Fi score on Talent Protocol passport",
+      "platform": "Talent Protocol",
+      "levels": [
+        {
+          "2DImage": "https://account.superchain.eco/static/badges/2DImages/TalentProtocolScore-1.svg",
+          "3DImage": "https://account.superchain.eco/static/badges/3DImages/TalentProtocolScore-1.svg",
+          "minValue": 30,
+          "points": 10
+        },
+        {
+          "2DImage": "https://account.superchain.eco/static/badges/2DImages/TalentProtocolScore-2.svg",
+          "3DImage": "https://account.superchain.eco/static/badges/3DImages/TalentProtocolScore-2.svg",
+          "minValue": 60,
+          "points": 20
+        },
+        {
+          "2DImage": "https://account.superchain.eco/static/badges/2DImages/TalentProtocolScore-3.svg",
+          "3DImage": "https://account.superchain.eco/static/badges/3DImages/TalentProtocolScore-3.svg",
+          "minValue": 90,
+          "points": 30
+        }
+      ],
+      "condition": "Have a Builder Fi score of {{variable}}",
+      "chain": "Ethereum"
+    },
+ {
+      "name": "Worldcoin Verification",
+      "description": "Verify on Worldcoin",
+      "platform": "Worldcoin",
+      "levels": [
+        {
+          "2DImage": "https://account.superchain.eco/static/badges/2DImages/WorldCoinVerification-1.svg",
+          "3DImage": "https://account.superchain.eco/static/badges/3DImages/WorldCoinVerification-1.svg",
+          "minValue": 1,
+          "points": 60
+        }
+      ],
+      "condition": "Get verified with Worldcoin",
+      "chain": "Optimism"
+    },
+    {
       "name": "Gitcoin Donations Made",
       "description": "Donate on Gitcoin",
       "platform": "Gitcoin",
       "levels": [
         {
-          "2DImage": "https://ikjhtwwevrmwwjatccqi.supabase.co/storage/v1/object/public/Badges/2DImages/GitcoinDonationsMade-1.svg",
-          "3DImage": "https://ikjhtwwevrmwwjatccqi.supabase.co/storage/v1/object/public/Badges/3DImages/GitcoinDonationsMade-1.svg",
+          "2DImage": "https://account.superchain.eco/static/badges/2DImages/GitcoinDonationsMade-1.svg",
+          "3DImage": "https://account.superchain.eco/static/badges/3DImages/GitcoinDonationsMade-1.svg",
           "minValue": 25,
           "points": 10
         },
         {
-          "2DImage": "https://ikjhtwwevrmwwjatccqi.supabase.co/storage/v1/object/public/Badges/2DImages/GitcoinDonationsMade-2.svg",
-          "3DImage": "https://ikjhtwwevrmwwjatccqi.supabase.co/storage/v1/object/public/Badges/3DImages/GitcoinDonationsMade-2.svg",
+          "2DImage": "https://account.superchain.eco/static/badges/2DImages/GitcoinDonationsMade-2.svg",
+          "3DImage": "https://account.superchain.eco/static/badges/3DImages/GitcoinDonationsMade-2.svg",
           "minValue": 100,
           "points": 20
         },
         {
-          "2DImage": "https://ikjhtwwevrmwwjatccqi.supabase.co/storage/v1/object/public/Badges/2DImages/GitcoinDonationsMade-3.svg",
-          "3DImage": "https://ikjhtwwevrmwwjatccqi.supabase.co/storage/v1/object/public/Badges/3DImages/GitcoinDonationsMade-3.svg",
+          "2DImage": "https://account.superchain.eco/static/badges/2DImages/GitcoinDonationsMade-3.svg",
+          "3DImage": "https://account.superchain.eco/static/badges/3DImages/GitcoinDonationsMade-3.svg",
           "minValue": 250,
           "points": 30
         },
         {
-          "2DImage": "https://ikjhtwwevrmwwjatccqi.supabase.co/storage/v1/object/public/Badges/2DImages/GitcoinDonationsMade-4.svg",
-          "3DImage": "https://ikjhtwwevrmwwjatccqi.supabase.co/storage/v1/object/public/Badges/3DImages/GitcoinDonationsMade-4.svg",
+          "2DImage": "https://account.superchain.eco/static/badges/2DImages/GitcoinDonationsMade-4.svg",
+          "3DImage": "https://account.superchain.eco/static/badges/3DImages/GitcoinDonationsMade-4.svg",
           "minValue": 1000,
           "points": 40
         }
@@ -242,5 +284,6 @@
       "condition": "Donate ${{variable}} more on Gitcoin",
       "chain": "Optimism"
     }
+
   ]
 }
