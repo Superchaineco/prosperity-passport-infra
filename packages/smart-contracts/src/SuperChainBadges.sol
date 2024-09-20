@@ -5,7 +5,7 @@ import {UUPSUpgradeable} from "@openzeppelin/contracts-upgradeable/proxy/utils/U
 import {ERC1155Upgradeable} from "@openzeppelin/contracts-upgradeable/token/ERC1155/ERC1155Upgradeable.sol";
 import {OwnableUpgradeable} from "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
 import {UUPSUpgradeable} from "@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol";
-import {Initializable} "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
+import {Initializable} from "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
 
 struct BadgeUpdate {
     uint256 badgeId;
@@ -27,9 +27,9 @@ contract SuperChainBadges is Initializable,ERC1155Upgradeable,  OwnableUpgradeab
     uint256 constant LEVEL_SHIFT = 128;
     /// @custom:storage-location erc7201:openzeppelin.storage.superchain_badges
     struct BadgesStorage{
-        address public resolver;
-        mapping(uint256 => Badge) private _badges;
-        mapping(address => mapping(uint256 => uint256)) private _userBadgeTiers;
+        address resolver;
+        mapping(uint256 => Badge)  _badges;
+        mapping(address => mapping(uint256 => uint256))  _userBadgeTiers;
     }
 
     struct BadgeTier {
@@ -88,7 +88,7 @@ contract SuperChainBadges is Initializable,ERC1155Upgradeable,  OwnableUpgradeab
         address owner
     ) public initializer {
         __ERC1155_init("");
-        __Ownable_init();
+        __Ownable_init(owner);
         __UUPSUpgradeable_init();
         for (uint256 i = 0; i < badges.length; i++) {
             setBadgeMetadata(badges[i].badgeId, badges[i].generalURI);
@@ -101,7 +101,7 @@ contract SuperChainBadges is Initializable,ERC1155Upgradeable,  OwnableUpgradeab
                 badgeTiers[i].points
             );
         }
-        setOwner(owner);
+
     }
 
   
@@ -326,4 +326,6 @@ contract SuperChainBadges is Initializable,ERC1155Upgradeable,  OwnableUpgradeab
         BadgesStorage storage s = badgesStorage();
         return s.resolver;
     }
+
+    function _authorizeUpgrade(address) internal override onlyOwner {}
 }
