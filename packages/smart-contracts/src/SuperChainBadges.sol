@@ -1,8 +1,11 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
-import "@openzeppelin/contracts/token/ERC1155/ERC1155.sol";
-import "@openzeppelin/contracts/access/Ownable.sol";
+import {UUPSUpgradeable} from "@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol";
+import {ERC1155Upgradeable} from "@openzeppelin/contracts-upgradeable/token/ERC1155/ERC1155Upgradeable.sol";
+import {OwnableUpgradeable} from "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
+import {UUPSUpgradeable} from "@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol";
+import {Initializable} "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
 
 struct BadgeUpdate {
     uint256 badgeId;
@@ -19,10 +22,15 @@ struct BadgeTierMetadata {
     string newURI;
     uint256 points;
 }
-contract SuperChainBadges is ERC1155, Ownable {
+contract SuperChainBadges is Initializable,ERC1155Upgradeable,  OwnableUpgradeable, UUPSUpgradeable {
     uint256 constant LEVEL_MASK = uint256(type(uint128).max);
     uint256 constant LEVEL_SHIFT = 128;
-    address public resolver;
+    /// @custom:storage-location erc7201:openzeppelin.storage.superchain_badges
+    struct BadgesStorage{
+        address public resolver;
+        mapping(uint256 => Badge) private _badges;
+        mapping(address => mapping(uint256 => uint256)) private _userBadgeTiers;
+    }
 
     struct BadgeTier {
         string uri;
@@ -35,8 +43,6 @@ contract SuperChainBadges is ERC1155, Ownable {
         uint256 highestTier;
     }
 
-    mapping(uint256 => Badge) private _badges;
-    mapping(address => mapping(uint256 => uint256)) private _userBadgeTiers;
 
     event BadgeTierSet(
         uint256 indexed badgeId,
@@ -61,12 +67,29 @@ contract SuperChainBadges is ERC1155, Ownable {
         string uri
     );
 
+    // keccak256(abi.encode(uint256(keccak256("openzeppelin.storage.superchain_module")) - 1)) & ~bytes32(uint256(0xff));
+    bytes32 private constant SUPERCHAIN_BADGES_STORAGE_LOCATION =
+        0x0b2be64e6582d1593e5ce87fbed66eec9268226484384723dab2b56b70de0600;
 
-    constructor(
+
+   function badgesStorage()
+        private
+        pure
+        returns (BadgesStorage storage $)
+    {
+        assembly {
+            $.slot := SUPERCHAIN_BADGES_STORAGE_LOCATION
+        }
+    }
+
+    function initialize(
         BadgeMetadata[] memory badges,
         BadgeTierMetadata[] memory badgeTiers,
         address owner
-    ) ERC1155("") Ownable(owner) {
+    ) public initializer {
+        __ERC1155_init("");
+        __Ownable_init();
+        __UUPSUpgradeable_init();
         for (uint256 i = 0; i < badges.length; i++) {
             setBadgeMetadata(badges[i].badgeId, badges[i].generalURI);
         }
@@ -78,26 +101,31 @@ contract SuperChainBadges is ERC1155, Ownable {
                 badgeTiers[i].points
             );
         }
+        setOwner(owner);
     }
+
+  
 
     function setBadgeMetadata(
         uint256 badgeId,
         string memory generalURI
     ) public onlyOwner {
-        _badges[badgeId].generalURI = generalURI;
+        BadgesStorage storage s = badgesStorage();
+        s._badges[badgeId].generalURI = generalURI;
         emit BadgeMetadataSettled(badgeId, generalURI);
     }
 
     function updateBadgeTierMetadata(uint256 badgeId, uint256 tier, string memory newURI)public onlyOwner{
+        BadgesStorage storage s = badgesStorage();
         require(
-            bytes(_badges[badgeId].generalURI).length != 0,
+            bytes(s._badges[badgeId].generalURI).length != 0,
             "Badge does not exist"
         );
         require(
-            bytes(_badges[badgeId].tiers[tier].uri).length != 0,
+            bytes(s._badges[badgeId].tiers[tier].uri).length != 0,
             "URI for initial tier not set"
         );
-        _badges[badgeId].tiers[tier].uri = newURI;
+        s._badges[badgeId].tiers[tier].uri = newURI;
         emit BadgeTierMetadataUpdated(badgeId, tier, newURI);
     }
 
@@ -108,23 +136,24 @@ contract SuperChainBadges is ERC1155, Ownable {
         string memory newURI,
         uint256 points
     ) public onlyOwner {
+        BadgesStorage storage s = badgesStorage();
         require(
-            bytes(_badges[badgeId].generalURI).length != 0,
+            bytes(s._badges[badgeId].generalURI).length != 0,
             "Badge does not exist"
         );
         require(tier > 0, "Tier must be greater than 0");
         require(
-            tier == _badges[badgeId].highestTier + 1,
+            tier == s._badges[badgeId].highestTier + 1,
             "Tiers must be added sequentially"
         );
         if (tier > 1) {
             require(
-                points > _badges[badgeId].tiers[tier - 1].points,
+                points > s._badges[badgeId].tiers[tier - 1].points,
                 "Points must be greater than the previous tier"
             );
         }
-        _badges[badgeId].tiers[tier] = BadgeTier(newURI, points);
-        _badges[badgeId].highestTier = tier;
+        s._badges[badgeId].tiers[tier] = BadgeTier(newURI, points);
+        s._badges[badgeId].highestTier = tier;
         emit BadgeTierSet(badgeId, tier, newURI, points);
     }
 
@@ -133,23 +162,24 @@ contract SuperChainBadges is ERC1155, Ownable {
         uint256 badgeId,
         uint256 initialTier
     ) internal returns (uint256 totalPoints) {
+        BadgesStorage storage s = badgesStorage();
         require(
-            bytes(_badges[badgeId].tiers[initialTier].uri).length != 0,
+            bytes(s._badges[badgeId].tiers[initialTier].uri).length != 0,
             "URI for initial tier not set"
         );
         uint256 tokenId = _encodeTokenId(badgeId, initialTier);
         require(balanceOf(to, tokenId) == 0, "Badge already minted");
         _mint(to, tokenId, 1, "");
-        _userBadgeTiers[to][badgeId] = initialTier;
+        s._userBadgeTiers[to][badgeId] = initialTier;
         for (uint256 tier = 1; tier <= initialTier; tier++) {
-            totalPoints += _badges[badgeId].tiers[tier].points;
+            totalPoints += s._badges[badgeId].tiers[tier].points;
         }
         emit BadgeMinted(
             to,
             badgeId,
             initialTier,
             totalPoints,
-            _badges[badgeId].tiers[initialTier].uri
+            s._badges[badgeId].tiers[initialTier].uri
         );
     }
 
@@ -158,11 +188,12 @@ contract SuperChainBadges is ERC1155, Ownable {
         uint256 badgeId,
         uint256 newTier
     ) internal returns (uint256 totalPoints) {
+        BadgesStorage storage s = badgesStorage();
         require(
-            bytes(_badges[badgeId].tiers[newTier].uri).length != 0,
+            bytes(s._badges[badgeId].tiers[newTier].uri).length != 0,
             "URI for new tier not set"
         );
-        uint256 oldTier = _userBadgeTiers[user][badgeId];
+        uint256 oldTier = s._userBadgeTiers[user][badgeId];
         uint256 oldTokenId = _encodeTokenId(badgeId, oldTier);
         uint256 newTokenId = _encodeTokenId(badgeId, newTier);
         require(balanceOf(user, newTokenId) == 0, "Badge already minted");
@@ -170,16 +201,16 @@ contract SuperChainBadges is ERC1155, Ownable {
         _burn(user, oldTokenId, 1);
         _mint(user, newTokenId, 1, "");
 
-        _userBadgeTiers[user][badgeId] = newTier;
+        s._userBadgeTiers[user][badgeId] = newTier;
         for (uint256 tier = oldTier + 1; tier <= newTier; tier++) {
-            totalPoints += _badges[badgeId].tiers[tier].points;
+            totalPoints += s._badges[badgeId].tiers[tier].points;
         }
         emit BadgeTierUpdated(
             user,
             badgeId,
             newTier,
             totalPoints,
-            _badges[badgeId].tiers[newTier].uri
+            s._badges[badgeId].tiers[newTier].uri
         );
     }
 
@@ -187,34 +218,38 @@ contract SuperChainBadges is ERC1155, Ownable {
         address user,
         uint256 badgeId
     ) public view returns (string memory generalURI, string memory tierUri) {
-        uint256 userTier = _userBadgeTiers[user][badgeId];
-        generalURI = _badges[badgeId].generalURI;
-        tierUri = _badges[badgeId].tiers[userTier].uri;
+        BadgesStorage storage s = badgesStorage();
+        uint256 userTier = s._userBadgeTiers[user][badgeId];
+        generalURI = s._badges[badgeId].generalURI;
+        tierUri = s._badges[badgeId].tiers[userTier].uri;
     }
 
     function getGeneralBadgeURI(
         uint256 badgeId
     ) public view returns (string memory) {
-        return _badges[badgeId].generalURI;
+        BadgesStorage storage s = badgesStorage();
+        return s._badges[badgeId].generalURI;
     }
 
     function getUserBadgeTier(
         address user,
         uint256 badgeId
     ) public view returns (uint256) {
-        return _userBadgeTiers[user][badgeId];
+        BadgesStorage storage s = badgesStorage();
+        return s._userBadgeTiers[user][badgeId];
     }
 
     function updateOrMintBadges(
         address user,
         BadgeUpdate[] memory updates
     ) public returns (uint256 points) {
-        require(msg.sender == resolver, "Only resolver can call this function");
+        BadgesStorage storage s = badgesStorage();
+        require(msg.sender == s.resolver, "Only resolver can call this function");
         for (uint256 i = 0; i < updates.length; i++) {
             uint256 badgeId = updates[i].badgeId;
             uint256 tier = updates[i].tier;
 
-            if (_userBadgeTiers[user][badgeId] > 0) {
+            if (s._userBadgeTiers[user][badgeId] > 0) {
                 points += updateBadgeTier(user, badgeId, tier);
             } else {
                 points += mintBadge(user, badgeId, tier);
@@ -223,19 +258,22 @@ contract SuperChainBadges is ERC1155, Ownable {
     }
 
     function setResolver(address _resolver) public onlyOwner {
-        resolver = _resolver;
+        BadgesStorage storage s = badgesStorage();
+        s.resolver = _resolver;
     }
 
     function getHighestBadgeTier(
         uint256 badgeId
     ) public view returns (uint256) {
-        return _badges[badgeId].highestTier;
+        BadgesStorage storage s = badgesStorage();
+        return s._badges[badgeId].highestTier;
     }
 
     function uri(uint256 tokenId) public view override returns (string memory) {
+        BadgesStorage storage s = badgesStorage();
         (uint256 badgeId, uint256 tier) = _decodeTokenId(tokenId);
-        string memory baseURI = _badges[badgeId].generalURI;
-        string memory tierURI = _badges[badgeId].tiers[tier].uri;
+        string memory baseURI = s._badges[badgeId].generalURI;
+        string memory tierURI = s._badges[badgeId].tiers[tier].uri;
         return
             string(
                 abi.encodePacked(
@@ -283,5 +321,9 @@ contract SuperChainBadges is ERC1155, Ownable {
     ) internal pure returns (uint256 badgeId, uint256 tier) {
         badgeId = tokenId >> LEVEL_SHIFT;
         tier = tokenId & LEVEL_MASK;
+    }
+    function resolver() public view returns (address) {
+        BadgesStorage storage s = badgesStorage();
+        return s.resolver;
     }
 }
