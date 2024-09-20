@@ -5,6 +5,7 @@ import {
   OwnerPopulationRemoved as OwnerPopulationRemovedEvent,
   PointsIncremented as PointsIncrementedEvent,
   SuperChainSmartAccountCreated as SuperChainSmartAccountCreatedEvent,
+  NounUpdated as NounUpdatedEvent,
 } from "../generated/SuperChainSmartAccountModule/SuperChainSmartAccountModule";
 import {
   EIP712DomainChanged,
@@ -158,4 +159,16 @@ export function handleSuperChainSmartAccountCreated(
   entity.transactionHash = event.transaction.hash;
 
   entity.save();
+}
+
+export function handleNounUpdated(event: NounUpdatedEvent): void {
+  let entity = SuperChainSmartAccount.load(event.params.safe);
+if(entity != null){
+  entity.noun_background = event.params.noun.background;
+    entity.noun_body = event.params.noun.body;
+  entity.noun_accessory = event.params.noun.accessory;
+  entity.noun_head = event.params.noun.head;
+  entity.noun_glasses = event.params.noun.glasses;
+  entity.save();
+}
 }

@@ -41,6 +41,7 @@ interface ISuperChainModule {
     event PointsIncremented(address indexed recipient, uint256 points, bool levelUp);
     event TierTresholdAdded(uint256 treshold);
     event TierTresholdUpdated(uint256 index, uint256 newThreshold);
+    event NounUpdated(address indexed safe, NounMetadata noun);
     // Functions
     function addOwnerWithThreshold(address _safe, address _newOwner) external;
 

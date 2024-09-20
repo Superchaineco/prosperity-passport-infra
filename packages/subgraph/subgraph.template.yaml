@@ -39,6 +39,8 @@ dataSources:
           handler: handlePointsIncremented
         - event: SuperChainSmartAccountCreated(indexed address,indexed address,string,(uint48,uint48,uint48,uint48,uint48))
           handler: handleSuperChainSmartAccountCreated
+        - event: NounUpdated(indexed address,(uint48,uint48,uint48,uint48,uint48))
+          handler: handleNounUpdated
       file: ./src/super-chain-smart-account-module.ts
   - kind: ethereum
     name: SuperChainBadges
