@@ -2,16 +2,16 @@
 pragma solidity ^0.8.20;
 import {ISafe} from "../interfaces/ISafe.sol";
 import {Enum} from "../libraries/Enum.sol";
-import {EIP712Upgradeable} from "@openzeppelin/contracts-upgradeable/utils/cryptography/EIP712Upgradeable.sol";
 import {OwnableUpgradeable} from "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
+import {UUPSUpgradeable} from "@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol";
 import "../interfaces/ISuperChainModule.sol";
 import "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
 
 contract SuperChainModuleUpgradeable is
     Initializable,
     ISuperChainModule,
-    EIP712Upgradeable,
-    OwnableUpgradeable
+    OwnableUpgradeable,
+    UUPSUpgradeable
 {
     /// @custom:storage-location erc7201:openzeppelin.storage.superchain_module
     struct SuperChainStorage {
@@ -41,7 +41,6 @@ contract SuperChainModuleUpgradeable is
     function initialize(address resolver, address owner) public initializer {
         SuperChainStorage storage s = superChainStorage();
         __Ownable_init(owner);
-        __EIP712_init("SuperChainAccountModule", "1");
         s._resolver = resolver;
     }
 
@@ -345,6 +344,7 @@ contract SuperChainModuleUpgradeable is
             "Only the SuperChainSmartAccount can update the noun"
         );
         s.superChainAccount[_safe].noun = _noun;
+        emit NounUpdated(_safe, _noun);
     }
 
     function populatedAddOwnersWithTreshold(
@@ -371,4 +371,6 @@ contract SuperChainModuleUpgradeable is
         SuperChainStorage storage s = superChainStorage();
         return s.SuperChainIDRegistered[$];
     }
+
+    function _authorizeUpgrade(address) internal override onlyOwner {}
 }

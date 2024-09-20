@@ -15,8 +15,9 @@ contract SuperChainResolver is SchemaResolver, Ownable {
     constructor(
         IEAS eas,
         address _attestator,
-        SuperChainBadges _superChainBadges
-    ) Ownable(msg.sender) SchemaResolver(eas) {
+        SuperChainBadges _superChainBadges,
+        address owner
+    ) Ownable(owner) SchemaResolver(eas) {
         attestator = _attestator;
         superChainBadges = _superChainBadges;
     }

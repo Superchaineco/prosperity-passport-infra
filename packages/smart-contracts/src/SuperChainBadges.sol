@@ -64,8 +64,9 @@ contract SuperChainBadges is ERC1155, Ownable {
 
     constructor(
         BadgeMetadata[] memory badges,
-        BadgeTierMetadata[] memory badgeTiers
-    ) ERC1155("") Ownable(msg.sender) {
+        BadgeTierMetadata[] memory badgeTiers,
+        address owner
+    ) ERC1155("") Ownable(owner) {
         for (uint256 i = 0; i < badges.length; i++) {
             setBadgeMetadata(badges[i].badgeId, badges[i].generalURI);
         }
@@ -137,6 +138,7 @@ contract SuperChainBadges is ERC1155, Ownable {
             "URI for initial tier not set"
         );
         uint256 tokenId = _encodeTokenId(badgeId, initialTier);
+        require(balanceOf(to, tokenId) == 0, "Badge already minted");
         _mint(to, tokenId, 1, "");
         _userBadgeTiers[to][badgeId] = initialTier;
         for (uint256 tier = 1; tier <= initialTier; tier++) {
@@ -163,6 +165,7 @@ contract SuperChainBadges is ERC1155, Ownable {
         uint256 oldTier = _userBadgeTiers[user][badgeId];
         uint256 oldTokenId = _encodeTokenId(badgeId, oldTier);
         uint256 newTokenId = _encodeTokenId(badgeId, newTier);
+        require(balanceOf(user, newTokenId) == 0, "Badge already minted");
 
         _burn(user, oldTokenId, 1);
         _mint(user, newTokenId, 1, "");
