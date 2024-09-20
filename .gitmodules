@@ -4,9 +4,6 @@
 [submodule "packages/smart-contracts/lib/eas-contracts"]
 	path = packages/smart-contracts/lib/eas-contracts
 	url = https://github.com/ethereum-attestation-service/eas-contracts
-[submodule "packages/smart-contracts/lib/openzeppelin-contracts"]
-	path = packages/smart-contracts/lib/openzeppelin-contracts
-	url = https://github.com/OpenZeppelin/openzeppelin-contracts
 [submodule "packages/smart-contracts/lib/openzeppelin-foundry-upgrades"]
 	path = packages/smart-contracts/lib/openzeppelin-foundry-upgrades
 	url = https://github.com/OpenZeppelin/openzeppelin-foundry-upgrades
