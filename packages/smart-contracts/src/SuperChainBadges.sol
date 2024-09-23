@@ -22,14 +22,19 @@ struct BadgeTierMetadata {
     string newURI;
     uint256 points;
 }
-contract SuperChainBadges is Initializable,ERC1155Upgradeable,  OwnableUpgradeable, UUPSUpgradeable {
+contract SuperChainBadges is
+    Initializable,
+    ERC1155Upgradeable,
+    OwnableUpgradeable,
+    UUPSUpgradeable
+{
     uint256 constant LEVEL_MASK = uint256(type(uint128).max);
     uint256 constant LEVEL_SHIFT = 128;
     /// @custom:storage-location erc7201:openzeppelin.storage.superchain_badges
-    struct BadgesStorage{
+    struct BadgesStorage {
         address resolver;
-        mapping(uint256 => Badge)  _badges;
-        mapping(address => mapping(uint256 => uint256))  _userBadgeTiers;
+        mapping(uint256 => Badge) _badges;
+        mapping(address => mapping(uint256 => uint256)) _userBadgeTiers;
     }
 
     struct BadgeTier {
@@ -42,7 +47,6 @@ contract SuperChainBadges is Initializable,ERC1155Upgradeable,  OwnableUpgradeab
         mapping(uint256 => BadgeTier) tiers;
         uint256 highestTier;
     }
-
 
     event BadgeTierSet(
         uint256 indexed badgeId,
@@ -58,7 +62,11 @@ contract SuperChainBadges is Initializable,ERC1155Upgradeable,  OwnableUpgradeab
         string uri
     );
     event BadgeMetadataSettled(uint256 indexed badgeId, string generalURI);
-    event BadgeTierMetadataUpdated(uint256 indexed badgeId, uint256 tier, string newURI);
+    event BadgeTierMetadataUpdated(
+        uint256 indexed badgeId,
+        uint256 tier,
+        string newURI
+    );
     event BadgeTierUpdated(
         address indexed user,
         uint256 indexed badgeId,
@@ -67,16 +75,11 @@ contract SuperChainBadges is Initializable,ERC1155Upgradeable,  OwnableUpgradeab
         string uri
     );
 
-    // keccak256(abi.encode(uint256(keccak256("openzeppelin.storage.superchain_module")) - 1)) & ~bytes32(uint256(0xff));
+    // keccak256(abi.encode(uint256(keccak256("openzeppelin.storage.superchain_badges")) - 1)) & ~bytes32(uint256(0xff));
     bytes32 private constant SUPERCHAIN_BADGES_STORAGE_LOCATION =
-        0x0b2be64e6582d1593e5ce87fbed66eec9268226484384723dab2b56b70de0600;
+        0xb2b7b32472936fec942d11d364b3fb7baeea6584fbe4aa7e3432289df3426200;
 
-
-   function badgesStorage()
-        private
-        pure
-        returns (BadgesStorage storage $)
-    {
+    function badgesStorage() private pure returns (BadgesStorage storage $) {
         assembly {
             $.slot := SUPERCHAIN_BADGES_STORAGE_LOCATION
         }
@@ -101,10 +104,7 @@ contract SuperChainBadges is Initializable,ERC1155Upgradeable,  OwnableUpgradeab
                 badgeTiers[i].points
             );
         }
-
     }
-
-  
 
     function setBadgeMetadata(
         uint256 badgeId,
@@ -115,7 +115,11 @@ contract SuperChainBadges is Initializable,ERC1155Upgradeable,  OwnableUpgradeab
         emit BadgeMetadataSettled(badgeId, generalURI);
     }
 
-    function updateBadgeTierMetadata(uint256 badgeId, uint256 tier, string memory newURI)public onlyOwner{
+    function updateBadgeTierMetadata(
+        uint256 badgeId,
+        uint256 tier,
+        string memory newURI
+    ) public onlyOwner {
         BadgesStorage storage s = badgesStorage();
         require(
             bytes(s._badges[badgeId].generalURI).length != 0,
@@ -128,7 +132,6 @@ contract SuperChainBadges is Initializable,ERC1155Upgradeable,  OwnableUpgradeab
         s._badges[badgeId].tiers[tier].uri = newURI;
         emit BadgeTierMetadataUpdated(badgeId, tier, newURI);
     }
-
 
     function setBadgeTier(
         uint256 badgeId,
@@ -244,7 +247,10 @@ contract SuperChainBadges is Initializable,ERC1155Upgradeable,  OwnableUpgradeab
         BadgeUpdate[] memory updates
     ) public returns (uint256 points) {
         BadgesStorage storage s = badgesStorage();
-        require(msg.sender == s.resolver, "Only resolver can call this function");
+        require(
+            msg.sender == s.resolver,
+            "Only resolver can call this function"
+        );
         for (uint256 i = 0; i < updates.length; i++) {
             uint256 badgeId = updates[i].badgeId;
             uint256 tier = updates[i].tier;
