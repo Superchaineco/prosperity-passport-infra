@@ -39,9 +39,9 @@ contract SuperChainModuleUpgradeable is
     }
 
     function initialize(address resolver, address owner) public initializer {
-        SuperChainStorage storage s = superChainStorage();
         __Ownable_init(owner);
         __UUPSUpgradeable_init();
+        SuperChainStorage storage s = superChainStorage();
         s._resolver = resolver;
     }
 
