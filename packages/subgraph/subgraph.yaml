@@ -8,7 +8,7 @@ dataSources:
     name: SuperChainSmartAccountModule
     network: sepolia
     source:
-      address: "0x983F1E127AA93839D8766e68AA076E67F4E039a9"
+      address: "0x37e4783e5AfE03A49520c48e103683574447a81f"
       abi: SuperChainSmartAccountModule
       startBlock: 6673520
     mapping:
@@ -46,7 +46,7 @@ dataSources:
     name: SuperChainBadges
     network: sepolia
     source:
-      address: "0x05a134d1569C1003701D365B5a95822609228282"
+      address: "0xca707848b4FBE8c0dA869c3943F878A9ea0D907F"
       abi: SuperChainBadges
       startBlock: 6673520
     mapping:

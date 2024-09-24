@@ -9,8 +9,8 @@
     "remove-local": "graph remove --node http://localhost:8020/ superchainsmartaccount~",
     "deploy-local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 superchainsmartaccount~",
     "test": "graph test",
-    "deploy-mainnet": "NETWORK=optimism node scripts/generate-subgraph.js && graph deploy --studio superchainsmartaccount",
-    "deploy-testnet": "NETWORK=sepolia node scripts/generate-subgraph.js && graph deploy --studio superchainsmartaccount-testnet"
+    "deploy-mainnet": "NETWORK=optimism node scripts/generate-subgraph.js && graph build && graph deploy --studio superchainsmartaccount",
+    "deploy-testnet": "NETWORK=sepolia node scripts/generate-subgraph.js && graph build && graph deploy --studio superchainsmartaccount-testnet"
   },
   "dependencies": {
     "@graphprotocol/graph-cli": "0.73.0",
