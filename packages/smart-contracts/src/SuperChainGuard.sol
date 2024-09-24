@@ -1,4 +1,4 @@
-// SPDX-License-Identifier: UNLICENSED
+// SPDX-License-Identifier: MIT
 pragma solidity ^0.8.13;
 import {IGuard} from "../interfaces/IGuard.sol";
 import {Enum} from "../libraries/Enum.sol";
@@ -9,11 +9,13 @@ contract SuperChainGuard is BaseGuard {
     bytes4 private immutable REMOVE_OWNER_SELECTOR = 0xf8dc5dd9;
     bytes4 private immutable SWAP_OWNER_SELECTOR = 0xe318b52b;
     bytes4 private immutable CHANGE_THRESHOLD_SELECTOR = 0x694e80c3;
+    bytes4 private immutable SET_GUARD = 0xe19a9dd9;
 
-    error UnableToAddOwnersToDPGAccount();
-    error UnableToRemoveOwnersFromDPGAccount();
-    error UnableToSwapOwnersInDPGAccount();
-    error UnableToChangeThresholdInDPGAccount();
+    error UnableToAddOwnersToSCSA();
+    error UnableToRemoveOwnersFromSCSA();
+    error UnableToSwapOwnersInSCSA();
+    error UnableToChangeThresholdInSCSA();
+    error UnableToSetGuardInSCSA();
 
     fallback() external {
         // We don't revert on fallback to avoid issues in case of a Safe upgrade
@@ -45,17 +47,20 @@ contract SuperChainGuard is BaseGuard {
                 selector := mload(add(data, 0x20))
             }
             if (selector == ADD_OWNER_WITH_THRESHOLD_SELECTOR) {
-                revert UnableToAddOwnersToDPGAccount();
+                revert UnableToAddOwnersToSCSA();
             }
             if (selector == REMOVE_OWNER_SELECTOR) {
-                revert UnableToAddOwnersToDPGAccount();
+                revert UnableToAddOwnersToSCSA();
             }
             if (selector == SWAP_OWNER_SELECTOR) {
-                revert UnableToAddOwnersToDPGAccount();
+                revert UnableToAddOwnersToSCSA();
             }
             if (selector == CHANGE_THRESHOLD_SELECTOR) {
-                revert UnableToAddOwnersToDPGAccount();
+                revert UnableToAddOwnersToSCSA();
             }
+	    if (selector == SET_GUARD){
+	    	revert UnableToSetGuardInSCSA();
+	    }
         }
     }
 
