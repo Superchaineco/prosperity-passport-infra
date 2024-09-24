@@ -1,10 +1,9 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.0;
+pragma solidity ^0.8.20;
 
 import {UUPSUpgradeable} from "@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol";
 import {ERC1155Upgradeable} from "@openzeppelin/contracts-upgradeable/token/ERC1155/ERC1155Upgradeable.sol";
 import {OwnableUpgradeable} from "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
-import {UUPSUpgradeable} from "@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol";
 import {Initializable} from "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
 
 struct BadgeUpdate {
@@ -85,14 +84,16 @@ contract SuperChainBadges is
         }
     }
 
-    function initialize(
-        BadgeMetadata[] memory badges,
-        BadgeTierMetadata[] memory badgeTiers,
-        address owner
-    ) public initializer {
+    function initialize(address owner) public initializer {
         __ERC1155_init("");
         __Ownable_init(owner);
         __UUPSUpgradeable_init();
+    }
+
+    function setBadgesAndTiers(
+        BadgeMetadata[] memory badges,
+        BadgeTierMetadata[] memory badgeTiers
+    ) public onlyOwner {
         for (uint256 i = 0; i < badges.length; i++) {
             setBadgeMetadata(badges[i].badgeId, badges[i].generalURI);
         }
