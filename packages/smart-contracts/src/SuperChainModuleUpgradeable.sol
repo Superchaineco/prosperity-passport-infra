@@ -20,7 +20,7 @@ contract SuperChainModuleUpgradeable is
         mapping(address => Account) superChainAccount;
         mapping(address => address) userSuperChainAccount;
         mapping(address => bool) hasFirstOwnerYet;
-        mapping(string => bool) SuperChainIDRegistered;
+        mapping(string => bool) superChainIDRegistered;
         address _resolver;
         uint256[] _tierTreshold;
     }
@@ -160,7 +160,7 @@ contract SuperChainModuleUpgradeable is
             "The last 11 characters cannot be '.superchain'"
         );
         require(
-            !s.SuperChainIDRegistered[superChainID],
+            !s.superChainIDRegistered[superChainID],
             "The superchain ID was registered yet."
         );
         s.superChainAccount[_safe].smartAccount = _safe;
@@ -169,7 +169,7 @@ contract SuperChainModuleUpgradeable is
             superChainID,
             ".superchain"
         );
-        s.SuperChainIDRegistered[superChainID] = true;
+        s.superChainIDRegistered[superChainID] = true;
         s.hasFirstOwnerYet[_safe] = true;
         s.superChainAccount[_safe].noun = _noun;
         emit OwnerAdded(_safe, _owner, s.superChainAccount[_safe].superChainID);
@@ -366,11 +366,11 @@ contract SuperChainModuleUpgradeable is
         SuperChainStorage storage s = superChainStorage();
         return s.hasFirstOwnerYet[$];
     }
-    function SuperChainIDRegistered(
+    function superChainIDRegistered(
         string memory $
     ) public view returns (bool) {
         SuperChainStorage storage s = superChainStorage();
-        return s.SuperChainIDRegistered[$];
+        return s.superChainIDRegistered[$];
     }
 
     function _authorizeUpgrade(address) internal override onlyOwner {}
