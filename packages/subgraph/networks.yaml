@@ -9,8 +9,8 @@ sepolia:
 optimism:
   network: optimism
   SuperChainSmartAccountModule:
-    address: "0x72735dA05De8B3B0dec18D51Da996EAD3A103e87"
-    startBlock: 125540903
+    address: "0x1Ee397850c3CA629d965453B3cF102E9A8806Ded"
+    startBlock: 125901332 
   SuperChainBadges:
-    address: "0xebcC12CeB73570367CaEb319BAED427f36116a78"
-    startBlock: 125540903
+    address: "0x03e2c563cf77e3Cdc0b7663cEE117dA14ea60848"
+    startBlock: 125901059 

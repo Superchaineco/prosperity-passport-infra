@@ -6,11 +6,11 @@ indexerHints:
 dataSources:
   - kind: ethereum
     name: SuperChainSmartAccountModule
-    network: sepolia
+    network: optimism
     source:
-      address: "0x37e4783e5AfE03A49520c48e103683574447a81f"
+      address: "0x1Ee397850c3CA629d965453B3cF102E9A8806Ded"
       abi: SuperChainSmartAccountModule
-      startBlock: 6673520
+      startBlock: 125901332
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.7
@@ -44,11 +44,11 @@ dataSources:
       file: ./src/super-chain-smart-account-module.ts
   - kind: ethereum
     name: SuperChainBadges
-    network: sepolia
+    network: optimism
     source:
-      address: "0xca707848b4FBE8c0dA869c3943F878A9ea0D907F"
+      address: "0x03e2c563cf77e3Cdc0b7663cEE117dA14ea60848"
       abi: SuperChainBadges
-      startBlock: 6673520
+      startBlock: 125901059
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.7
