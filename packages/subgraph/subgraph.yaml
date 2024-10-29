@@ -22,7 +22,7 @@ dataSources:
         - OwnerPopulationRemoved
         - PointsIncremented
         - SuperChainSmartAccountCreated
-
+        - TierTresholds
       abis:
         - name: SuperChainSmartAccountModule
           file: ./abis/SuperChainSmartAccountModule.json
@@ -39,6 +39,10 @@ dataSources:
           handler: handlePointsIncremented
         - event: SuperChainSmartAccountCreated(indexed address,indexed address,string,(uint48,uint48,uint48,uint48,uint48))
           handler: handleSuperChainSmartAccountCreated
+        - event: TierTresholdAdded(uint256)
+          handler: handleTierTresholdAdded
+        - event: TierTresholdUpdated(uint256,uint256)
+          handler: handleTierTresholdUpdated
         - event: NounUpdated(indexed address,(uint48,uint48,uint48,uint48,uint48))
           handler: handleNounUpdated
       file: ./src/super-chain-smart-account-module.ts

@@ -5,6 +5,8 @@ import {
   OwnerPopulationRemoved as OwnerPopulationRemovedEvent,
   PointsIncremented as PointsIncrementedEvent,
   SuperChainSmartAccountCreated as SuperChainSmartAccountCreatedEvent,
+  TierTresholdAdded as TierTresholdAddedEvent,
+  TierTresholdUpdated as TierTresholdUpdatedEvent,
   NounUpdated as NounUpdatedEvent,
 } from "../generated/SuperChainSmartAccountModule/SuperChainSmartAccountModule";
 import {
@@ -14,9 +16,12 @@ import {
   PointsIncremented,
   OwnerPopulationRemoved,
   SuperChainSmartAccount,
+  TierTresholds,
   Meta,
 } from "../generated/schema";
 import { BigInt, store } from "@graphprotocol/graph-ts";
+
+const TIER_TRESHOLDS = "TierTresholds";
 
 export function handleEIP712DomainChanged(
   event: EIP712DomainChangedEvent,
@@ -29,6 +34,30 @@ export function handleEIP712DomainChanged(
   entity.blockTimestamp = event.block.timestamp;
   entity.transactionHash = event.transaction.hash;
 
+  entity.save();
+}
+
+export function handleTierTresholdAdded(event: TierTresholdAddedEvent): void{
+	let entity =  TierTresholds.load(TIER_TRESHOLDS);
+  if(entity == null){
+    entity = new TierTresholds(TIER_TRESHOLDS);
+    entity.tresholds = [];
+  }
+  let prevTreshold = entity.tresholds;
+  prevTreshold.push(event.params.treshold);
+  entity.tresholds = prevTreshold;
+  entity.save();
+}
+
+export function handleTierTresholdUpdated(event: TierTresholdUpdatedEvent): void{
+	let entity =  TierTresholds.load(TIER_TRESHOLDS);
+  if(entity == null){
+    entity = new TierTresholds(TIER_TRESHOLDS);
+    entity.tresholds = [];
+  }
+  let prevTreshold = entity.tresholds;
+  prevTreshold[event.params.index.toI32()] = event.params.newThreshold;
+  entity.tresholds = prevTreshold;
   entity.save();
 }
 
@@ -121,18 +150,34 @@ export function handlePointsIncremented(event: PointsIncrementedEvent): void {
   );
   entity.recipient = event.params.recipient;
   entity.points = event.params.points;
+  entity.levelUp = event.params.levelUp
   entity.blockNumber = event.block.number;
   entity.blockTimestamp = event.block.timestamp;
   entity.transactionHash = event.transaction.hash;
   let superChainSmartAccount = SuperChainSmartAccount.load(entity.recipient);
   if (superChainSmartAccount == null) {
     superChainSmartAccount = new SuperChainSmartAccount(entity.recipient);
+    superChainSmartAccount.level = BigInt.fromI32(0)
+    superChainSmartAccount.points = BigInt.fromI32(0);
   }
+  
   superChainSmartAccount.points = superChainSmartAccount.points.plus(
     entity.points,
   );
-  if(event.params.levelUp){
-    superChainSmartAccount.level = superChainSmartAccount.level.plus(BigInt.fromI32(1));
+  let thresholdsEntity = TierTresholds.load(TIER_TRESHOLDS);
+  if(thresholdsEntity && event.params.levelUp){
+    let thresholds = thresholdsEntity.tresholds;
+    let currentPoints = superChainSmartAccount.points;
+    let newLevel = BigInt.fromI32(0);
+
+    for (let i = 0; i < thresholds.length; i++) {
+      if (currentPoints >= thresholds[i]) {
+        newLevel = BigInt.fromI32(i + 1);
+      } else {
+        break; 
+      }
+    }
+    superChainSmartAccount.level = newLevel;
   }
   superChainSmartAccount.save();
   entity.superChainSmartAccount = superChainSmartAccount.id;

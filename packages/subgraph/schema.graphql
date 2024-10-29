@@ -43,6 +43,7 @@ type PointsIncremented @entity(immutable: true) {
   id: Bytes!
   recipient: Bytes! # address
   points: BigInt! # uint256
+  levelUp: Boolean!
   blockNumber: BigInt!
   blockTimestamp: BigInt!
   transactionHash: Bytes!
@@ -92,7 +93,12 @@ type AccountBadge @entity {
   points: BigInt! # uint256
 }
 
+type TierTresholds @entity {
+  id: ID!
+  tresholds: [BigInt!]! 
+}
+
 type Meta @entity {
   id: String!
-  count: BigInt!
+  count: BigInt! 
 }
