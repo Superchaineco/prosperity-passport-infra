@@ -16,7 +16,6 @@ struct Badge {
     string chain;
     string condition;
     string description;
-    uint256 id;
     BadgeTier[] levels;
     string name;
     string platform;
@@ -36,20 +35,19 @@ contract JSONReader is Script {
         uint256 tierCount = 0;
 
         for (uint256 i = 0; i < badgesJson.badges.length; i++) {
-            console.log("Badge Name:", badgesJson.badges[i].name);
-            console.log("Badge Description:", badgesJson.badges[i].description);
-            console.log("Badge Platform:", badgesJson.badges[i].platform);
-            console.log("Badge Chain:", badgesJson.badges[i].chain);
-            console.log("Badge Condition:", badgesJson.badges[i].condition);
-            console.log("Badge URI:", badgesJson.badges[i].URI);
-            console.log("Badge ID:", badgesJson.badges[i].id);
+            // console.log("Badge Name:", badgesJson.badges[i].name);
+            // console.log("Badge Description:", badgesJson.badges[i].description);
+            // console.log("Badge Platform:", badgesJson.badges[i].platform);
+            // console.log("Badge Chain:", badgesJson.badges[i].chain);
+            // console.log("Badge Condition:", badgesJson.badges[i].condition);
+            // console.log("Badge URI:", badgesJson.badges[i].URI);
             for (uint256 j = 0; j < badgesJson.badges[i].levels.length; j++) {
                 tierCount++;
-                console.log("Badge 2D Image:", badgesJson.badges[i].levels[j].image2D);
-                console.log("Badge 3D Image:", badgesJson.badges[i].levels[j].image3D);
-                console.log("Badge Min Value:", badgesJson.badges[i].levels[j].minValue);
-                console.log("Badge Points:", badgesJson.badges[i].levels[j].points);
-                console.log("Badge URI:", badgesJson.badges[i].levels[j].URI);
+                // console.log("Badge 2D Image:", badgesJson.badges[i].levels[j].image2D);
+                // console.log("Badge 3D Image:", badgesJson.badges[i].levels[j].image3D);
+                // console.log("Badge Min Value:", badgesJson.badges[i].levels[j].minValue);
+                // console.log("Badge Points:", badgesJson.badges[i].levels[j].points);
+                // console.log("Badge URI:", badgesJson.badges[i].levels[j].URI);
             }
         }
 
