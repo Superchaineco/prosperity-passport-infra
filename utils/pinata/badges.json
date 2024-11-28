@@ -236,7 +236,7 @@
       "condition": "Have a Builder Fi score of {{variable}}",
       "chain": "Ethereum"
     },
- {
+    {
       "name": "Worldcoin Verification",
       "description": "Verify on Worldcoin",
       "platform": "Worldcoin",
@@ -283,7 +283,21 @@
       ],
       "condition": "Donate ${{variable}} more on Gitcoin",
       "chain": "Optimism"
+    },
+    {
+      "name": "Super Cohort 24",
+      "description": "Graduated from Super Cohort 0",
+      "platform": "Optimism",
+      "levels": [
+        {
+          "2DImage": "https://account.superchain.eco/static/badges/2DImages/SuperCohort0-1.svg",
+          "3DImage": "https://account.superchain.eco/static/badges/3DImages/SuperCohort0-1.svg",
+          "minValue": 1,
+          "points": 100
+        }
+      ],
+      "condition": "Complete Super Cohort 0",
+      "chain": "Optimism"
     }
-
   ]
 }
