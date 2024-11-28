@@ -5,6 +5,7 @@ import {
     BadgeTierUpdated as BadgeTierUpdatedEvent,
     BadgeMinted as BadgeMintedEvent,
     BadgeMetadataSettled as BadgeMetadataSettledEvent,
+    BadgeTierMetadataUpdated as BadgeTierMetadataUpdatedEvent,
 } from "../generated/SuperChainBadges/SuperChainBadges"
 import {
     BadgeTier, Badge, AccountBadge,
@@ -13,7 +14,7 @@ import {
 
 
 export function handleBadgeTierSet(event: BadgeTierSetEvent): void {
-    let entity = new BadgeTier(event.transaction.hash.concatI32(event.logIndex.toI32()))
+    let entity = new BadgeTier(event.params.badgeId.toHexString().concat(event.params.tier.toString()))
     let badge = Badge.load(event.params.badgeId.toHexString())
     if (!badge) return
     entity.points = event.params.points
@@ -50,5 +51,11 @@ export function handleBadgeMinted(event: BadgeMintedEvent): void {
     entity.points = event.params.points
     entity.user = event.params.user
     entity.save()
+}
 
+export function handleBadgeTierMetadataUpdated(event: BadgeTierMetadataUpdatedEvent): void {
+    let entity = BadgeTier.load(event.params.badgeId.toHexString().concat(event.params.tier.toString()))
+    if (!entity) return
+    entity.uri = event.params.newURI
+    entity.save()
 }

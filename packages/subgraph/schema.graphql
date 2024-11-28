@@ -69,7 +69,7 @@ type SuperChainSmartAccount @entity {
 }
 
 type BadgeTier @entity {
-  id: Bytes!
+  id: String!
   points: BigInt!
   tier: BigInt! @orderBy(direction: asc)
   badge: Badge! # Relación con Badge
