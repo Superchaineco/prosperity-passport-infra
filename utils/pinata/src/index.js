@@ -12,7 +12,7 @@ dotenv.config();
 const JWT = process.env.PINATA_JWT;
 
 const BADGES_FILE_PATH = './badges.json';
-const OUTPUT_FOLDER = './data/super-chain-badges-v1';
+const OUTPUT_FOLDER = './data/prosperity-passport-badges';
 
 
 async function uploadFolderToIPFS(folderPath) {
