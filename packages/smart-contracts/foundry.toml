@@ -13,9 +13,7 @@ fs_permissions = [{ access = "read-write", path = "./"}]
 
 
 [etherscan]
-sepolia = { key = "I36FHHV8SEQP38FSSMQUCI92BJK4H5PJSE" }
-optimism = { key = "UGB21JYI7XRY68M6IBNNYHPJYTSX2V5ATX" }
+celo = { key = "DV3QPMMQ8ZYG176IGWH7WHFEWB3UJYG7N2" }
 
 [rpc_endpoints]
-sepolia = "https://rpc.ankr.com/eth_sepolia"
-optimism = "https://rpc.ankr.com/optimism"
+celo = "https://rpc.ankr.com/celo"

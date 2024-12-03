@@ -1,4 +1,3 @@
-import axios from 'axios';
 import FormData from 'form-data';
 import fs from 'fs';
 import path from 'path';
@@ -13,6 +12,8 @@ const JWT = process.env.PINATA_JWT;
 
 const BADGES_FILE_PATH = './badges.json';
 const OUTPUT_FOLDER = './data/prosperity-passport-badges';
+
+
 
 
 async function uploadFolderToIPFS(folderPath) {
