@@ -1,303 +1,405 @@
 {
   "badges": [
     {
-      "name": "Base User",
-      "description": "Number of transactions made on Base",
-      "platform": "Base",
+      "name": "Celo Genesis",
+      "description": "Celo Wallet Creation Date",
+      "platform": "Celo",
       "levels": [
         {
-          "2DImage": "https://account.superchain.eco/static/badges/2DImages/BaseUser-1.svg",
-          "3DImage": "https://account.superchain.eco/static/badges/3DImages/BaseUser-1.svg",
-          "minValue": 5,
+          "2DImage": "https://passport.celopg.eco/static/badges/2DImages/CeloGenesis-1.svg",
+          "3DImage": "https://passport.celopg.eco/static/badges/3DImages/CeloGenesis-1.svg",
+          "minValue": 2024,
           "points": 10
         },
         {
-          "2DImage": "https://account.superchain.eco/static/badges/2DImages/BaseUser-2.svg",
-          "3DImage": "https://account.superchain.eco/static/badges/3DImages/BaseUser-2.svg",
-          "minValue": 20,
+          "2DImage": "https://passport.celopg.eco/static/badges/2DImages/CeloGenesis-2.svg",
+          "3DImage": "https://passport.celopg.eco/static/badges/3DImages/CeloGenesis-2.svg",
+          "minValue": 2023,
           "points": 20
         },
 
         {
-          "2DImage": "https://account.superchain.eco/static/badges/2DImages/BaseUser-3.svg",
-          "3DImage": "https://account.superchain.eco/static/badges/3DImages/BaseUser-3.svg",
-          "minValue": 50,
+          "2DImage": "https://passport.celopg.eco/static/badges/2DImages/CeloGenesis-3.svg",
+          "3DImage": "https://passport.celopg.eco/static/badges/3DImages/CeloGenesis-3.svg",
+          "minValue": 2022,
           "points": 30
         },
 
         {
-          "2DImage": "https://account.superchain.eco/static/badges/2DImages/BaseUser-4.svg",
-          "3DImage": "https://account.superchain.eco/static/badges/3DImages/BaseUser-4.svg",
-          "minValue": 100,
+          "2DImage": "https://passport.celopg.eco/static/badges/2DImages/CeloGenesis-4.svg",
+          "3DImage": "https://passport.celopg.eco/static/badges/3DImages/CeloGenesis-4.svg",
+          "minValue": 2021,
           "points": 40
         },
 
         {
-          "2DImage": "https://account.superchain.eco/static/badges/2DImages/BaseUser-5.svg",
-          "3DImage": "https://account.superchain.eco/static/badges/3DImages/BaseUser-5.svg",
-          "minValue": 250,
+          "2DImage": "https://passport.celopg.eco/static/badges/2DImages/CeloGenesis-5.svg",
+          "3DImage": "https://passport.celopg.eco/static/badges/3DImages/CeloGenesis-5.svg",
+          "minValue": 2020,
           "points": 50
         }
       ],
-      "condition": "{{variable}} transactions on Base",
-      "chain": "Base"
+      "condition": "Wallet created in the year {{variable}}",
+      "chain": "Celo"
     },
     {
-      "name": "OP Mainnet User",
-      "description": "Number of transactions made on OP Mainnet",
-      "platform": "Optimism",
+      "name": "Celo User",
+      "description": "Number of transactions made on Celo Mainnet",
+      "platform": "Celo",
       "levels": [
         {
-          "2DImage": "https://account.superchain.eco/static/badges/2DImages/OPUser-1.svg",
-          "3DImage": "https://account.superchain.eco/static/badges/3DImages/OPUser-1.svg",
-          "minValue": 5,
-          "points": 10
-        },
-        {
-          "2DImage": "https://account.superchain.eco/static/badges/2DImages/OPUser-2.svg",
-          "3DImage": "https://account.superchain.eco/static/badges/3DImages/OPUser-2.svg",
-          "minValue": 20,
-          "points": 20
-        },
-
-        {
-          "2DImage": "https://account.superchain.eco/static/badges/2DImages/OPUser-3.svg",
-          "3DImage": "https://account.superchain.eco/static/badges/3DImages/OPUser-3.svg",
-          "minValue": 50,
-          "points": 30
-        },
-
-        {
-          "2DImage": "https://account.superchain.eco/static/badges/2DImages/OPUser-4.svg",
-          "3DImage": "https://account.superchain.eco/static/badges/3DImages/OPUser-4.svg",
-          "minValue": 100,
-          "points": 40
-        },
-
-        {
-          "2DImage": "https://account.superchain.eco/static/badges/2DImages/OPUser-5.svg",
-          "3DImage": "https://account.superchain.eco/static/badges/3DImages/OPUser-5.svg",
-          "minValue": 250,
-          "points": 50
-        }
-      ],
-      "condition": "{{variable}} transactions on OP Mainnet",
-      "chain": "Optimism"
-    },
-    {
-      "name": "Ethereum Sepolia User",
-      "description": "Number of transactions made on ETH testnet",
-      "platform": "Sepolia",
-      "levels": [
-        {
-          "2DImage": "https://account.superchain.eco/static/badges/2DImages/OPUser-1.svg",
-          "3DImage": "https://account.superchain.eco/static/badges/3DImages/OPUser-1.svg",
+          "2DImage": "https://passport.celopg.eco/static/badges/2DImages/CeloUser-1.svg",
+          "3DImage": "https://passport.celopg.eco/static/badges/3DImages/CeloUser-1.svg",
           "minValue": 10,
-          "points": 20
-        },
-        {
-          "2DImage": "https://account.superchain.eco/static/badges/2DImages/OPUser-2.svg",
-          "3DImage": "https://account.superchain.eco/static/badges/3DImages/OPUser-2.svg",
-          "minValue": 20,
-          "points": 80
-        }
-      ],
-      "condition": "{{variable}} transactions on ETH Testnet",
-      "chain": "Sepolia"
-    },
-    {
-      "name": "Mode User",
-      "description": "Number of transactions made on Mode",
-      "platform": "Mode",
-      "levels": [
-        {
-          "2DImage": "https://account.superchain.eco/static/badges/2DImages/ModeUser-1.svg",
-          "3DImage": "https://account.superchain.eco/static/badges/3DImages/ModeUser-1.svg",
-          "minValue": 5,
           "points": 10
         },
         {
-          "2DImage": "https://account.superchain.eco/static/badges/2DImages/ModeUser-2.svg",
-          "3DImage": "https://account.superchain.eco/static/badges/3DImages/ModeUser-2.svg",
-          "minValue": 20,
-          "points": 20
-        },
-        {
-          "2DImage": "https://account.superchain.eco/static/badges/2DImages/ModeUser-3.svg",
-          "3DImage": "https://account.superchain.eco/static/badges/3DImages/ModeUser-3.svg",
+          "2DImage": "https://passport.celopg.eco/static/badges/2DImages/CeloUser-2.svg",
+          "3DImage": "https://passport.celopg.eco/static/badges/3DImages/CeloUser-2.svg",
           "minValue": 50,
+          "points": 20
+        },
+
+        {
+          "2DImage": "https://passport.celopg.eco/static/badges/2DImages/CeloUser-3.svg",
+          "3DImage": "https://passport.celopg.eco/static/badges/3DImages/CeloUser-3.svg",
+          "minValue": 100,
           "points": 30
+        },
+
+        {
+          "2DImage": "https://passport.celopg.eco/static/badges/2DImages/CeloUser-4.svg",
+          "3DImage": "https://passport.celopg.eco/static/badges/3DImages/CeloUser-4.svg",
+          "minValue": 250,
+          "points": 40
+        },
+
+        {
+          "2DImage": "https://passport.celopg.eco/static/badges/2DImages/CeloUser-5.svg",
+          "3DImage": "https://passport.celopg.eco/static/badges/3DImages/CeloUser-5.svg",
+          "minValue": 500,
+          "points": 50
         }
       ],
-      "condition": "{{variable}} transactions on Mode",
-      "chain": "Mode"
+      "condition": "{{variable}} transactions on Celo Mainnet",
+      "chain": "Celo"
     },
     {
-      "name": "Hold Nouns",
-      "description": "Hold Nouns on Ethereum Mainnet",
-      "platform": "Nouns",
+      "name": "Celo Citizen",
+      "description": "Receive rewards from Celo Citizen Retro 2024",
+      "platform": "Celo",
       "levels": [
         {
-          "2DImage": "https://account.superchain.eco/static/badges/2DImages/HoldNouns-1.svg",
-          "3DImage": "https://account.superchain.eco/static/badges/3DImages/HoldNouns-1.svg",
-          "minValue": 1,
+          "2DImage": "https://passport.celopg.eco/static/badges/2DImages/CeloCitizen-1.svg",
+          "3DImage": "https://passport.celopg.eco/static/badges/3DImages/CeloCitizen-1.svg",
+          "minValue": 10,
           "points": 10
         },
         {
-          "2DImage": "https://account.superchain.eco/static/badges/2DImages/HoldNouns-2.svg",
-          "3DImage": "https://account.superchain.eco/static/badges/3DImages/HoldNouns-2.svg",
-          "minValue": 3,
+          "2DImage": "https://passport.celopg.eco/static/badges/2DImages/CeloCitizen-2.svg",
+          "3DImage": "https://passport.celopg.eco/static/badges/3DImages/CeloCitizen-2.svg",
+          "minValue": 100,
           "points": 20
         },
+
         {
-          "2DImage": "https://account.superchain.eco/static/badges/2DImages/HoldNouns-3.svg",
-          "3DImage": "https://account.superchain.eco/static/badges/3DImages/HoldNouns-3.svg",
-          "minValue": 5,
+          "2DImage": "https://passport.celopg.eco/static/badges/2DImages/CeloCitizen-3.svg",
+          "3DImage": "https://passport.celopg.eco/static/badges/3DImages/CeloCitizen-3.svg",
+          "minValue": 250,
           "points": 30
-        }
-      ],
-      "condition": "Hold {{variable}} Nouns on Ethereum Mainnet.",
-      "chain": "Ethereum"
-    },
-    {
-      "name": "Citizen",
-      "description": "Become a Optimism Citizen",
-      "platform": "Optimism",
-      "levels": [
+        },
+
         {
-          "2DImage": "https://account.superchain.eco/static/badges/2DImages/Citizen-1.svg",
-          "3DImage": "https://account.superchain.eco/static/badges/3DImages/Citizen-1.svg",
-          "minValue": 1,
-          "points": 150
+          "2DImage": "https://passport.celopg.eco/static/badges/2DImages/CeloCitizen-4.svg",
+          "3DImage": "https://passport.celopg.eco/static/badges/3DImages/CeloCitizen-4.svg",
+          "minValue": 1000,
+          "points": 40
+        },
+
+        {
+          "2DImage": "https://passport.celopg.eco/static/badges/2DImages/CeloCitizen-5.svg",
+          "3DImage": "https://passport.celopg.eco/static/badges/3DImages/CeloCitizen-5.svg",
+          "minValue": 5000,
+          "points": 50
         }
       ],
-      "condition": "Be the owner of a {{variable}} wallet who is a Citizen.",
-      "chain": "Optimism"
+      "condition": "Receive {{variable}} CELO from Celo Citizen Retro 2024",
+      "chain": "Celo"
     },
     {
-      "name": "Giveth Donations Made",
-      "description": "Donate on Giveth",
+      "name": "Giveth Donor",
+      "description": "Value donated on Celo",
       "platform": "Giveth",
       "levels": [
         {
-          "2DImage": "https://account.superchain.eco/static/badges/2DImages/GivethDonationsMade-1.svg",
-          "3DImage": "https://account.superchain.eco/static/badges/3DImages/GivethDonationsMade-1.svg",
+          "2DImage": "https://passport.celopg.eco/static/badges/2DImages/GivethDonor-1.svg",
+          "3DImage": "https://passport.celopg.eco/static/badges/3DImages/GivethDonor-1.svg",
           "minValue": 25,
           "points": 10
         },
         {
-          "2DImage": "https://account.superchain.eco/static/badges/2DImages/GivethDonationsMade-2.svg",
-          "3DImage": "https://account.superchain.eco/static/badges/3DImages/GivethDonationsMade-2.svg",
+          "2DImage": "https://passport.celopg.eco/static/badges/2DImages/GivethDonor-2.svg",
+          "3DImage": "https://passport.celopg.eco/static/badges/3DImages/GivethDonor-2.svg",
           "minValue": 100,
           "points": 20
         },
 
         {
-          "2DImage": "https://account.superchain.eco/static/badges/2DImages/GivethDonationsMade-3.svg",
-          "3DImage": "https://account.superchain.eco/static/badges/3DImages/GivethDonationsMade-3.svg",
+          "2DImage": "https://passport.celopg.eco/static/badges/2DImages/GivethDonor-3.svg",
+          "3DImage": "https://passport.celopg.eco/static/badges/3DImages/GivethDonor-3.svg",
           "minValue": 250,
           "points": 30
         },
 
         {
-          "2DImage": "https://account.superchain.eco/static/badges/2DImages/GivethDonationsMade-4.svg",
-          "3DImage": "https://account.superchain.eco/static/badges/3DImages/GivethDonationsMade-4.svg",
+          "2DImage": "https://passport.celopg.eco/static/badges/2DImages/GivethDonor-4.svg",
+          "3DImage": "https://passport.celopg.eco/static/badges/3DImages/GivethDonor-4.svg",
           "minValue": 1000,
           "points": 40
         }
       ],
       "condition": "Donate ${{variable}} more on Giveth",
-      "chain": "Optimism"
+      "chain": "Celo"
     },
     {
-      "name": "Talent Protocol score",
-      "description": "Builder Fi score on Talent Protocol passport",
-      "platform": "Talent Protocol",
-      "levels": [
-        {
-          "2DImage": "https://account.superchain.eco/static/badges/2DImages/TalentProtocolScore-1.svg",
-          "3DImage": "https://account.superchain.eco/static/badges/3DImages/TalentProtocolScore-1.svg",
-          "minValue": 30,
-          "points": 10
-        },
-        {
-          "2DImage": "https://account.superchain.eco/static/badges/2DImages/TalentProtocolScore-2.svg",
-          "3DImage": "https://account.superchain.eco/static/badges/3DImages/TalentProtocolScore-2.svg",
-          "minValue": 60,
-          "points": 20
-        },
-        {
-          "2DImage": "https://account.superchain.eco/static/badges/2DImages/TalentProtocolScore-3.svg",
-          "3DImage": "https://account.superchain.eco/static/badges/3DImages/TalentProtocolScore-3.svg",
-          "minValue": 90,
-          "points": 30
-        }
-      ],
-      "condition": "Have a Builder Fi score of {{variable}}",
-      "chain": "Ethereum"
-    },
-    {
-      "name": "Worldcoin Verification",
-      "description": "Verify on Worldcoin",
-      "platform": "Worldcoin",
-      "levels": [
-        {
-          "2DImage": "https://account.superchain.eco/static/badges/2DImages/WorldCoinVerification-1.svg",
-          "3DImage": "https://account.superchain.eco/static/badges/3DImages/WorldCoinVerification-1.svg",
-          "minValue": 1,
-          "points": 60
-        }
-      ],
-      "condition": "Get verified with Worldcoin",
-      "chain": "Optimism"
-    },
-    {
-      "name": "Gitcoin Donations Made",
-      "description": "Donate on Gitcoin",
+      "name": "Gitcoin Donor",
+      "description": "Value donated on Celo",
       "platform": "Gitcoin",
       "levels": [
         {
-          "2DImage": "https://account.superchain.eco/static/badges/2DImages/GitcoinDonationsMade-1.svg",
-          "3DImage": "https://account.superchain.eco/static/badges/3DImages/GitcoinDonationsMade-1.svg",
+          "2DImage": "https://passport.celopg.eco/static/badges/2DImages/GitcoinDonor-1.svg",
+          "3DImage": "https://passport.celopg.eco/static/badges/3DImages/GitcoinDonor-1.svg",
           "minValue": 25,
           "points": 10
         },
         {
-          "2DImage": "https://account.superchain.eco/static/badges/2DImages/GitcoinDonationsMade-2.svg",
-          "3DImage": "https://account.superchain.eco/static/badges/3DImages/GitcoinDonationsMade-2.svg",
+          "2DImage": "https://passport.celopg.eco/static/badges/2DImages/GitcoinDonor-2.svg",
+          "3DImage": "https://passport.celopg.eco/static/badges/3DImages/GitcoinDonor-2.svg",
           "minValue": 100,
           "points": 20
         },
+
         {
-          "2DImage": "https://account.superchain.eco/static/badges/2DImages/GitcoinDonationsMade-3.svg",
-          "3DImage": "https://account.superchain.eco/static/badges/3DImages/GitcoinDonationsMade-3.svg",
+          "2DImage": "https://passport.celopg.eco/static/badges/2DImages/GitcoinDonor-3.svg",
+          "3DImage": "https://passport.celopg.eco/static/badges/3DImages/GitcoinDonor-3.svg",
           "minValue": 250,
           "points": 30
         },
+
         {
-          "2DImage": "https://account.superchain.eco/static/badges/2DImages/GitcoinDonationsMade-4.svg",
-          "3DImage": "https://account.superchain.eco/static/badges/3DImages/GitcoinDonationsMade-4.svg",
+          "2DImage": "https://passport.celopg.eco/static/badges/2DImages/GitcoinDonor-4.svg",
+          "3DImage": "https://passport.celopg.eco/static/badges/3DImages/GitcoinDonor-4.svg",
           "minValue": 1000,
           "points": 40
         }
       ],
       "condition": "Donate ${{variable}} more on Gitcoin",
-      "chain": "Optimism"
+      "chain": "Celo"
     },
     {
-      "name": "Super Cohort 24",
-      "description": "Graduated from Super Cohort 0",
-      "platform": "Optimism",
+      "name": "Talent Protocol Score",
+      "description": "The users builder Fi score",
+      "platform": "Talent Protocol",
       "levels": [
         {
-          "2DImage": "https://account.superchain.eco/static/badges/2DImages/SuperCohort0-1.svg",
-          "3DImage": "https://account.superchain.eco/static/badges/3DImages/SuperCohort0-1.svg",
-          "minValue": 1,
-          "points": 100
+          "2DImage": "https://passport.celopg.eco/static/badges/2DImages/TalentProtocolScore-1.svg",
+          "3DImage": "https://passport.celopg.eco/static/badges/3DImages/TalentProtocolScore-1.svg",
+          "minValue": 20,
+          "points": 10
+        },
+        {
+          "2DImage": "https://passport.celopg.eco/static/badges/2DImages/TalentProtocolScore-2.svg",
+          "3DImage": "https://passport.celopg.eco/static/badges/3DImages/TalentProtocolScore-2.svg",
+          "minValue": 40,
+          "points": 20
+        },
+
+        {
+          "2DImage": "https://passport.celopg.eco/static/badges/2DImages/TalentProtocolScore-3.svg",
+          "3DImage": "https://passport.celopg.eco/static/badges/3DImages/TalentProtocolScore-3.svg",
+          "minValue": 60,
+          "points": 30
+        },
+
+        {
+          "2DImage": "https://passport.celopg.eco/static/badges/2DImages/TalentProtocolScore-4.svg",
+          "3DImage": "https://passport.celopg.eco/static/badges/3DImages/TalentProtocolScore-4.svg",
+          "minValue": 80,
+          "points": 40
         }
       ],
-      "condition": "Complete Super Cohort 0",
-      "chain": "Optimism"
+      "condition": "Have a Builder score above {{variable}}",
+      "chain": "Celo"
+    },
+    {
+      "name": "Celo Voter",
+      "description": "Number of proposals voted on",
+      "platform": "Celo",
+      "levels": [
+        {
+          "2DImage": "https://passport.celopg.eco/static/badges/2DImages/CeloVoter-1.svg",
+          "3DImage": "https://passport.celopg.eco/static/badges/3DImages/CeloVoter-1.svg",
+          "minValue": 1,
+          "points": 10
+        },
+        {
+          "2DImage": "https://passport.celopg.eco/static/badges/2DImages/CeloVoter-2.svg",
+          "3DImage": "https://passport.celopg.eco/static/badges/3DImages/CeloVoter-2.svg",
+          "minValue": 5,
+          "points": 20
+        },
+
+        {
+          "2DImage": "https://passport.celopg.eco/static/badges/2DImages/CeloVoter-3.svg",
+          "3DImage": "https://passport.celopg.eco/static/badges/3DImages/CeloVoter-3.svg",
+          "minValue": 15,
+          "points": 30
+        },
+
+        {
+          "2DImage": "https://passport.celopg.eco/static/badges/2DImages/CeloVoter-4.svg",
+          "3DImage": "https://passport.celopg.eco/static/badges/3DImages/CeloVoter-4.svg",
+          "minValue": 30,
+          "points": 40
+        }
+      ],
+      "condition": "Vote on {{variable}} Celo Proposal",
+      "chain": "Celo"
+    },
+    {
+      "name": "Celo Event POAPs",
+      "description": "Total number of Celo Event POAPs held",
+      "platform": "POAP",
+      "levels": [
+        {
+          "2DImage": "https://passport.celopg.eco/static/badges/2DImages/CeloPoaps-1.svg",
+          "3DImage": "https://passport.celopg.eco/static/badges/3DImages/CeloPoaps-1.svg",
+          "minValue": 1,
+          "points": 10
+        },
+        {
+          "2DImage": "https://passport.celopg.eco/static/badges/2DImages/CeloPoaps-2.svg",
+          "3DImage": "https://passport.celopg.eco/static/badges/3DImages/CeloPoaps-2.svg",
+          "minValue": 3,
+          "points": 20
+        },
+        {
+          "2DImage": "https://passport.celopg.eco/static/badges/2DImages/CeloPoaps-3.svg",
+          "3DImage": "https://passport.celopg.eco/static/badges/3DImages/CeloPoaps-3.svg",
+          "minValue": 7,
+          "points": 30
+        },
+        {
+          "2DImage": "https://passport.celopg.eco/static/badges/2DImages/CeloPoaps-4.svg",
+          "3DImage": "https://passport.celopg.eco/static/badges/3DImages/CeloPoaps-4.svg",
+          "minValue": 15,
+          "points": 40
+        },
+        {
+          "2DImage": "https://passport.celopg.eco/static/badges/2DImages/CeloPoaps-4.svg",
+          "3DImage": "https://passport.celopg.eco/static/badges/3DImages/CeloPoaps-4.svg",
+          "minValue": 25,
+          "points": 50
+        }
+      ],
+      "condition": "Have {{variable}} Celo Event POAP",
+      "chain": "Celo"
+    },
+    {
+      "name": "CeloPG Steward",
+      "description": "Part of CeloPG Steward List",
+      "platform": "Celo",
+      "levels": [
+        {
+          "2DImage": "https://passport.celopg.eco/static/badges/2DImages/CeloPgStewart-1.svg",
+          "3DImage": "https://passport.celopg.eco/static/badges/3DImages/CeloPgStewart-1.svg",
+          "minValue": 1,
+          "points": 50
+        }
+      ],
+      "condition": "Become a CeloPG Steward",
+      "chain": "Celo"
+    },
+    {
+      "name": "Regional DAO Lead",
+      "description": "Part of Regional DAO Steward List",
+      "platform": "Celo",
+      "levels": [
+        {
+          "2DImage": "https://passport.celopg.eco/static/badges/2DImages/RegionalDaoLead-1.svg",
+          "3DImage": "https://passport.celopg.eco/static/badges/3DImages/RegionalDaoLead-1.svg",
+          "minValue": 1,
+          "points": 50
+        }
+      ],
+      "condition": "Become a Celo Regional DAO Lead",
+      "chain": "Celo"
+    },
+    {
+      "name": "ReFi DAO Member",
+      "description": "Part of ReFi DAO Member List",
+      "platform": "ReFi DAO",
+      "levels": [
+        {
+          "2DImage": "https://passport.celopg.eco/static/badges/2DImages/ReFiDaoMember-1.svg",
+          "3DImage": "https://passport.celopg.eco/static/badges/3DImages/ReFiDaoMember-1.svg",
+          "minValue": 1,
+          "points": 10
+        },
+        {
+          "2DImage": "https://passport.celopg.eco/static/badges/2DImages/ReFiDaoMember-2.svg",
+          "3DImage": "https://passport.celopg.eco/static/badges/3DImages/ReFiDaoMember-2.svg",
+          "minValue": 2,
+          "points": 15
+        },
+        {
+          "2DImage": "https://passport.celopg.eco/static/badges/2DImages/ReFiDaoMember-3.svg",
+          "3DImage": "https://passport.celopg.eco/static/badges/3DImages/ReFiDaoMember-3.svg",
+          "minValue": 3,
+          "points": 20
+        },
+        {
+          "2DImage": "https://passport.celopg.eco/static/badges/2DImages/ReFiDaoMember-4.svg",
+          "3DImage": "https://passport.celopg.eco/static/badges/3DImages/ReFiDaoMember-4.svg",
+          "minValue": 4,
+          "points": 25
+        },
+        {
+          "2DImage": "https://passport.celopg.eco/static/badges/2DImages/ReFiDaoMember-4.svg",
+          "3DImage": "https://passport.celopg.eco/static/badges/3DImages/ReFiDaoMember-4.svg",
+          "minValue": 5,
+          "points": 30
+        }
+      ],
+      "condition": "Become a ReFi DAO member",
+      "chain": "Celo"
+    },
+ {
+      "name": "GreenPill Member",
+      "description": "Part of GreenPill Member List",
+      "platform": "GreenPill",
+      "levels": [
+        {
+          "2DImage": "https://passport.celopg.eco/static/badges/2DImages/GreenPillMember-1.svg",
+          "3DImage": "https://passport.celopg.eco/static/badges/3DImages/GreenPillMember-1.svg",
+          "minValue": 1,
+          "points": 10
+        },
+        {
+          "2DImage": "https://passport.celopg.eco/static/badges/2DImages/GreenPillMember-2.svg",
+          "3DImage": "https://passport.celopg.eco/static/badges/3DImages/GreenPillMember-2.svg",
+          "minValue": 2,
+          "points": 20
+        },
+        {
+          "2DImage": "https://passport.celopg.eco/static/badges/2DImages/GreenPillMember-3.svg",
+          "3DImage": "https://passport.celopg.eco/static/badges/3DImages/GreenPillMember-3.svg",
+          "minValue": 3,
+          "points": 30
+        }
+      ],
+      "condition": "Become a GreenPill member",
+      "chain": "Celo"
     }
   ]
 }
