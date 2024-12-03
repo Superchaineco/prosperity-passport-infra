@@ -10,7 +10,7 @@ import {SuperChainBadges, BadgeMetadata, BadgeTierMetadata} from "../src/SuperCh
 contract PostDeployBadges is Script {
     function setUp() public {}
 
-    function run() public  returns (address){
+    function run() public returns (address) {
         string memory network = vm.envString("NETWORK");
         address badgesProxy = vm.envAddress("BADGES_ADDRESS");
         address easAddress;
@@ -40,13 +40,7 @@ contract PostDeployBadges is Script {
                 tierIndex++;
             }
         }
-        if (keccak256(bytes(network)) == keccak256("sepolia")) {
-            easAddress = vm.envAddress("EAS_ADDRESS_SEPOLIA");
-        } else if (keccak256(bytes(network)) == keccak256("optimism")) {
-            easAddress = vm.envAddress("EAS_ADDRESS_OPTIMISM");
-        } else {
-            revert("Unsupported network");
-        }
+        easAddress = vm.envAddress("EAS_ADDRESS_CELO");
         require(
             easAddress != address(0),
             "EAS address is not set for this network"
@@ -65,8 +59,5 @@ contract PostDeployBadges is Script {
         SuperChainBadges(badgesProxy).setResolver(address(resolver));
         vm.stopBroadcast();
         return address(resolver);
-
     }
-
- 
 }

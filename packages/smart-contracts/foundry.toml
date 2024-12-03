@@ -6,14 +6,15 @@ ffi = true
 ast = true
 build_info = true
 extra_output = ["storageLayout"]
-fs_permissions = [{ access = "read-write", path = "./"}]
+fs_permissions = [{ access = "read-write", path = "./" }]
+evm_version = "paris"
 
 
 # See more config options https://github.com/foundry-rs/foundry/blob/master/crates/config/README.md#all-options
 
 
 [etherscan]
-celo = { key = "DV3QPMMQ8ZYG176IGWH7WHFEWB3UJYG7N2" }
+celo = { key = "DV3QPMMQ8ZYG176IGWH7WHFEWB3UJYG7N2", url = "https://api.celoscan.io/api" }
 
 [rpc_endpoints]
 celo = "https://rpc.ankr.com/celo"
