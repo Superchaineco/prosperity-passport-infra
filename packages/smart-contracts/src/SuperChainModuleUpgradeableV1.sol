@@ -7,8 +7,8 @@ import {UUPSUpgradeable} from "@openzeppelin/contracts-upgradeable/proxy/utils/U
 import {Initializable} from "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
 import "../interfaces/ISuperChainModule.sol";
 
-/// @custom:oz-upgrades-from src/SuperChainModuleUpgradeableV1.sol:SuperChainModuleUpgradeableV1
-contract SuperChainModuleUpgradeable is
+
+contract SuperChainModuleUpgradeableV1 is
     Initializable,
     ISuperChainModule,
     OwnableUpgradeable,
@@ -158,7 +158,7 @@ contract SuperChainModuleUpgradeable is
         );
         require(
             !_isInvalidSuperChainId(superChainID),
-            "The last 11 characters cannot be '.prosperity'"
+            "The last 11 characters cannot be '.superchain'"
         );
         require(
             !s.superChainIDRegistered[superChainID],
@@ -168,7 +168,7 @@ contract SuperChainModuleUpgradeable is
         s.userSuperChainAccount[_owner] = _safe;
         s.superChainAccount[_safe].superChainID = string.concat(
             superChainID,
-            ".prosperity"
+            ".superchain"
         );
         s.superChainIDRegistered[superChainID] = true;
         s.hasFirstOwnerYet[_safe] = true;
@@ -307,7 +307,7 @@ contract SuperChainModuleUpgradeable is
         string memory str
     ) internal pure returns (bool) {
         bytes memory strBytes = bytes(str);
-        bytes memory suffixBytes = bytes(".prosperity");
+        bytes memory suffixBytes = bytes(".superchain");
 
         if (strBytes.length < suffixBytes.length) {
             return false;
