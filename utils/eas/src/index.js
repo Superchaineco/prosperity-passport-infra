@@ -6,11 +6,7 @@ import minimist from 'minimist';
 import { getSchemaRegistry } from './helper.js';
 
 dotenv.config();
-const NETWORK = process.env.NETWORK;
-const JSON_RPC_PROVIDER =
-  NETWORK === 'sepolia'
-    ? process.env.JSON_RPC_PROVIDER_TESTNET
-    : process.env.JSON_RPC_PROVIDER;
+const JSON_RPC_PROVIDER =process.env.JSON_RPC_PROVIDER;
 const ATTESTATOR_SIGNER_PRIVATE_KEY = process.env.ATTESTATOR_SIGNER_PRIVATE_KEY;
 
 async function registerSchema(resolverAddress) {
@@ -18,7 +14,7 @@ async function registerSchema(resolverAddress) {
   const provider = new JsonRpcProvider(JSON_RPC_PROVIDER);
   const wallet = new Wallet(ATTESTATOR_SIGNER_PRIVATE_KEY, provider);
 
-  const schemaRegistryContractAddress = getSchemaRegistry(NETWORK);
+  const schemaRegistryContractAddress = getSchemaRegistry();
   const schemaRegistry = new SchemaRegistry(schemaRegistryContractAddress);
   schemaRegistry.connect(wallet);
 

@@ -1,5 +1,3 @@
-export function getSchemaRegistry(env) {
-  if (env === 'sepolia')
-    return '0x0a7E2Ff54e76B8E6659aedc9103FB21c038050D0';
-  else return '0x4200000000000000000000000000000000000020';
+export function getSchemaRegistry() {
+   return '0x5ece93bE4BDCF293Ed61FA78698B594F2135AF34';
 }
