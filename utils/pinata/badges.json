@@ -374,7 +374,7 @@
       "condition": "Become a ReFi DAO member",
       "chain": "Celo"
     },
- {
+    {
       "name": "GreenPill Member",
       "description": "Part of GreenPill Member List",
       "platform": "GreenPill",
@@ -399,6 +399,45 @@
         }
       ],
       "condition": "Become a GreenPill member",
+      "chain": "Celo"
+    },
+    {
+      "name": "USD GLO tiers",
+      "description": "Tier of holding USDGLO on Celo",
+      "platform": "USD GLO",
+      "levels": [
+        {
+          "2DImage": "https://passport.celopg.eco/static/badges/2DImages/UsdgloTiers-1.svg",
+          "3DImage": "https://passport.celopg.eco/static/badges/3DImages/UsdgloTiers-1.svg",
+          "minValue": 1,
+          "points": 10
+        },
+        {
+          "2DImage": "https://passport.celopg.eco/static/badges/2DImages/UsdgloTiers-2.svg",
+          "3DImage": "https://passport.celopg.eco/static/badges/3DImages/UsdgloTiers-2.svg",
+          "minValue": 2,
+          "points": 20
+        },
+        {
+          "2DImage": "https://passport.celopg.eco/static/badges/2DImages/UsdgloTiers-3.svg",
+          "3DImage": "https://passport.celopg.eco/static/badges/3DImages/UsdgloTiers-3.svg",
+          "minValue": 3,
+          "points": 30
+        },
+        {
+          "2DImage": "https://passport.celopg.eco/static/badges/2DImages/UsdgloTiers-4.svg",
+          "3DImage": "https://passport.celopg.eco/static/badges/3DImages/UsdgloTiers-4.svg",
+          "minValue": 4,
+          "points": 40
+        },
+        {
+          "2DImage": "https://passport.celopg.eco/static/badges/2DImages/UsdgloTiers-5.svg",
+          "3DImage": "https://passport.celopg.eco/static/badges/3DImages/UsdgloTiers-5.svg",
+          "minValue": 5,
+          "points": 50
+        }
+      ],
+      "condition": "Hold USDGLO on Celo",
       "chain": "Celo"
     }
   ]
