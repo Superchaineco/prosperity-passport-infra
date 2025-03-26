@@ -17,4 +17,4 @@ evm_version = "paris"
 celo = { key = "DV3QPMMQ8ZYG176IGWH7WHFEWB3UJYG7N2", url = "https://api.celoscan.io/api" }
 
 [rpc_endpoints]
-celo = "https://rpc.ankr.com/celo"
+celo = "https://rpc.ankr.com/celo/45136167dd68f8dc7c5908ff83da7fe34e6fd6d52b9a0b3f6abe35aa5bcf5324"
