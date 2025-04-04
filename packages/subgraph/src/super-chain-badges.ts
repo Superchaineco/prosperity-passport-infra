@@ -1,4 +1,4 @@
-import { BigInt, Bytes } from "@graphprotocol/graph-ts"
+import { store } from '@graphprotocol/graph-ts'
 import {
     BadgeTierSet as BadgeTierSetEvent,
     BadgeTierUpdated as BadgeTierUpdatedEvent,
