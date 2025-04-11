@@ -373,6 +373,54 @@
       "condition": "Hold USDGLO on Celo",
       "chains": ["Celo"],
       "season": null
+    },
+    {
+      "name": "Proof of Ship",
+      "description": "Earn rewards from Proof of Ship",
+      "platform": "Celo",
+      "image": "https://passport.celopg.eco/static/badges/All-Time/Proof-of-ship/Badge.svg",
+      "stack-image": "https://passport.celopg.eco/static/badges/All-Time/Proof-of-ship/Badge-Stack.svg",
+      "levels": [
+        {
+          "minValue": 1,
+          "points": 50
+        }
+      ],
+      "condition": "Winner of Proof of Ship",
+      "chains": ["Celo"],
+      "season": null
+    },
+    {
+      "name": "Governance Guardian",
+      "description": "Be a Governance Guardian",
+      "platform": "Celo",
+      "image": "https://passport.celopg.eco/static/badges/All-Time/Governance-guardian/Badge.svg",
+      "stack-image": "https://passport.celopg.eco/static/badges/All-Time/Governance-guardian/Badge-Stack.svg",
+      "levels": [
+        {
+          "minValue": 1,
+          "points": 50
+        }
+      ],
+      "condition": "Be a Celo Guardian",
+      "chains": ["Celo"],
+      "season": null
+    },
+    {
+      "name": "Community Guild ",
+      "description": "Be a Community Guild lead",
+      "platform": "Celo",
+      "image": "https://passport.celopg.eco/static/badges/All-Time/Community-guild/Badge.svg",
+      "stack-image": "https://passport.celopg.eco/static/badges/All-Time/Community-guild/Badge-Stack.svg",
+      "levels": [
+        {
+          "minValue": 1,
+          "points": 50
+        }
+      ],
+      "condition": "Be a Celo Community Guild Member",
+      "chains": ["Celo"],
+      "season": null
     }
   ]
 }
