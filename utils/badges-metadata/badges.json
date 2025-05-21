@@ -4,8 +4,8 @@
       "name": "Celo Genesis",
       "description": "Celo Wallet Creation Date",
       "platform": "Celo",
-      "image": "https://passport.celopg.eco/static/badges/All-Time/Celo-Genesis/Badge.svg",
-      "stack-image": "https://passport.celopg.eco/static/badges/All-Time/Celo-Genesis/Badge-Stack.svg",
+      "image": "https://pass.celopg.eco/static/badges/All-Time/Celo-Genesis/Badge.svg",
+      "stack-image": "https://pass.celopg.eco/static/badges/All-Time/Celo-Genesis/Badge-Stack.svg",
       "levels": [
         {
           "minValue": 2024,
@@ -36,8 +36,8 @@
       "name": "CEL1 Transactions",
       "description": "Number of Transactions on the old Celo L1 network",
       "platform": "Celo",
-      "image": "https://passport.celopg.eco/static/badges/All-Time/Celo-User/Badge.svg",
-      "stack-image": "https://passport.celopg.eco/static/badges/All-Time/Celo-User/Badge-Stack.svg",
+      "image": "https://pass.celopg.eco/static/badges/All-Time/Celo-User/Badge.svg",
+      "stack-image": "https://pass.celopg.eco/static/badges/All-Time/Celo-User/Badge-Stack.svg",
       "levels": [
         {
           "minValue": 10,
@@ -71,8 +71,8 @@
       "name": "Celo Citizen",
       "description": "Receive rewards from Celo Citizen Retro 2024",
       "platform": "Celo",
-      "image": "https://passport.celopg.eco/static/badges/All-Time/Celo-Citizen/Badge.svg",
-      "stack-image": "https://passport.celopg.eco/static/badges/All-Time/Celo-Citizen/Badge-Stack.svg",
+      "image": "https://pass.celopg.eco/static/badges/All-Time/Celo-Citizen/Badge.svg",
+      "stack-image": "https://pass.celopg.eco/static/badges/All-Time/Celo-Citizen/Badge-Stack.svg",
       "levels": [
         {
           "minValue": 100,
@@ -106,8 +106,8 @@
       "name": "Giveth Donor",
       "description": "Value donated on Celo",
       "platform": "Giveth",
-      "image": "https://passport.celopg.eco/static/badges/All-Time/Giveth-Donor/Badge.svg",
-      "stack-image": "https://passport.celopg.eco/static/badges/All-Time/Giveth-Donor/Badge-Stack.svg",
+      "image": "https://pass.celopg.eco/static/badges/All-Time/Giveth-Donor/Badge.svg",
+      "stack-image": "https://pass.celopg.eco/static/badges/All-Time/Giveth-Donor/Badge-Stack.svg",
       "levels": [
         {
           "minValue": 25,
@@ -136,8 +136,8 @@
       "name": "Gitcoin Donor",
       "description": "Value donated on Celo",
       "platform": "Gitcoin",
-      "image": "https://passport.celopg.eco/static/badges/All-Time/Gitcoin-Donor/Badge.svg",
-      "stack-image": "https://passport.celopg.eco/static/badges/All-Time/Gitcoin-Donor/Badge-Stack.svg",
+      "image": "https://pass.celopg.eco/static/badges/All-Time/Gitcoin-Donor/Badge.svg",
+      "stack-image": "https://pass.celopg.eco/static/badges/All-Time/Gitcoin-Donor/Badge-Stack.svg",
       "levels": [
         {
           "minValue": 25,
@@ -166,8 +166,8 @@
       "name": "Talent Protocol Score",
       "description": "The users builder Fi score",
       "platform": "Talent Protocol",
-      "image": "https://passport.celopg.eco/static/badges/All-Time/Talent-Protocol-Score/Badge.svg",
-      "stack-image": "https://passport.celopg.eco/static/badges/All-Time/Talent-Protocol-Score/Badge-Stack.svg",
+      "image": "https://pass.celopg.eco/static/badges/All-Time/Talent-Protocol-Score/Badge.svg",
+      "stack-image": "https://pass.celopg.eco/static/badges/All-Time/Talent-Protocol-Score/Badge-Stack.svg",
       "levels": [
         {
           "minValue": 20,
@@ -196,8 +196,8 @@
       "name": "Celo Voter",
       "description": "Number of proposals voted on",
       "platform": "Celo",
-      "image": "https://passport.celopg.eco/static/badges/All-Time/Celo-Voter/Badge.svg",
-      "stack-image": "https://passport.celopg.eco/static/badges/All-Time/Celo-Voter/Badge-Stack.svg",
+      "image": "https://pass.celopg.eco/static/badges/All-Time/Celo-Voter/Badge.svg",
+      "stack-image": "https://pass.celopg.eco/static/badges/All-Time/Celo-Voter/Badge-Stack.svg",
       "levels": [
         {
           "minValue": 1,
@@ -226,8 +226,8 @@
       "name": "Celo Event POAPs",
       "description": "Total number of Celo Event POAPs via Lemonde Social",
       "platform": "POAP",
-      "image": "https://passport.celopg.eco/static/badges/All-Time/Celo-Event-POAPs/Badge.svg",
-      "stack-image": "https://passport.celopg.eco/static/badges/All-Time/Celo-Event-POAPs/Badge-Stack.svg",
+      "image": "https://pass.celopg.eco/static/badges/All-Time/Celo-Event-POAPs/Badge.svg",
+      "stack-image": "https://pass.celopg.eco/static/badges/All-Time/Celo-Event-POAPs/Badge-Stack.svg",
       "levels": [
         {
           "minValue": 1,
@@ -258,8 +258,8 @@
       "name": "CeloPG Steward",
       "description": "Part of CeloPG Steward List",
       "platform": "Celo",
-      "image": "https://passport.celopg.eco/static/badges/All-Time/CeloPG-Steward/Badge.svg",
-      "stack-image": "https://passport.celopg.eco/static/badges/All-Time/CeloPG-Steward/Badge-Stack.svg",
+      "image": "https://pass.celopg.eco/static/badges/All-Time/CeloPG-Steward/Badge.svg",
+      "stack-image": "https://pass.celopg.eco/static/badges/All-Time/CeloPG-Steward/Badge-Stack.svg",
       "levels": [
         {
           "minValue": 1,
@@ -274,8 +274,8 @@
       "name": "Regional DAO Lead",
       "description": "Part of Regional DAO Steward List",
       "platform": "Celo",
-      "image": "https://passport.celopg.eco/static/badges/All-Time/Regional-DAO-Lead/Badge.svg",
-      "stack-image": "https://passport.celopg.eco/static/badges/All-Time/Regional-DAO-Lead/Badge-Stack.svg",
+      "image": "https://pass.celopg.eco/static/badges/All-Time/Regional-DAO-Lead/Badge.svg",
+      "stack-image": "https://pass.celopg.eco/static/badges/All-Time/Regional-DAO-Lead/Badge-Stack.svg",
       "levels": [
         {
           "minValue": 1,
@@ -290,8 +290,8 @@
       "name": "ReFi DAO Contributor",
       "description": "Part of ReFi DAO Contributor List",
       "platform": "ReFi DAO",
-      "image": "https://passport.celopg.eco/static/badges/All-Time/ReFi-DAO-Member/Badge.svg",
-      "stack-image": "https://passport.celopg.eco/static/badges/All-Time/ReFi-DAO-Member/Badge-Stack.svg",
+      "image": "https://pass.celopg.eco/static/badges/All-Time/ReFi-DAO-Member/Badge.svg",
+      "stack-image": "https://pass.celopg.eco/static/badges/All-Time/ReFi-DAO-Member/Badge-Stack.svg",
       "levels": [
         {
           "minValue": 1,
@@ -322,8 +322,8 @@
       "name": "GreenPill Member",
       "description": "Part of GreenPill Member List",
       "platform": "GreenPill",
-      "image": "https://passport.celopg.eco/static/badges/All-Time/GreenPill-Member/Badge.svg",
-      "stack-image": "https://passport.celopg.eco/static/badges/All-Time/GreenPill-Member/Badge-Stack.svg",
+      "image": "https://pass.celopg.eco/static/badges/All-Time/GreenPill-Member/Badge.svg",
+      "stack-image": "https://pass.celopg.eco/static/badges/All-Time/GreenPill-Member/Badge-Stack.svg",
       "levels": [
         {
           "minValue": 1,
@@ -346,8 +346,8 @@
       "name": "USD GLO tiers",
       "description": "Tier of holding USDGLO on Celo",
       "platform": "USD GLO",
-      "image": "https://passport.celopg.eco/static/badges/All-Time/USD-GLO-Tiers/Badge.svg",
-      "stack-image": "https://passport.celopg.eco/static/badges/All-Time/USD-GLO-Tiers/Badge-Stack.svg",
+      "image": "https://pass.celopg.eco/static/badges/All-Time/USD-GLO-Tiers/Badge.svg",
+      "stack-image": "https://pass.celopg.eco/static/badges/All-Time/USD-GLO-Tiers/Badge-Stack.svg",
       "levels": [
         {
           "minValue": 1,
@@ -378,8 +378,8 @@
       "name": "Proof of Ship",
       "description": "cUSD earned from proof of ship",
       "platform": "Celo",
-      "image": "https://passport.celopg.eco/static/badges/All-Time/Proof-of-ship/Badge.svg",
-      "stack-image": "https://passport.celopg.eco/static/badges/All-Time/Proof-of-ship/Badge-Stack.svg",
+      "image": "https://pass.celopg.eco/static/badges/All-Time/Proof-of-ship/Badge.svg",
+      "stack-image": "https://pass.celopg.eco/static/badges/All-Time/Proof-of-ship/Badge-Stack.svg",
       "levels": [
         {
           "minValue": 100,
@@ -410,8 +410,8 @@
       "name": "Governance Guardian",
       "description": "Be a Governance Guardian",
       "platform": "Celo",
-      "image": "https://passport.celopg.eco/static/badges/All-Time/Governance-guardian/Badge.svg",
-      "stack-image": "https://passport.celopg.eco/static/badges/All-Time/Governance-guardian/Badge-Stack.svg",
+      "image": "https://pass.celopg.eco/static/badges/All-Time/Governance-guardian/Badge.svg",
+      "stack-image": "https://pass.celopg.eco/static/badges/All-Time/Governance-guardian/Badge-Stack.svg",
       "levels": [
         {
           "minValue": 1,
@@ -426,8 +426,8 @@
       "name": "Community Guild ",
       "description": "Be a Community Guild lead",
       "platform": "Celo",
-      "image": "https://passport.celopg.eco/static/badges/All-Time/Community-guild/Badge.svg",
-      "stack-image": "https://passport.celopg.eco/static/badges/All-Time/Community-guild/Badge-Stack.svg",
+      "image": "https://pass.celopg.eco/static/badges/All-Time/Community-guild/Badge.svg",
+      "stack-image": "https://pass.celopg.eco/static/badges/All-Time/Community-guild/Badge-Stack.svg",
       "levels": [
         {
           "minValue": 1,
@@ -442,8 +442,8 @@
       "name": "Self verification",
       "description": "Verify your an unique indivual through Self Protocol",
       "platform": "Self",
-      "image": "https://passport.celopg.eco/static/badges/All-Time/Self-Verification/Badge.svg",
-      "stack-image": "https://passport.celopg.eco/static/badges/All-Time/Self-Verification/Badge-Stack.svg",
+      "image": "https://pass.celopg.eco/static/badges/All-Time/Self-Verification/Badge.svg",
+      "stack-image": "https://pass.celopg.eco/static/badges/All-Time/Self-Verification/Badge-Stack.svg",
       "levels": [
         {
           "minValue": 1,
@@ -458,8 +458,8 @@
       "name": "CEL2 Transactions",
       "description": "Number of transactions on CEL2",
       "platform": "Celo",
-      "image": "https://passport.celopg.eco/static/badges/All-Time/CEL2-Transactions/Badge.svg",
-      "stack-image": "https://passport.celopg.eco/static/badges/All-Time/CEL2-Transactions/Badge-Stack.svg",
+      "image": "https://pass.celopg.eco/static/badges/All-Time/CEL2-Transactions/Badge.svg",
+      "stack-image": "https://pass.celopg.eco/static/badges/All-Time/CEL2-Transactions/Badge-Stack.svg",
       "levels": [
         {
           "minValue": 10,
@@ -490,8 +490,8 @@
       "name": "Eco Credit Retirement",
       "description": "Retire Eco Credits on Celo",
       "platform": "EcoToken",
-      "image": "https://passport.celopg.eco/static/badges/All-Time/Eco-Credit-Retirement/Badge.svg",
-      "stack-image": "https://passport.celopg.eco/static/badges/All-Time/Eco-Credit-Retirement/Badge-Stack.svg",
+      "image": "https://pass.celopg.eco/static/badges/All-Time/Eco-Credit-Retirement/Badge.svg",
+      "stack-image": "https://pass.celopg.eco/static/badges/All-Time/Eco-Credit-Retirement/Badge-Stack.svg",
       "levels": [
         {
           "minValue": 1,
