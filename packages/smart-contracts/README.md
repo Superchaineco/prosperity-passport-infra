@@ -64,3 +64,14 @@ $ forge --help
 $ anvil --help
 $ cast --help
 ```
+
+
+
+Updating badges metadata
+1. In utils run npm run pin-file (Need to param in .env the pinata api key)
+2. Copy de hash to generateMetadata.js
+3. npm run generate-metadata
+4. Then go to smart-contracts tun forge compile
+5. Copy the badges-with-uris.json to smart-contracts folder and/or change the badges.json depending the use
+6. Use the UpdatesBadges (for all badges) or DeployNewBadges (for new badges or single badge updating)
+7. e.g for BADGES_ADDRESS=0xd47C56513E640E394024FaCBBe5032cf604Bb699 forge script script/UpdateBadges.s.sol --rpc-url celo --account <ACCOUNT> --broadcast
