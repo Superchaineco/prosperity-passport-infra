@@ -517,6 +517,22 @@
       "condition": "Retire {{variable}} Eco Credits",
       "chains": ["Celo"],
       "season": null
+    },
+    {
+      "name": "Farcaster Connection",
+      "description": "Link your Farcaster account",
+      "platform": "Farcaster",
+      "image": "https://pass.celopg.eco/static/badges/All-Time/Farcaster-Connection/Badge.svg",
+      "stack-image": "https://pass.celopg.eco/static/badges/All-Time/Farcaster-Connection/Badge-Stack.svg",
+      "levels": [
+        {
+          "minValue": 1,
+          "points": 100
+        }
+      ],
+      "condition": "Link your Farcaster account",
+      "chains": ["Optimism"],
+      "season": null
     }
   ]
 }

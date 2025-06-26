@@ -1,50 +1,23 @@
 {
   "badges": [
     {
-      "name": "USD GLO tiers",
-      "description": "Tier of holding USDGLO on Celo",
-      "platform": "USD GLO",
+      "name": "Farcaster Connection",
+      "description": "Link your Farcaster account",
+      "platform": "Farcaster",
       "levels": [
         {
-          "2DImage": "https://pass.celopg.eco/static/badges/2DImages/UsdgloTiers-1.svg",
-          "3DImage": "https://pass.celopg.eco/static/badges/3DImages/UsdgloTiers-1.svg",
           "minValue": 1,
-          "points": 10,
-          "URI": "ipfs/QmQ6jEqeqs4hzWYPJBFjdfJwomHo4MYYLjziwCEdWiN22Q/00000000000000000000000000000000000000000000000000000000000000130000000000000000000000000000000000000000000000000000000000000001.json"
-        },
-        {
-          "2DImage": "https://pass.celopg.eco/static/badges/2DImages/UsdgloTiers-2.svg",
-          "3DImage": "https://pass.celopg.eco/static/badges/3DImages/UsdgloTiers-2.svg",
-          "minValue": 2,
-          "points": 20,
-          "URI": "ipfs/QmQ6jEqeqs4hzWYPJBFjdfJwomHo4MYYLjziwCEdWiN22Q/00000000000000000000000000000000000000000000000000000000000000130000000000000000000000000000000000000000000000000000000000000002.json"
-        },
-        {
-          "2DImage": "https://pass.celopg.eco/static/badges/2DImages/UsdgloTiers-3.svg",
-          "3DImage": "https://pass.celopg.eco/static/badges/3DImages/UsdgloTiers-3.svg",
-          "minValue": 3,
-          "points": 30,
-          "URI": "ipfs/QmQ6jEqeqs4hzWYPJBFjdfJwomHo4MYYLjziwCEdWiN22Q/00000000000000000000000000000000000000000000000000000000000000130000000000000000000000000000000000000000000000000000000000000003.json"
-        },
-        {
-          "2DImage": "https://pass.celopg.eco/static/badges/2DImages/UsdgloTiers-4.svg",
-          "3DImage": "https://pass.celopg.eco/static/badges/3DImages/UsdgloTiers-4.svg",
-          "minValue": 4,
-          "points": 40,
-          "URI": "ipfs/QmQ6jEqeqs4hzWYPJBFjdfJwomHo4MYYLjziwCEdWiN22Q/00000000000000000000000000000000000000000000000000000000000000130000000000000000000000000000000000000000000000000000000000000004.json"
-        },
-        {
-          "2DImage": "https://pass.celopg.eco/static/badges/2DImages/UsdgloTiers-5.svg",
-          "3DImage": "https://pass.celopg.eco/static/badges/3DImages/UsdgloTiers-5.svg",
-          "minValue": 5,
-          "points": 50,
-          "URI": "ipfs/QmQ6jEqeqs4hzWYPJBFjdfJwomHo4MYYLjziwCEdWiN22Q/00000000000000000000000000000000000000000000000000000000000000130000000000000000000000000000000000000000000000000000000000000005.json"
+          "points": 100,
+          "URI": "ipfs/QmdEkDTvAaeEkzgL5LWCWGgyMoQbG5bFCR9xScyVFKxC3J/00000000000000000000000000000000000000000000000000000000000000200000000000000000000000000000000000000000000000000000000000000001.json"
         }
       ],
-      "condition": "Hold USDGLO on Celo",
-      "chain": "Celo",
-      "id": 13,
-      "URI": "ipfs/QmQ6jEqeqs4hzWYPJBFjdfJwomHo4MYYLjziwCEdWiN22Q/00000000000000000000000000000000000000000000000000000000000000130000000000000000000000000000000000000000000000000000000000000000.json"
+      "condition": "Link your Farcaster account",
+      "chains": ["Optimism"],
+      "id": 20,
+      "URI": "ipfs/QmdEkDTvAaeEkzgL5LWCWGgyMoQbG5bFCR9xScyVFKxC3J/00000000000000000000000000000000000000000000000000000000000000200000000000000000000000000000000000000000000000000000000000000000.json",
+      "image": "https://pass.celopg.eco/static/badges/All-Time/Farcaster-Connection/Badge.svg",
+      "stack-image": "https://pass.celopg.eco/static/badges/All-Time/Farcaster-Connection/Badge-Stack.svg",
+      "season": null
     }
   ]
 }
