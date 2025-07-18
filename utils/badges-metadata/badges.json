@@ -533,6 +533,38 @@
       "condition": "Link your Farcaster account",
       "chains": ["Optimism"],
       "season": null
+    },
+    {
+      "name": "Let’s Grow Contributor",
+      "description": "LGD merit-based amiGROW badges",
+      "platform": "Let's Grow DAO",
+      "image": "https://pass.celopg.eco/static/badges/All-Time/LGD/Badge.svg",
+      "stack-image": "https://pass.celopg.eco/static/badges/All-Time/LGD/Badge-Stack.svg",
+      "levels": [
+        {
+          "minValue": 1,
+          "points": 5
+        },
+        {
+          "minValue": 2,
+          "points": 10
+        },
+        {
+          "minValue": 3,
+          "points": 15
+        },
+        {
+          "minValue": 4,
+          "points": 20
+        },
+        {
+          "minValue": 5,
+          "points": 25
+        }
+      ],
+      "condition": "Get Let's Grow DAO merit-based amiGROW badge tier {{variable}}",
+      "chains": ["Celo"],
+      "season": null
     }
   ]
 }

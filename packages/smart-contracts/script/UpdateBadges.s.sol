@@ -8,6 +8,7 @@ contract UpdateBadges is Script {
     function setUp() public {}
 
     function run() public returns (address) {
+        
         address badgesProxy = vm.envAddress("BADGES_ADDRESS");
         JSONReader jsonReader = new JSONReader();
         (JSON memory badgesJson, uint256 tierCount) = jsonReader.run();

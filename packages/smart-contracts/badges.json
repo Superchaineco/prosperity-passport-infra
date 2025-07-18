@@ -1,22 +1,44 @@
 {
   "badges": [
     {
-      "name": "Farcaster Connection",
-      "description": "Link your Farcaster account",
-      "platform": "Farcaster",
+      "name": "Let’s Grow Contributor",
+      "description": "LGD merit-based amiGROW badges",
+      "platform": "Let's Grow DAO",
       "levels": [
         {
           "minValue": 1,
-          "points": 100,
-          "URI": "ipfs/QmdEkDTvAaeEkzgL5LWCWGgyMoQbG5bFCR9xScyVFKxC3J/00000000000000000000000000000000000000000000000000000000000000200000000000000000000000000000000000000000000000000000000000000001.json"
+          "points": 5,
+          "URI": "ipfs/bafybeigglv3k4kh24hmcxe4mqu7kqchkoio5he73qpclufftkbtyuw2jym/00000000000000000000000000000000000000000000000000000000000000210000000000000000000000000000000000000000000000000000000000000001.json"
+        },
+        {
+          "minValue": 2,
+          "points": 10,
+          "URI": "ipfs/bafybeigglv3k4kh24hmcxe4mqu7kqchkoio5he73qpclufftkbtyuw2jym/00000000000000000000000000000000000000000000000000000000000000210000000000000000000000000000000000000000000000000000000000000002.json"
+        },
+        {
+          "minValue": 3,
+          "points": 15,
+          "URI": "ipfs/bafybeigglv3k4kh24hmcxe4mqu7kqchkoio5he73qpclufftkbtyuw2jym/00000000000000000000000000000000000000000000000000000000000000210000000000000000000000000000000000000000000000000000000000000003.json"
+        },
+        {
+          "minValue": 4,
+          "points": 20,
+          "URI": "ipfs/bafybeigglv3k4kh24hmcxe4mqu7kqchkoio5he73qpclufftkbtyuw2jym/00000000000000000000000000000000000000000000000000000000000000210000000000000000000000000000000000000000000000000000000000000004.json"
+        },
+        {
+          "minValue": 5,
+          "points": 25,
+          "URI": "ipfs/bafybeigglv3k4kh24hmcxe4mqu7kqchkoio5he73qpclufftkbtyuw2jym/00000000000000000000000000000000000000000000000000000000000000210000000000000000000000000000000000000000000000000000000000000005.json"
         }
       ],
-      "condition": "Link your Farcaster account",
-      "chains": ["Optimism"],
-      "id": 20,
-      "URI": "ipfs/QmdEkDTvAaeEkzgL5LWCWGgyMoQbG5bFCR9xScyVFKxC3J/00000000000000000000000000000000000000000000000000000000000000200000000000000000000000000000000000000000000000000000000000000000.json",
-      "image": "https://pass.celopg.eco/static/badges/All-Time/Farcaster-Connection/Badge.svg",
-      "stack-image": "https://pass.celopg.eco/static/badges/All-Time/Farcaster-Connection/Badge-Stack.svg",
+      "condition": "Get Let's Grow DAO merit-based amiGROW badge tier {{variable}}",
+      "chains": [
+        "Celo"
+      ],
+      "id": 21,
+      "URI": "ipfs/bafybeigglv3k4kh24hmcxe4mqu7kqchkoio5he73qpclufftkbtyuw2jym/00000000000000000000000000000000000000000000000000000000000000210000000000000000000000000000000000000000000000000000000000000000.json",
+      "image": "https://pass.celopg.eco/static/badges/All-Time/LGD/Badge.svg",
+      "stack-image": "https://pass.celopg.eco/static/badges/All-Time/LGD/Badge-Stack.svg",
       "season": null
     }
   ]
