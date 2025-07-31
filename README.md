@@ -3,7 +3,7 @@ DPG Accounts is an open-source solution by Kolektivo Labs built on Safe{Core} Pr
 
 Updating badges metadata
 1. In utils/generateMetadata modify the badges.json and run 'npm run pin-file' (Need to param in .env the pinata api key)
-2. Copy de hash to utils/badges-metadata/src/generate-uris.js
+2. Copy de hash to utils/badges-metadata/src/generateMetadata.js
 3. npm run generate-metadata
 4. Then go to packages/smart-contracts run 'forge compile'
 5. Copy the badges-with-uris.json to smart-contracts folder and/or change the badges.json depending the use (badges.sjon for some badges update or add and the other for full update)

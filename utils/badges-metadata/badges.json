@@ -565,6 +565,38 @@
       "condition": "Get Let's Grow DAO merit-based amiGROW badge tier {{variable}}",
       "chains": ["Celo"],
       "season": null
+    },
+    {
+      "name": "S1 Transactions",
+      "description": "Number of transactions on Celo in Season 1",
+      "platform": "Celo",
+      "image": "https://pass.celopg.eco/static/badges/All-Time/LGD/Badge.svg",
+      "stack-image": "https://pass.celopg.eco/static/badges/All-Time/LGD/Badge-Stack.svg",
+      "levels": [
+        {
+          "minValue": 10,
+          "points": 20
+        },
+        {
+          "minValue": 50,
+          "points": 40
+        },
+        {
+          "minValue": 100,
+          "points": 60
+        },
+        {
+          "minValue": 250,
+          "points": 80
+        },
+        {
+          "minValue": 500,
+          "points": 100
+        }
+      ],
+      "condition": "Number of transactions on Celo in Season 1",
+      "chains": ["Celo"],
+      "season": 1
     }
   ]
 }

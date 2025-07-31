@@ -1,45 +1,43 @@
 {
   "badges": [
     {
-      "name": "Let’s Grow Contributor",
-      "description": "LGD merit-based amiGROW badges",
-      "platform": "Let's Grow DAO",
+      "name": "S1 Transactions",
+      "description": "Number of transactions on Celo in Season 1",
+      "platform": "Celo",
       "levels": [
         {
-          "minValue": 1,
-          "points": 5,
-          "URI": "ipfs/bafybeigglv3k4kh24hmcxe4mqu7kqchkoio5he73qpclufftkbtyuw2jym/00000000000000000000000000000000000000000000000000000000000000210000000000000000000000000000000000000000000000000000000000000001.json"
-        },
-        {
-          "minValue": 2,
-          "points": 10,
-          "URI": "ipfs/bafybeigglv3k4kh24hmcxe4mqu7kqchkoio5he73qpclufftkbtyuw2jym/00000000000000000000000000000000000000000000000000000000000000210000000000000000000000000000000000000000000000000000000000000002.json"
-        },
-        {
-          "minValue": 3,
-          "points": 15,
-          "URI": "ipfs/bafybeigglv3k4kh24hmcxe4mqu7kqchkoio5he73qpclufftkbtyuw2jym/00000000000000000000000000000000000000000000000000000000000000210000000000000000000000000000000000000000000000000000000000000003.json"
-        },
-        {
-          "minValue": 4,
+          "minValue": 10,
           "points": 20,
-          "URI": "ipfs/bafybeigglv3k4kh24hmcxe4mqu7kqchkoio5he73qpclufftkbtyuw2jym/00000000000000000000000000000000000000000000000000000000000000210000000000000000000000000000000000000000000000000000000000000004.json"
+          "URI": "ipfs/QmUjuRH4BDN6syKyYWyJkLX7CvbHSWHxXZy76uVDSNiiU9/00000000000000000000000000000000000000000000000000000000000000220000000000000000000000000000000000000000000000000000000000000001.json"
         },
         {
-          "minValue": 5,
-          "points": 25,
-          "URI": "ipfs/bafybeigglv3k4kh24hmcxe4mqu7kqchkoio5he73qpclufftkbtyuw2jym/00000000000000000000000000000000000000000000000000000000000000210000000000000000000000000000000000000000000000000000000000000005.json"
+          "minValue": 50,
+          "points": 40,
+          "URI": "ipfs/QmUjuRH4BDN6syKyYWyJkLX7CvbHSWHxXZy76uVDSNiiU9/00000000000000000000000000000000000000000000000000000000000000220000000000000000000000000000000000000000000000000000000000000002.json"
+        },
+        {
+          "minValue": 100,
+          "points": 60,
+          "URI": "ipfs/QmUjuRH4BDN6syKyYWyJkLX7CvbHSWHxXZy76uVDSNiiU9/00000000000000000000000000000000000000000000000000000000000000220000000000000000000000000000000000000000000000000000000000000003.json"
+        },
+        {
+          "minValue": 250,
+          "points": 80,
+          "URI": "ipfs/QmUjuRH4BDN6syKyYWyJkLX7CvbHSWHxXZy76uVDSNiiU9/00000000000000000000000000000000000000000000000000000000000000220000000000000000000000000000000000000000000000000000000000000004.json"
+        },
+        {
+          "minValue": 500,
+          "points": 100,
+          "URI": "ipfs/QmUjuRH4BDN6syKyYWyJkLX7CvbHSWHxXZy76uVDSNiiU9/00000000000000000000000000000000000000000000000000000000000000220000000000000000000000000000000000000000000000000000000000000005.json"
         }
       ],
-      "condition": "Get Let's Grow DAO merit-based amiGROW badge tier {{variable}}",
-      "chains": [
-        "Celo"
-      ],
-      "id": 21,
-      "URI": "ipfs/bafybeigglv3k4kh24hmcxe4mqu7kqchkoio5he73qpclufftkbtyuw2jym/00000000000000000000000000000000000000000000000000000000000000210000000000000000000000000000000000000000000000000000000000000000.json",
+      "condition": "Number of transactions on Celo in Season 1",
+      "chains": ["Celo"],
+      "id": 22,
+      "URI": "ipfs/QmUjuRH4BDN6syKyYWyJkLX7CvbHSWHxXZy76uVDSNiiU9/00000000000000000000000000000000000000000000000000000000000000220000000000000000000000000000000000000000000000000000000000000000.json",
       "image": "https://pass.celopg.eco/static/badges/All-Time/LGD/Badge.svg",
       "stack-image": "https://pass.celopg.eco/static/badges/All-Time/LGD/Badge-Stack.svg",
-      "season": null
+      "season": 1
     }
   ]
 }
