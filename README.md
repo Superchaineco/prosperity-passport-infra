@@ -2,7 +2,7 @@
 DPG Accounts is an open-source solution by Kolektivo Labs built on Safe{Core} Protocol that creates native accounts for EVM-compatable Blockchain ecosystems and dApps to engage active users and reward meaningful participation. 
 
 Updating badges metadata
-1. In utils/generateMetadata modify the badges.json and run 'npm run pin-file' (Need to param in .env the pinata api key)
+1. In utils/badges-metadata  modify the badges.json and run 'npm run pin-file' (Need to param in .env the pinata api key)
 2. Copy de hash to utils/badges-metadata/src/generateMetadata.js
 3. npm run generate-metadata
 4. Then go to packages/smart-contracts run 'forge compile'

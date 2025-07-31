@@ -569,9 +569,9 @@
     {
       "name": "S1 Transactions",
       "description": "Number of transactions on Celo in Season 1",
-      "platform": "Celo",
-      "image": "https://pass.celopg.eco/static/badges/All-Time/LGD/Badge.svg",
-      "stack-image": "https://pass.celopg.eco/static/badges/All-Time/LGD/Badge-Stack.svg",
+      "platform": "Celo",      
+      "image": "https://pass.celopg.eco/static/badges/Season-1/S1-Transactions/Badge.svg",
+      "stack-image": "https://pass.celopg.eco/static/badges/Season-1/S1-Transactions/Badge-Stack.svg",
       "levels": [
         {
           "minValue": 10,
