@@ -12,3 +12,4 @@ Updating badges metadata
 Account is the keystore file
 SA prod
 BADGES_ADDRESS=0xd47C56513E640E394024FaCBBe5032cf604Bb699 forge script script/AddBadges.s.sol --rpc-url celo --account pp-pk --broadcast
+BADGES_ADDRESS=0xd47C56513E640E394024FaCBBe5032cf604Bb699 forge script script/UpdateBadges.s.sol --rpc-url celo --account pp-pk --broadcast

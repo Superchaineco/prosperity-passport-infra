@@ -594,7 +594,7 @@
           "points": 100
         }
       ],
-      "condition": "Number of transactions on Celo in Season 1",
+      "condition": "{{variable}} transactions on Celo in Season 1",
       "chains": ["Celo"],
       "season": 1
     }
