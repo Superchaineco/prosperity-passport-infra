@@ -569,7 +569,7 @@
     {
       "name": "S1 Transactions",
       "description": "Number of transactions on Celo in Season 1",
-      "platform": "Celo",      
+      "platform": "Celo",
       "image": "https://pass.celopg.eco/static/badges/Season-1/S1-Transactions/Badge.svg",
       "stack-image": "https://pass.celopg.eco/static/badges/Season-1/S1-Transactions/Badge-Stack.svg",
       "levels": [
@@ -597,6 +597,26 @@
       "condition": "{{variable}} transactions on Celo in Season 1",
       "chains": ["Celo"],
       "season": 1
+    },
+    {
+      "name": "S0 Gov Contributor",
+      "description": "Contributed to Celo Governance in Season 0",
+      "platform": "Celo",
+      "image": "https://pass.celopg.eco/static/badges/Season-1/All-Time/S0-Gov-Contributor/Badge.svg",
+      "stack-image": "https://pass.celopg.eco/static/badges/Season-1/All-Time/S0-Gov-Contributor/Badge.svg",
+      "levels": [
+        {
+          "minValue": 1,
+          "points": 50
+        },
+        {
+          "minValue": 2,
+          "points": 100
+        }
+      ],
+      "condition": "Contributed to Celo Governance in Season 0",
+      "chains": ["Celo"],
+      "season": null
     }
   ]
 }

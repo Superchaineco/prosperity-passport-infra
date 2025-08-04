@@ -1,43 +1,28 @@
 {
   "badges": [
     {
-      "name": "S1 Transactions",
-      "description": "Number of transactions on Celo in Season 1",
+      "name": "S0 Gov Contributor",
+      "description": "Contributed to Celo Governance in Season 0",
       "platform": "Celo",
       "levels": [
         {
-          "minValue": 10,
-          "points": 20,
-          "URI": "ipfs/QmYAtD8NbnFvbhcvvnMSMZb1x5Zw2CqjzwvZMM8jzcea7u/00000000000000000000000000000000000000000000000000000000000000220000000000000000000000000000000000000000000000000000000000000001.json"
+          "minValue": 1,
+          "points": 50,
+          "URI": "ipfs/QmVo7GeiBeMqWTR4Dj62DEaDtAh2TpGkhm5VJQ1oC8W9nc/00000000000000000000000000000000000000000000000000000000000000230000000000000000000000000000000000000000000000000000000000000001.json"
         },
         {
-          "minValue": 50,
-          "points": 40,
-          "URI": "ipfs/QmYAtD8NbnFvbhcvvnMSMZb1x5Zw2CqjzwvZMM8jzcea7u/00000000000000000000000000000000000000000000000000000000000000220000000000000000000000000000000000000000000000000000000000000002.json"
-        },
-        {
-          "minValue": 100,
-          "points": 60,
-          "URI": "ipfs/QmYAtD8NbnFvbhcvvnMSMZb1x5Zw2CqjzwvZMM8jzcea7u/00000000000000000000000000000000000000000000000000000000000000220000000000000000000000000000000000000000000000000000000000000003.json"
-        },
-        {
-          "minValue": 250,
-          "points": 80,
-          "URI": "ipfs/QmYAtD8NbnFvbhcvvnMSMZb1x5Zw2CqjzwvZMM8jzcea7u/00000000000000000000000000000000000000000000000000000000000000220000000000000000000000000000000000000000000000000000000000000004.json"
-        },
-        {
-          "minValue": 500,
+          "minValue": 2,
           "points": 100,
-          "URI": "ipfs/QmYAtD8NbnFvbhcvvnMSMZb1x5Zw2CqjzwvZMM8jzcea7u/00000000000000000000000000000000000000000000000000000000000000220000000000000000000000000000000000000000000000000000000000000005.json"
+          "URI": "ipfs/QmVo7GeiBeMqWTR4Dj62DEaDtAh2TpGkhm5VJQ1oC8W9nc/00000000000000000000000000000000000000000000000000000000000000230000000000000000000000000000000000000000000000000000000000000002.json"
         }
       ],
-      "condition": "{{variable}} transactions on Celo in Season 1",
+      "condition": "Contributed to Celo Governance in Season 0",
       "chains": ["Celo"],
-      "id": 22,
-      "URI": "ipfs/QmYAtD8NbnFvbhcvvnMSMZb1x5Zw2CqjzwvZMM8jzcea7u/00000000000000000000000000000000000000000000000000000000000000220000000000000000000000000000000000000000000000000000000000000000.json",
-      "image": "https://pass.celopg.eco/static/badges/Season-1/S1-Transactions/Badge.svg",
-      "stack-image": "https://pass.celopg.eco/static/badges/Season-1/S1-Transactions/Badge-Stack.svg",
-      "season": 1
+      "id": 23,
+      "URI": "ipfs/QmVo7GeiBeMqWTR4Dj62DEaDtAh2TpGkhm5VJQ1oC8W9nc/00000000000000000000000000000000000000000000000000000000000000230000000000000000000000000000000000000000000000000000000000000000.json",
+      "image": "https://pass.celopg.eco/static/badges/Season-1/All-Time/S0-Gov-Contributor/Badge.svg",
+      "stack-image": "https://pass.celopg.eco/static/badges/Season-1/All-Time/S0-Gov-Contributor/Badge.svg",
+      "season": null
     }
   ]
 }

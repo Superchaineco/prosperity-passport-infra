@@ -6,7 +6,7 @@ Updating badges metadata
 2. Copy de hash to utils/badges-metadata/src/generateMetadata.js
 3. npm run generate-metadata
 4. Then go to packages/smart-contracts run 'forge compile'
-5. Copy the badges-with-uris.json to smart-contracts folder and/or change the badges.json depending the use (badges.sjon for some badges update or add and the other for full update)
+5. Copy the badges-with-uris.json to smart-contracts folder and/or change the badges.json depending the use (badges.jon for some badges update or add and the other for full update)
 6. Use the AddBadges (for all badges) or UpdateBadges (for new badges or single badge updating)
 
 Account is the keystore file
