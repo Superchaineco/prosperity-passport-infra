@@ -423,8 +423,8 @@
       "season": null
     },
     {
-      "name": "Community Guild ",
-      "description": "Be a Community Guild lead",
+      "name": "Community Guild Lead",
+      "description": "Issued to Celo Community Guild Leads",
       "platform": "Celo",
       "image": "https://pass.celopg.eco/static/badges/All-Time/Community-guild/Badge.svg",
       "stack-image": "https://pass.celopg.eco/static/badges/All-Time/Community-guild/Badge-Stack.svg",
@@ -434,13 +434,13 @@
           "points": 50
         }
       ],
-      "condition": "Be a Celo Community Guild Member",
+      "condition": "Be a Community Guild Lead",
       "chains": ["Celo"],
       "season": null
     },
     {
       "name": "Self verification",
-      "description": "Verify your an unique indivual through Self Protocol",
+      "description": "​Verify your uniqueness with Self Protocol",
       "platform": "Self",
       "image": "https://pass.celopg.eco/static/badges/All-Time/Self-Verification/Badge.svg",
       "stack-image": "https://pass.celopg.eco/static/badges/All-Time/Self-Verification/Badge-Stack.svg",
@@ -450,7 +450,7 @@
           "points": 200
         }
       ],
-      "condition": "Verify your an unique indivual through Self Protocol",
+      "condition": "Verify your Country via Self",
       "chains": ["Celo"],
       "season": null
     },
@@ -488,7 +488,7 @@
     },
     {
       "name": "Eco Credit Retirement",
-      "description": "Retire Eco Credits on Celo",
+      "description": "Retire Eco Credits on Celo via <a href='https://www.regenatlas.xyz/'>Regen Atlas</a>",
       "platform": "EcoToken",
       "image": "https://pass.celopg.eco/static/badges/All-Time/Eco-Credit-Retirement/Badge.svg",
       "stack-image": "https://pass.celopg.eco/static/badges/All-Time/Eco-Credit-Retirement/Badge-Stack.svg",
@@ -615,6 +615,38 @@
         }
       ],
       "condition": "Contributed to Celo Governance in Season 0",
+      "chains": ["Celo"],
+      "season": null
+    },
+    {
+      "name": "TDF Contributor",
+      "description": "Participated in The Dream Factory land project",
+      "platform": "Celo",
+      "image": "https://pass.celopg.eco/static/badges/All-Time/TDF-Contributor/Badge.svg",
+      "stack-image": "https://pass.celopg.eco/static/badges/All-Time/TDF-Contributor/Badge-Stack.svg",
+      "levels": [
+         {
+          "minValue": 1,
+          "points": 10
+        },
+        {
+          "minValue": 2,
+          "points": 20
+        },
+        {
+          "minValue": 3,
+          "points": 30
+        },
+        {
+          "minValue": 4,
+          "points": 40
+        },
+        {
+          "minValue": 5,
+          "points": 50
+        }
+      ],
+      "condition": "Participated in The Dream Factory land project",
       "chains": ["Celo"],
       "season": null
     }
