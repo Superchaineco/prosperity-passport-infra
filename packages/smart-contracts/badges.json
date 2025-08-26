@@ -1,27 +1,129 @@
 {
   "badges": [
+   
     {
-      "name": "S0 Gov Contributor",
-      "description": "Contributed to Celo Governance in Season 0",
+      "name": "Community Guild Lead",
+      "description": "Issued to Celo Community Guild Leads",
       "platform": "Celo",
       "levels": [
         {
           "minValue": 1,
           "points": 50,
-          "URI": "ipfs/QmdofYyLXJ5PHQBkGw6KbZ2geVv4aWcZo6uwqdAWaEub5w/00000000000000000000000000000000000000000000000000000000000000230000000000000000000000000000000000000000000000000000000000000001.json"
+          "URI": "ipfs/Qmf7ew7KeZ935LCuLRQV5xASgjBr3DHXS9psCCzotqPEKe/00000000000000000000000000000000000000000000000000000000000000160000000000000000000000000000000000000000000000000000000000000001.json"
+        }
+      ],
+      "condition": "Be a Community Guild Lead",
+      "chains": [
+        "Celo"
+      ],
+      "id": 16,
+      "URI": "ipfs/Qmf7ew7KeZ935LCuLRQV5xASgjBr3DHXS9psCCzotqPEKe/00000000000000000000000000000000000000000000000000000000000000160000000000000000000000000000000000000000000000000000000000000000.json",
+      "image": "https://pass.celopg.eco/static/badges/All-Time/Community-guild/Badge.svg",
+      "stack-image": "https://pass.celopg.eco/static/badges/All-Time/Community-guild/Badge-Stack.svg",
+      "season": null
+    },
+    {
+      "name": "Self verification",
+      "description": "​Verify your uniqueness with Self Protocol",
+      "platform": "Self",
+      "levels": [
+        {
+          "minValue": 1,
+          "points": 200,
+          "URI": "ipfs/Qmf7ew7KeZ935LCuLRQV5xASgjBr3DHXS9psCCzotqPEKe/00000000000000000000000000000000000000000000000000000000000000170000000000000000000000000000000000000000000000000000000000000001.json"
+        }
+      ],
+      "condition": "Verify your Country via Self",
+      "chains": [
+        "Celo"
+      ],
+      "id": 17,
+      "URI": "ipfs/Qmf7ew7KeZ935LCuLRQV5xASgjBr3DHXS9psCCzotqPEKe/00000000000000000000000000000000000000000000000000000000000000170000000000000000000000000000000000000000000000000000000000000000.json",
+      "image": "https://pass.celopg.eco/static/badges/All-Time/Self-Verification/Badge.svg",
+      "stack-image": "https://pass.celopg.eco/static/badges/All-Time/Self-Verification/Badge-Stack.svg",
+      "season": null
+    },
+   
+    {
+      "name": "Eco Credit Retirement",
+      "description": "Retire Eco Credits on Celo via <a href='https://www.regenatlas.xyz/'>Regen Atlas</a>",
+      "platform": "EcoToken",
+      "levels": [
+        {
+          "minValue": 1,
+          "points": 10,
+          "URI": "ipfs/Qmf7ew7KeZ935LCuLRQV5xASgjBr3DHXS9psCCzotqPEKe/00000000000000000000000000000000000000000000000000000000000000190000000000000000000000000000000000000000000000000000000000000001.json"
+        },
+        {
+          "minValue": 10,
+          "points": 20,
+          "URI": "ipfs/Qmf7ew7KeZ935LCuLRQV5xASgjBr3DHXS9psCCzotqPEKe/00000000000000000000000000000000000000000000000000000000000000190000000000000000000000000000000000000000000000000000000000000002.json"
+        },
+        {
+          "minValue": 50,
+          "points": 30,
+          "URI": "ipfs/Qmf7ew7KeZ935LCuLRQV5xASgjBr3DHXS9psCCzotqPEKe/00000000000000000000000000000000000000000000000000000000000000190000000000000000000000000000000000000000000000000000000000000003.json"
+        },
+        {
+          "minValue": 250,
+          "points": 40,
+          "URI": "ipfs/Qmf7ew7KeZ935LCuLRQV5xASgjBr3DHXS9psCCzotqPEKe/00000000000000000000000000000000000000000000000000000000000000190000000000000000000000000000000000000000000000000000000000000004.json"
+        },
+        {
+          "minValue": 1000,
+          "points": 50,
+          "URI": "ipfs/Qmf7ew7KeZ935LCuLRQV5xASgjBr3DHXS9psCCzotqPEKe/00000000000000000000000000000000000000000000000000000000000000190000000000000000000000000000000000000000000000000000000000000005.json"
+        }
+      ],
+      "condition": "Retire {{variable}} Eco Credits",
+      "chains": [
+        "Celo"
+      ],
+      "id": 19,
+      "URI": "ipfs/Qmf7ew7KeZ935LCuLRQV5xASgjBr3DHXS9psCCzotqPEKe/00000000000000000000000000000000000000000000000000000000000000190000000000000000000000000000000000000000000000000000000000000000.json",
+      "image": "https://pass.celopg.eco/static/badges/All-Time/Eco-Credit-Retirement/Badge.svg",
+      "stack-image": "https://pass.celopg.eco/static/badges/All-Time/Eco-Credit-Retirement/Badge-Stack.svg",
+      "season": null
+    },
+    {
+      "name": "TDF Contributor",
+      "description": "Participated in The Dream Factory land project",
+      "platform": "Celo",
+      "levels": [
+        {
+          "minValue": 1,
+          "points": 10,
+          "URI": "ipfs/Qmf7ew7KeZ935LCuLRQV5xASgjBr3DHXS9psCCzotqPEKe/00000000000000000000000000000000000000000000000000000000000000240000000000000000000000000000000000000000000000000000000000000001.json"
         },
         {
           "minValue": 2,
-          "points": 100,
-          "URI": "ipfs/QmdofYyLXJ5PHQBkGw6KbZ2geVv4aWcZo6uwqdAWaEub5w/00000000000000000000000000000000000000000000000000000000000000230000000000000000000000000000000000000000000000000000000000000002.json"
+          "points": 20,
+          "URI": "ipfs/Qmf7ew7KeZ935LCuLRQV5xASgjBr3DHXS9psCCzotqPEKe/00000000000000000000000000000000000000000000000000000000000000240000000000000000000000000000000000000000000000000000000000000002.json"
+        },
+        {
+          "minValue": 3,
+          "points": 30,
+          "URI": "ipfs/Qmf7ew7KeZ935LCuLRQV5xASgjBr3DHXS9psCCzotqPEKe/00000000000000000000000000000000000000000000000000000000000000240000000000000000000000000000000000000000000000000000000000000003.json"
+        },
+        {
+          "minValue": 4,
+          "points": 40,
+          "URI": "ipfs/Qmf7ew7KeZ935LCuLRQV5xASgjBr3DHXS9psCCzotqPEKe/00000000000000000000000000000000000000000000000000000000000000240000000000000000000000000000000000000000000000000000000000000004.json"
+        },
+        {
+          "minValue": 5,
+          "points": 50,
+          "URI": "ipfs/Qmf7ew7KeZ935LCuLRQV5xASgjBr3DHXS9psCCzotqPEKe/00000000000000000000000000000000000000000000000000000000000000240000000000000000000000000000000000000000000000000000000000000005.json"
         }
       ],
-      "condition": "Contributed to Celo Governance in Season 0",
-      "chains": ["Celo"],
-      "id": 23,
-      "URI": "ipfs/QmdofYyLXJ5PHQBkGw6KbZ2geVv4aWcZo6uwqdAWaEub5w/00000000000000000000000000000000000000000000000000000000000000230000000000000000000000000000000000000000000000000000000000000000.json",
-      "image": "https://pass.celopg.eco/static/badges/All-Time/S0-Gov-Contributor/Badge.svg",
-      "stack-image": "https://pass.celopg.eco/static/badges/All-Time/S0-Gov-Contributor/Badge-Stack.svg",
+      "condition": "Participated in The Dream Factory land project",
+      "chains": [
+        "Celo"
+      ],
+      "id": 24,
+      "URI": "ipfs/Qmf7ew7KeZ935LCuLRQV5xASgjBr3DHXS9psCCzotqPEKe/00000000000000000000000000000000000000000000000000000000000000240000000000000000000000000000000000000000000000000000000000000000.json",
+      "image": "https://pass.celopg.eco/static/badges/All-Time/TDF-Contributor/Badge.svg",
+      "stack-image": "https://pass.celopg.eco/static/badges/All-Time/TDF-Contributor/Badge-Stack.svg",
       "season": null
     }
   ]
