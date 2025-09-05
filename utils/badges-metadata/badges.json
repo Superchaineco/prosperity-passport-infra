@@ -625,7 +625,7 @@
       "image": "https://pass.celopg.eco/static/badges/All-Time/TDF-Contributor/Badge.svg",
       "stack-image": "https://pass.celopg.eco/static/badges/All-Time/TDF-Contributor/Badge-Stack.svg",
       "levels": [
-         {
+        {
           "minValue": 1,
           "points": 10
         },
@@ -647,6 +647,38 @@
         }
       ],
       "condition": "Participated in The Dream Factory land project",
+      "chains": ["Celo"],
+      "season": null
+    },
+    {
+      "name": "Community Guild Member",
+      "description": "Issued based on your role in the <a href='https://guild.xyz/celo-communities'>Celo Communities Guild</a>",
+      "platform": "Celo",
+      "image": "https://pass.celopg.eco/static/badges/All-Time/Community-Guild-Member/Badge.svg",
+      "stack-image": "https://pass.celopg.eco/static/badges/All-Time/Community-Guild-Member/Badge-Stack.svg",
+      "levels": [
+        {
+          "minValue": 1,
+          "points": 10
+        },
+        {
+          "minValue": 2,
+          "points": 20
+        },
+        {
+          "minValue": 3,
+          "points": 30
+        },
+        {
+          "minValue": 4,
+          "points": 40
+        },
+        {
+          "minValue": 5,
+          "points": 50
+        }
+      ],
+      "condition": "{{variable}} level Celorian",
       "chains": ["Celo"],
       "season": null
     }
