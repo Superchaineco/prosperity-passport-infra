@@ -681,6 +681,38 @@
       "condition": "{{variable}} level Celorian",
       "chains": ["Celo"],
       "season": null
+    },
+    {
+      "name": "Celo Vault Deposit",
+      "description": "Deposit CELO in the Staked CELO Vault",
+      "platform": "Prosperity Passport",
+      "image": "https://pass.celopg.eco/static/badges/All-Time/Celo-Vault-Deposit/Badge.svg",
+      "stack-image": "https://pass.celopg.eco/static/badges/All-Time/Celo-Vault-Deposit/Badge-Stack.svg",
+      "levels": [
+        {
+          "minValue": 1,
+          "points": 20
+        },
+        {
+          "minValue": 2,
+          "points": 40
+        },
+        {
+          "minValue": 3,
+          "points": 60
+        },
+        {
+          "minValue": 4,
+          "points": 80
+        },
+        {
+          "minValue": 5,
+          "points": 100
+        }
+      ],
+      "condition": "Contributed to Celo Governance in Season 0",
+      "chains": ["Celo"],
+      "season": "1"
     }
   ]
 }
