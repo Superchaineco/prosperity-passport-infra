@@ -50,7 +50,7 @@ dataSources:
     name: SuperChainBadges
     network: celo
     source:
-      address: "0xd47C56513E640E394024FaCBBe5032cf604Bb699"
+      address: ""
       abi: SuperChainBadges
       startBlock: 29117117
     mapping:

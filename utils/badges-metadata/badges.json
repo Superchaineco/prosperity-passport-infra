@@ -712,7 +712,7 @@
       ],
       "condition": "Contributed to Celo Governance in Season 0",
       "chains": ["Celo"],
-      "season": "1"
+      "season": 1
     }
   ]
 }
