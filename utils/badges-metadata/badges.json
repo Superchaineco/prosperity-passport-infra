@@ -370,7 +370,7 @@
           "points": 50
         }
       ],
-      "condition": "Hold USDGLO on Celo",
+      "condition": "Hold USDGLO on Celo {{variable}}",
       "chains": ["Celo"],
       "season": null
     },

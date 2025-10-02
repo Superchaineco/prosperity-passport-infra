@@ -453,7 +453,7 @@
           "URI": "ipfs/QmYmpHyybED4mmgQYohYtUEXe2uDxhaAHKyxodBoUBNc1R/00000000000000000000000000000000000000000000000000000000000000130000000000000000000000000000000000000000000000000000000000000005.json"
         }
       ],
-      "condition": "Hold USDGLO on Celo",
+      "condition": "Hold USDGLO on Celo {{variable}}",
       "chains": [
         "Celo"
       ],
