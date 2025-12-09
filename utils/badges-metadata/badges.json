@@ -713,6 +713,102 @@
       "condition": "Contributed to Celo Governance in Season 0",
       "chains": ["Celo"],
       "season": 1
+    },
+    {
+      "name": "AkibaMiles Earner",
+      "description": "Total AkibaMiles earned through the Akiba dApp",
+      "platform": "Akiba Miles",
+      "image": "https://pass.celopg.eco/static/badges/All-Time/AkibaMiles-Earner/Badge.svg",
+      "stack-image": "https://pass.celopg.eco/static/badges/All-Time/AkibaMiles-Earner/Badge-Stack.svg",
+      "levels": [
+        {
+          "minValue": 250,
+          "points": 10
+        },
+        {
+          "minValue": 1000,
+          "points": 20
+        },
+        {
+          "minValue": 5000,
+          "points": 30
+        },
+        {
+          "minValue": 20000,
+          "points": 40
+        },
+        {
+          "minValue": 100000,
+          "points": 50
+        }
+      ],
+      "condition": "{{variable}} AkibaMiles earned",
+      "chains": ["Celo"],
+      "season": null
+    },
+    {
+      "name": "CELO Merkl Yielder",
+      "description": "Total CELO claimed via Merkl",
+      "platform": "Merkl",
+      "image": "https://pass.celopg.eco/static/badges/All-Time/Celo-Merkl-Yielder/Badge.svg",
+      "stack-image": "https://pass.celopg.eco/static/badges/All-Time/Celo-Merkl-Yielder/Badge-Stack.svg",
+      "levels": [
+        {
+          "minValue": 5,
+          "points": 10
+        },
+        {
+          "minValue": 100,
+          "points": 20
+        },
+        {
+          "minValue": 1000,
+          "points": 30
+        },
+        {
+          "minValue": 7500,
+          "points": 40
+        },
+        {
+          "minValue": 25000,
+          "points": 50
+        }
+      ],
+      "condition": "Claimed {{variable}} Celo via Merkl",
+      "chains": ["Celo"],
+      "season": null
+    },
+   {
+      "name": "cUSD Merkl Yielder",
+      "description": "Total cUSD claimed via Merkl",
+      "platform": "Merkl",
+      "image": "https://pass.celopg.eco/static/badges/All-Time/cUSD-Merkl-Yielder/Badge.svg",
+      "stack-image": "https://pass.celopg.eco/static/badges/All-Time/cUSD-Merkl-Yielder/Badge-Stack.svg",
+      "levels": [
+        {
+          "minValue": 5,
+          "points": 10
+        },
+        {
+          "minValue": 100,
+          "points": 20
+        },
+        {
+          "minValue": 1000,
+          "points": 30
+        },
+        {
+          "minValue": 7500,
+          "points": 40
+        },
+        {
+          "minValue": 25000,
+          "points": 50
+        }
+      ],
+      "condition": "Claimed {{variable}} cUSD via Merkl",
+      "chains": ["Celo"],
+      "season": null
     }
   ]
 }
