@@ -1,126 +1,32 @@
 {
   "badges": [
-        {
-      "name": "AkibaMiles Earner",
-      "description": "Total AkibaMiles earned through the Akiba dApp",
+    {
+      "name": "AkibaMiles Game Earner",
+      "description": "Lifetime AkibaMiles earned from Akiba Games",
       "platform": "Akiba Miles",
       "levels": [
         {
-          "minValue": 250,
-          "points": 10,
-          "URI": "ipfs/Qma5gbHQcxRGt56mD23Scxm1pYhSN9t1a7zUpQTb7Lk3V4/00000000000000000000000000000000000000000000000000000000000000270000000000000000000000000000000000000000000000000000000000000001.json"
-        },
-        {
-          "minValue": 1000,
-          "points": 20,
-          "URI": "ipfs/Qma5gbHQcxRGt56mD23Scxm1pYhSN9t1a7zUpQTb7Lk3V4/00000000000000000000000000000000000000000000000000000000000000270000000000000000000000000000000000000000000000000000000000000002.json"
-        },
-        {
-          "minValue": 5000,
-          "points": 30,
-          "URI": "ipfs/Qma5gbHQcxRGt56mD23Scxm1pYhSN9t1a7zUpQTb7Lk3V4/00000000000000000000000000000000000000000000000000000000000000270000000000000000000000000000000000000000000000000000000000000003.json"
-        },
-        {
-          "minValue": 20000,
-          "points": 40,
-          "URI": "ipfs/Qma5gbHQcxRGt56mD23Scxm1pYhSN9t1a7zUpQTb7Lk3V4/00000000000000000000000000000000000000000000000000000000000000270000000000000000000000000000000000000000000000000000000000000004.json"
-        },
-        {
-          "minValue": 100000,
-          "points": 50,
-          "URI": "ipfs/Qma5gbHQcxRGt56mD23Scxm1pYhSN9t1a7zUpQTb7Lk3V4/00000000000000000000000000000000000000000000000000000000000000270000000000000000000000000000000000000000000000000000000000000005.json"
-        }
-      ],
-      "condition": "{{variable}} AkibaMiles earned",
-      "chains": [
-        "Celo"
-      ],
-      "id": 27,
-      "URI": "ipfs/Qma5gbHQcxRGt56mD23Scxm1pYhSN9t1a7zUpQTb7Lk3V4/00000000000000000000000000000000000000000000000000000000000000270000000000000000000000000000000000000000000000000000000000000000.json",
-      "image": "https://pass.celopg.eco/static/badges/All-Time/AkibaMiles-Earner/Badge.svg",
-      "stack-image": "https://pass.celopg.eco/static/badges/All-Time/AkibaMiles-Earner/Badge-Stack.svg",
-      "season": null
-    },
-    {
-      "name": "CELO Merkl Yielder",
-      "description": "Total CELO claimed via Merkl",
-      "platform": "Merkl",
-      "levels": [
-        {
-          "minValue": 5,
-          "points": 10,
-          "URI": "ipfs/Qma5gbHQcxRGt56mD23Scxm1pYhSN9t1a7zUpQTb7Lk3V4/00000000000000000000000000000000000000000000000000000000000000280000000000000000000000000000000000000000000000000000000000000001.json"
-        },
-        {
           "minValue": 100,
-          "points": 20,
-          "URI": "ipfs/Qma5gbHQcxRGt56mD23Scxm1pYhSN9t1a7zUpQTb7Lk3V4/00000000000000000000000000000000000000000000000000000000000000280000000000000000000000000000000000000000000000000000000000000002.json"
-        },
-        {
-          "minValue": 1000,
-          "points": 30,
-          "URI": "ipfs/Qma5gbHQcxRGt56mD23Scxm1pYhSN9t1a7zUpQTb7Lk3V4/00000000000000000000000000000000000000000000000000000000000000280000000000000000000000000000000000000000000000000000000000000003.json"
-        },
-        {
-          "minValue": 7500,
-          "points": 40,
-          "URI": "ipfs/Qma5gbHQcxRGt56mD23Scxm1pYhSN9t1a7zUpQTb7Lk3V4/00000000000000000000000000000000000000000000000000000000000000280000000000000000000000000000000000000000000000000000000000000004.json"
-        },
-        {
-          "minValue": 25000,
-          "points": 50,
-          "URI": "ipfs/Qma5gbHQcxRGt56mD23Scxm1pYhSN9t1a7zUpQTb7Lk3V4/00000000000000000000000000000000000000000000000000000000000000280000000000000000000000000000000000000000000000000000000000000005.json"
-        }
-      ],
-      "condition": "Claimed {{variable}} Celo via Merkl",
-      "chains": [
-        "Celo"
-      ],
-      "id": 28,
-      "URI": "ipfs/Qma5gbHQcxRGt56mD23Scxm1pYhSN9t1a7zUpQTb7Lk3V4/00000000000000000000000000000000000000000000000000000000000000280000000000000000000000000000000000000000000000000000000000000000.json",
-      "image": "https://pass.celopg.eco/static/badges/All-Time/Celo-Merkl-Yielder/Badge.svg",
-      "stack-image": "https://pass.celopg.eco/static/badges/All-Time/Celo-Merkl-Yielder/Badge-Stack.svg",
-      "season": null
-    },
-    {
-      "name": "cUSD Merkl Yielder",
-      "description": "Total cUSD claimed via Merkl",
-      "platform": "Merkl",
-      "levels": [
-        {
-          "minValue": 5,
           "points": 10,
-          "URI": "ipfs/Qma5gbHQcxRGt56mD23Scxm1pYhSN9t1a7zUpQTb7Lk3V4/00000000000000000000000000000000000000000000000000000000000000290000000000000000000000000000000000000000000000000000000000000001.json"
-        },
-        {
-          "minValue": 100,
-          "points": 20,
-          "URI": "ipfs/Qma5gbHQcxRGt56mD23Scxm1pYhSN9t1a7zUpQTb7Lk3V4/00000000000000000000000000000000000000000000000000000000000000290000000000000000000000000000000000000000000000000000000000000002.json"
+          "URI": "ipfs/QmYGzoR6Lt7JKnZeQ8QDuuvjzMMXCA8u9iJ9ahDpMs1Eaa/00000000000000000000000000000000000000000000000000000000000000300000000000000000000000000000000000000000000000000000000000000001.json"
         },
         {
           "minValue": 1000,
+          "points": 20,
+          "URI": "ipfs/QmYGzoR6Lt7JKnZeQ8QDuuvjzMMXCA8u9iJ9ahDpMs1Eaa/00000000000000000000000000000000000000000000000000000000000000300000000000000000000000000000000000000000000000000000000000000002.json"
+        },
+        {
+          "minValue": 10000,
           "points": 30,
-          "URI": "ipfs/Qma5gbHQcxRGt56mD23Scxm1pYhSN9t1a7zUpQTb7Lk3V4/00000000000000000000000000000000000000000000000000000000000000290000000000000000000000000000000000000000000000000000000000000003.json"
-        },
-        {
-          "minValue": 7500,
-          "points": 40,
-          "URI": "ipfs/Qma5gbHQcxRGt56mD23Scxm1pYhSN9t1a7zUpQTb7Lk3V4/00000000000000000000000000000000000000000000000000000000000000290000000000000000000000000000000000000000000000000000000000000004.json"
-        },
-        {
-          "minValue": 25000,
-          "points": 50,
-          "URI": "ipfs/Qma5gbHQcxRGt56mD23Scxm1pYhSN9t1a7zUpQTb7Lk3V4/00000000000000000000000000000000000000000000000000000000000000290000000000000000000000000000000000000000000000000000000000000005.json"
+          "URI": "ipfs/QmYGzoR6Lt7JKnZeQ8QDuuvjzMMXCA8u9iJ9ahDpMs1Eaa/00000000000000000000000000000000000000000000000000000000000000300000000000000000000000000000000000000000000000000000000000000003.json"
         }
       ],
-      "condition": "Claimed {{variable}} cUSD via Merkl",
-      "chains": [
-        "Celo"
-      ],
-      "id": 29,
-      "URI": "ipfs/Qma5gbHQcxRGt56mD23Scxm1pYhSN9t1a7zUpQTb7Lk3V4/00000000000000000000000000000000000000000000000000000000000000290000000000000000000000000000000000000000000000000000000000000000.json",
-      "image": "https://pass.celopg.eco/static/badges/All-Time/cUSD-Merkl-Yielder/Badge.svg",
-      "stack-image": "https://pass.celopg.eco/static/badges/All-Time/cUSD-Merkl-Yielder/Badge-Stack.svg",
+      "condition": "Earned {{variable}} in games",
+      "chains": ["Celo"],
+      "id": 30,
+      "URI": "ipfs/QmYGzoR6Lt7JKnZeQ8QDuuvjzMMXCA8u9iJ9ahDpMs1Eaa/00000000000000000000000000000000000000000000000000000000000000300000000000000000000000000000000000000000000000000000000000000000.json",
+      "image": "https://pass.celopg.eco/static/badges/All-Time/Akiba-Games-Earner/Badge.svg",
+      "stack-image": "https://pass.celopg.eco/static/badges/All-Time/Akiba-Games-Earner/Badge-Stack.svg",
       "season": null
     }
   ]

@@ -809,6 +809,30 @@
       "condition": "Claimed {{variable}} cUSD via Merkl",
       "chains": ["Celo"],
       "season": null
+    },
+   {
+      "name": "AkibaMiles Game Earner",
+      "description": "Lifetime AkibaMiles earned from Akiba Games",
+      "platform": "Akiba Miles",
+      "image": "https://pass.celopg.eco/static/badges/All-Time/Akiba-Games-Earner/Badge.svg",
+      "stack-image": "https://pass.celopg.eco/static/badges/All-Time/Akiba-Games-Earner/Badge-Stack.svg",
+      "levels": [
+        {
+          "minValue": 100,
+          "points": 10
+        },
+        {
+          "minValue": 1000,
+          "points": 20
+        },
+        {
+          "minValue": 10000,
+          "points": 30
+        }
+      ],
+      "condition": "Earned {{variable}} in games",
+      "chains": ["Celo"],
+      "season": null
     }
   ]
 }
